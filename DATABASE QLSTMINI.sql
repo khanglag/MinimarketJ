@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th9 17, 2023 lúc 07:06 PM
+-- Thời gian đã tạo: Th9 18, 2023 lúc 04:48 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -47,15 +47,16 @@ CREATE TABLE `bangluong` (
   `TIENTHUONG` int(11) NOT NULL,
   `TIENPHAT` int(11) NOT NULL,
   `UNGLUONG` int(11) NOT NULL,
-  `THUCLANH` int(11) NOT NULL
+  `THUCLANH` int(11) NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `bangluong`
 --
 
-INSERT INTO `bangluong` (`MANV`, `TONGCONG`, `NGAYBDTINHCONG`, `NGAYKTTINHCONG`, `PHUCAP`, `TIENTHUONG`, `TIENPHAT`, `UNGLUONG`, `THUCLANH`) VALUES
-('A070103', 1800000, '2023-09-18', '2023-10-18', 5000, 0, 0, 0, 1805000);
+INSERT INTO `bangluong` (`MANV`, `TONGCONG`, `NGAYBDTINHCONG`, `NGAYKTTINHCONG`, `PHUCAP`, `TIENTHUONG`, `TIENPHAT`, `UNGLUONG`, `THUCLANH`, `TONTAI`) VALUES
+('A070103', 1800000, '2023-09-18', '2023-10-18', 5000, 0, 0, 0, 1805000, 1);
 
 -- --------------------------------------------------------
 
@@ -71,15 +72,16 @@ CREATE TABLE `bienbanbangiaoca` (
   `SOTIENBANGIAO` int(11) NOT NULL,
   `SOTIENTRENHT` int(11) NOT NULL,
   `THOIGIANBANGIAO` datetime NOT NULL,
-  `CHECKLIST` tinyint(1) NOT NULL
+  `CHECKLIST` tinyint(1) NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `bienbanbangiaoca`
 --
 
-INSERT INTO `bienbanbangiaoca` (`MACA1`, `MACA2`, `MANVCA1`, `MANVCA2`, `SOTIENBANGIAO`, `SOTIENTRENHT`, `THOIGIANBANGIAO`, `CHECKLIST`) VALUES
-('1', '2', 'A140403', 'A070103', 1328000, 1328000, '2023-09-17 18:56:36', 1);
+INSERT INTO `bienbanbangiaoca` (`MACA1`, `MACA2`, `MANVCA1`, `MANVCA2`, `SOTIENBANGIAO`, `SOTIENTRENHT`, `THOIGIANBANGIAO`, `CHECKLIST`, `TONTAI`) VALUES
+('1', '2', 'A140403', 'A070103', 1328000, 1328000, '2023-09-17 18:56:36', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -90,17 +92,18 @@ INSERT INTO `bienbanbangiaoca` (`MACA1`, `MACA2`, `MANVCA1`, `MANVCA2`, `SOTIENB
 CREATE TABLE `calamviec` (
   `MACA` char(1) NOT NULL,
   `THOIGIANBATDAU` time NOT NULL,
-  `THOIGIANKETTHUC` time NOT NULL
+  `THOIGIANKETTHUC` time NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `calamviec`
 --
 
-INSERT INTO `calamviec` (`MACA`, `THOIGIANBATDAU`, `THOIGIANKETTHUC`) VALUES
-('1', '07:00:00', '12:00:00'),
-('2', '12:00:00', '17:00:00'),
-('3', '17:00:00', '22:00:00');
+INSERT INTO `calamviec` (`MACA`, `THOIGIANBATDAU`, `THOIGIANKETTHUC`, `TONTAI`) VALUES
+('1', '07:00:00', '12:00:00', 1),
+('2', '12:00:00', '17:00:00', 1),
+('3', '17:00:00', '22:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -112,17 +115,31 @@ CREATE TABLE `chamcong` (
   `MANV` char(7) NOT NULL,
   `THOIGIANCI` datetime NOT NULL,
   `THOIGIANCO` datetime NOT NULL,
-  `TONGGIOCONG` int(11) NOT NULL
+  `TONGGIOCONG` int(11) NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `chamcong`
 --
 
-INSERT INTO `chamcong` (`MANV`, `THOIGIANCI`, `THOIGIANCO`, `TONGGIOCONG`) VALUES
-('A000001', '2023-09-18 06:58:33', '2023-09-18 12:01:00', 5),
-('A070103', '2023-09-18 11:55:41', '2023-09-18 17:05:41', 5),
-('A140403', '2023-09-18 06:54:50', '2023-09-18 12:00:50', 5);
+INSERT INTO `chamcong` (`MANV`, `THOIGIANCI`, `THOIGIANCO`, `TONGGIOCONG`, `TONTAI`) VALUES
+('A000001', '2023-09-18 06:58:33', '2023-09-18 12:01:00', 5, 1),
+('A070103', '2023-09-18 11:55:41', '2023-09-18 17:05:41', 5, 1),
+('A140403', '2023-09-18 06:54:50', '2023-09-18 12:00:50', 5, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `chitiet_hoadon`
+--
+
+CREATE TABLE `chitiet_hoadon` (
+  `SOHD` int(11) NOT NULL,
+  `MASP` char(13) NOT NULL,
+  `SOLUONG` int(11) NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -141,26 +158,27 @@ CREATE TABLE `hanghoa` (
   `GIANHAP` int(11) NOT NULL,
   `GIABAN` int(11) NOT NULL,
   `SOLUONG` int(11) NOT NULL,
-  `XUATXU` text NOT NULL
+  `XUATXU` text NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `hanghoa`
 --
 
-INSERT INTO `hanghoa` (`MASP`, `TENSP`, `MANH`, `NGAYSX`, `HSD`, `MANCC`, `DONVI`, `GIANHAP`, `GIABAN`, `SOLUONG`, `XUATXU`) VALUES
-('4902430556781', 'Tã dán Pampers nội địa Nhật Bản cao cấp thượng hạn', '0000004', '2022-01-01', '2023-12-30', 'NCCDYQN', 'VN', 30960, 46440, 10, 'Mỹ'),
-('8657882990341', 'Nước giặt Downy vườn hoa thơm ngát túi 3.05kg', '0000003', '2022-01-01', '2023-12-30', 'NCCDYQN', 'VN', 89400, 134000, 20, 'Mỹ'),
-('8809541033891', 'Mặt nạ chiết xuất từ nghệ Purederm dưỡng da', '0000005', '2022-01-01', '2023-12-30', 'NCCDYQN', 'VN', 5000, 8000, 100, 'Mỹ'),
-('8835166023316', 'Lốc 3 cuộn túi rác đen tự huỷ sinh học', '0000002', '2022-01-01', '2023-12-30', 'NCCDYQN', 'VN', 33600, 50400, 50, 'Mỹ'),
-('8843331098667', 'hùng 24 bịch sữa tiệt trùng ít đường Dutch Lady 180ml', '0000007', '2022-01-01', '2023-12-30', 'NCCDYQN', 'vn', 76200, 114300, 5, 'Mỹ'),
-('8853301530293', 'Thức ăn cho chó lớn Pedigree vị bò kho và rau củ túi 130g', '0000001', '2022-01-01', '2023-12-30', 'NCCDYQN', 'vn', 9000, 13500, 100, 'Mỹ'),
-('8934558928122', 'Dầu ăn cao cấp Happi Koki chai 1 lít', '0000012', '2022-01-01', '2023-12-30', 'NCCDYQN', 'VN', 20700, 31, 50, 'Mỹ'),
-('8934561667891', 'Thùng 30 gói mì Hảo Hảo tôm chua cay 75g', '0000010', '2022-01-01', '2023-12-30', 'NCCDYQN', 'VN', 64800, 97200, 10, 'Mỹ'),
-('8934822561234', 'Thùng 12 lon bia Bia Việt 330ml', '0000008', '2022-01-01', '2023-12-30', 'NCCDYQN', 'VN', 76200, 114300, 10, 'Mỹ'),
-('8935162895621', 'Gạo thơm đặc sản Neptune ST25 túi 5kg', '0000009', '2022-01-01', '2023-12-30', 'NCCDYQN', 'VN', 81000, 129000, 10, 'Mỹ'),
-('8936011896782', 'Sữa chua dẻo phô mai Merino gói 50g', '0000011', '2022-01-01', '2023-12-30', 'NCCDYQN', 'vn', 3600, 5400, 50, 'Mỹ'),
-('8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', '0000006', '2022-01-01', '2023-12-30', 'NCCDYQN', 'vn', 27000, 40500, 10, 'Mỹ');
+INSERT INTO `hanghoa` (`MASP`, `TENSP`, `MANH`, `NGAYSX`, `HSD`, `MANCC`, `DONVI`, `GIANHAP`, `GIABAN`, `SOLUONG`, `XUATXU`, `TONTAI`) VALUES
+('4902430556781', 'Tã dán Pampers nội địa Nhật Bản cao cấp thượng hạn', '0000004', '2022-01-01', '2023-12-30', 'NCCDYQN', 'VN', 309600, 464400, 10, 'Mỹ', 1),
+('8657882990341', 'Nước giặt Downy vườn hoa thơm ngát túi 3.05kg', '0000003', '2022-01-01', '2023-12-30', 'NCCDYQN', 'VN', 89400, 134000, 20, 'Mỹ', 1),
+('8809541033891', 'Mặt nạ chiết xuất từ nghệ Purederm dưỡng da', '0000005', '2022-01-01', '2023-12-30', 'NCCDYQN', 'VN', 5000, 8000, 100, 'Mỹ', 1),
+('8835166023316', 'Lốc 3 cuộn túi rác đen tự huỷ sinh học', '0000002', '2022-01-01', '2023-12-30', 'NCCDYQN', 'VN', 33600, 50400, 50, 'Mỹ', 1),
+('8843331098667', 'hùng 24 bịch sữa tiệt trùng ít đường Dutch Lady 180ml', '0000007', '2022-01-01', '2023-12-30', 'NCCDYQN', 'vn', 76200, 114300, 5, 'Mỹ', 1),
+('8853301530293', 'Thức ăn cho chó lớn Pedigree vị bò kho và rau củ túi 130g', '0000001', '2022-01-01', '2023-12-30', 'NCCDYQN', 'vn', 9000, 13500, 100, 'Mỹ', 1),
+('8934558928122', 'Dầu ăn cao cấp Happi Koki chai 1 lít', '0000012', '2022-01-01', '2023-12-30', 'NCCDYQN', 'VN', 20700, 31, 50, 'Mỹ', 1),
+('8934561667891', 'Thùng 30 gói mì Hảo Hảo tôm chua cay 75g', '0000010', '2022-01-01', '2023-12-30', 'NCCDYQN', 'VN', 64800, 97200, 10, 'Mỹ', 1),
+('8934822561234', 'Thùng 12 lon bia Bia Việt 330ml', '0000008', '2022-01-01', '2023-12-30', 'NCCDYQN', 'VN', 76200, 114300, 10, 'Mỹ', 1),
+('8935162895621', 'Gạo thơm đặc sản Neptune ST25 túi 5kg', '0000009', '2022-01-01', '2023-12-30', 'NCCDYQN', 'VN', 81000, 129000, 10, 'Mỹ', 1),
+('8936011896782', 'Sữa chua dẻo phô mai Merino gói 50g', '0000011', '2022-01-01', '2023-12-30', 'NCCDYQN', 'vn', 3600, 5400, 50, 'Mỹ', 1),
+('8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', '0000006', '2022-01-01', '2023-12-30', 'NCCDYQN', 'vn', 27000, 40500, 10, 'Mỹ', 1);
 
 -- --------------------------------------------------------
 
@@ -177,7 +195,8 @@ CREATE TABLE `hoadon` (
   `CHIETKHAU` int(11) NOT NULL,
   `THANHTOAN` int(11) NOT NULL,
   `TIENKHACHDUA` int(11) NOT NULL,
-  `TIENTRAKHACH` int(11) NOT NULL
+  `TIENTRAKHACH` int(11) NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -192,7 +211,8 @@ CREATE TABLE `khachhang` (
   `NGAYSINH` date NOT NULL,
   `SDT` char(10) NOT NULL,
   `CCCD` char(12) NOT NULL,
-  `DIACHI` text NOT NULL
+  `DIACHI` text NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -205,15 +225,16 @@ CREATE TABLE `nhacungcap` (
   `MANCC` char(7) NOT NULL,
   `TENNCC` text NOT NULL,
   `SDT` char(10) NOT NULL,
-  `DIACHI` text NOT NULL
+  `DIACHI` text NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `nhacungcap`
 --
 
-INSERT INTO `nhacungcap` (`MANCC`, `TENNCC`, `SDT`, `DIACHI`) VALUES
-('NCCDYQN', 'Nhà cung cấp cho CH', '0358808913', '477 Au duong lan');
+INSERT INTO `nhacungcap` (`MANCC`, `TENNCC`, `SDT`, `DIACHI`, `TONTAI`) VALUES
+('NCCDYQN', 'Nhà cung cấp cho CH', '0358808913', '477 Au duong lan', 1);
 
 -- --------------------------------------------------------
 
@@ -233,20 +254,21 @@ CREATE TABLE `nhanvien` (
   `MAQUYEN` char(7) NOT NULL,
   `NGAYBATDAU` date NOT NULL,
   `NGAYNGHIVIEC` date NOT NULL,
-  `HESOLUONG` int(11) NOT NULL
+  `HESOLUONG` int(11) NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `nhanvien`
 --
 
-INSERT INTO `nhanvien` (`MANV`, `TENNV`, `NGAYSINH`, `GIOITINH`, `CCCD`, `SDT`, `EMAIL`, `DIACHI`, `MAQUYEN`, `NGAYBATDAU`, `NGAYNGHIVIEC`, `HESOLUONG`) VALUES
-('A000001', 'Võ Đinh Xuân Hoàng', '2003-02-02', 'nam', '068000000002', '0944313407', 'vodinhxuanhoang@gmail.com', '277 Au Duong Lan', 'NVBH203', '2023-01-01', '0000-00-00', 1),
-('A000003', 'Nguyễn Trần Yến Nhi', '2003-02-02', 'nữ', '068000000000', '0368562519', 'tuoi@gmail.com', 'Thủ Đức', 'NVTK203', '2023-01-01', '0000-00-00', 1),
-('A038645', 'Nguyễn Thị Anh Thư ', '2003-08-15', 'nữ', '068303002628', '0368779041', 'nguyenanhthu15082003@gmail.com', '101 Nguyễn Thị Tần', 'NVTK203', '2023-01-01', '0000-00-00', 1),
-('A070103', 'Nguyễn Kế Cường', '2003-01-07', 'nam', '052000000000', '0682620178', 'kecuong0701@gmail.com', '477 Tân Sơn', 'NVBH203', '2023-01-01', '0000-00-00', 1),
-('A140403', 'Đỗ Minh Khang', '2003-04-14', 'nam', '068000000001', '0838208944', 'khanglag@gmail.com', 'Duong Quan Ham', 'NVBH203', '2023-01-01', '0000-00-00', 1),
-('B041003', 'Lê Duy Khang', '2003-10-04', 'nam', '091203002454', '0358808913', 'lehoanggiakhuong@gmail.com', '277 Âu Dương Lân', 'QL20003', '2023-01-01', '0000-00-00', 2);
+INSERT INTO `nhanvien` (`MANV`, `TENNV`, `NGAYSINH`, `GIOITINH`, `CCCD`, `SDT`, `EMAIL`, `DIACHI`, `MAQUYEN`, `NGAYBATDAU`, `NGAYNGHIVIEC`, `HESOLUONG`, `TONTAI`) VALUES
+('A000001', 'Võ Đinh Xuân Hoàng', '2003-02-02', 'nam', '068000000002', '0944313407', 'vodinhxuanhoang@gmail.com', '277 Au Duong Lan', 'NVBH203', '2023-01-01', '0000-00-00', 1, 1),
+('A000003', 'Nguyễn Trần Yến Nhi', '2003-02-02', 'nữ', '068000000000', '0368562519', 'tuoi@gmail.com', 'Thủ Đức', 'NVTK203', '2023-01-01', '0000-00-00', 1, 1),
+('A038645', 'Nguyễn Thị Anh Thư ', '2003-08-15', 'nữ', '068303002628', '0368779041', 'nguyenanhthu15082003@gmail.com', '101 Nguyễn Thị Tần', 'NVTK203', '2023-01-01', '0000-00-00', 1, 1),
+('A070103', 'Nguyễn Kế Cường', '2003-01-07', 'nam', '052000000000', '0682620178', 'kecuong0701@gmail.com', '477 Tân Sơn', 'NVBH203', '2023-01-01', '0000-00-00', 1, 1),
+('A140403', 'Đỗ Minh Khang', '2003-04-14', 'nam', '068000000001', '0838208944', 'khanglag@gmail.com', 'Duong Quan Ham', 'NVBH203', '2023-01-01', '0000-00-00', 1, 1),
+('B041003', 'Lê Duy Khang', '2003-10-04', 'nam', '091203002454', '0358808913', 'lehoanggiakhuong@gmail.com', '277 Âu Dương Lân', 'QL20003', '2023-01-01', '0000-00-00', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -256,27 +278,28 @@ INSERT INTO `nhanvien` (`MANV`, `TENNV`, `NGAYSINH`, `GIOITINH`, `CCCD`, `SDT`, 
 
 CREATE TABLE `nhomhang` (
   `MANH` char(7) NOT NULL,
-  `TENNH` text NOT NULL
+  `TENNH` text NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `nhomhang`
 --
 
-INSERT INTO `nhomhang` (`MANH`, `TENNH`) VALUES
-('', ''),
-('0000001', 'Chăm sóc thú cưng'),
-('0000002', 'Đồ dùng gia đình'),
-('0000003', 'Vệ sinh nhà cửa'),
-('0000004', 'Sản phẩm cho mẹ và bé'),
-('0000005', 'Chăm sóc cá nhân'),
-('0000006', 'Bánh kẹo các loại'),
-('0000007', 'Sửa các loại'),
-('0000008', 'Bia, nước các loại'),
-('0000009', 'gạo, bột, đồ khô'),
-('0000010', 'mì, miến, cháo, phở'),
-('0000011', 'kem, thực phẩm đông mát'),
-('0000012', 'dầu ăn, nước chấm, gia vị');
+INSERT INTO `nhomhang` (`MANH`, `TENNH`, `TONTAI`) VALUES
+('', '', 1),
+('0000001', 'Chăm sóc thú cưng', 1),
+('0000002', 'Đồ dùng gia đình', 1),
+('0000003', 'Vệ sinh nhà cửa', 1),
+('0000004', 'Sản phẩm cho mẹ và bé', 1),
+('0000005', 'Chăm sóc cá nhân', 1),
+('0000006', 'Bánh kẹo các loại', 1),
+('0000007', 'Sửa các loại', 1),
+('0000008', 'Bia, nước các loại', 1),
+('0000009', 'gạo, bột, đồ khô', 1),
+('0000010', 'mì, miến, cháo, phở', 1),
+('0000011', 'kem, thực phẩm đông mát', 1),
+('0000012', 'dầu ăn, nước chấm, gia vị', 1);
 
 -- --------------------------------------------------------
 
@@ -288,22 +311,23 @@ CREATE TABLE `phanca` (
   `MACA` char(1) NOT NULL,
   `MANV` char(7) NOT NULL,
   `SOGIO` int(11) NOT NULL,
-  `NGAYLAM` date NOT NULL
+  `NGAYLAM` date NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `phanca`
 --
 
-INSERT INTO `phanca` (`MACA`, `MANV`, `SOGIO`, `NGAYLAM`) VALUES
-('1', 'A000001', 5, '2023-09-18'),
-('1', 'A140403', 5, '2023-09-18'),
-('1', 'B041003', 5, '2023-09-18'),
-('2', 'A070103', 5, '2023-09-18'),
-('2', 'B041003', 5, '2023-09-18'),
-('3', 'A000003', 5, '2023-09-18'),
-('3', 'A038645', 5, '2023-09-18'),
-('3', 'B041003', 5, '2023-09-18');
+INSERT INTO `phanca` (`MACA`, `MANV`, `SOGIO`, `NGAYLAM`, `TONTAI`) VALUES
+('1', 'A000001', 5, '2023-09-18', 1),
+('1', 'A140403', 5, '2023-09-18', 1),
+('1', 'B041003', 5, '2023-09-18', 1),
+('2', 'A070103', 5, '2023-09-18', 1),
+('2', 'B041003', 5, '2023-09-18', 1),
+('3', 'A000003', 5, '2023-09-18', 1),
+('3', 'A038645', 5, '2023-09-18', 1),
+('3', 'B041003', 5, '2023-09-18', 1);
 
 -- --------------------------------------------------------
 
@@ -313,17 +337,18 @@ INSERT INTO `phanca` (`MACA`, `MANV`, `SOGIO`, `NGAYLAM`) VALUES
 
 CREATE TABLE `phanquyen` (
   `MAQUYEN` char(7) NOT NULL,
-  `TENQUYEN` text NOT NULL
+  `TENQUYEN` text NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `phanquyen`
 --
 
-INSERT INTO `phanquyen` (`MAQUYEN`, `TENQUYEN`) VALUES
-('NVBH203', 'Nhân viên bán hàng'),
-('NVTK203', 'Nhân viên thủ kho'),
-('QL20003', 'Quản lý');
+INSERT INTO `phanquyen` (`MAQUYEN`, `TENQUYEN`, `TONTAI`) VALUES
+('NVBH203', 'Nhân viên bán hàng', 1),
+('NVTK203', 'Nhân viên thủ kho', 1),
+('QL20003', 'Quản lý', 1);
 
 -- --------------------------------------------------------
 
@@ -337,15 +362,16 @@ CREATE TABLE `phieuchi` (
   `MANV` char(7) NOT NULL,
   `THOIGIANCHI` datetime NOT NULL,
   `LYDO` text NOT NULL,
-  `GHICHU` text NOT NULL
+  `GHICHU` text NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `phieuchi`
 --
 
-INSERT INTO `phieuchi` (`MAPHIEUCHI`, `SOTIEN`, `MANV`, `THOIGIANCHI`, `LYDO`, `GHICHU`) VALUES
-('0000001', 11269060, 'B041003', '2023-09-20 07:30:00', 'Chi tiền hàng', '');
+INSERT INTO `phieuchi` (`MAPHIEUCHI`, `SOTIEN`, `MANV`, `THOIGIANCHI`, `LYDO`, `GHICHU`, `TONTAI`) VALUES
+('0000001', 11269060, 'B041003', '2023-09-20 07:30:00', 'Chi tiền hàng', '', 1);
 
 -- --------------------------------------------------------
 
@@ -363,26 +389,27 @@ CREATE TABLE `phieunhap` (
   `SOLUONG` int(11) NOT NULL,
   `VAT` text NOT NULL,
   `TONGTIEN` double NOT NULL,
-  `GIANHAP` double NOT NULL
+  `GIANHAP` double NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `phieunhap`
 --
 
-INSERT INTO `phieunhap` (`MAPHIEUNHAP`, `MANV`, `MAHANGNHAP`, `TENHANGNHAP`, `MANCC`, `THOIGIANNHAP`, `SOLUONG`, `VAT`, `TONGTIEN`, `GIANHAP`) VALUES
-('0000001', 'B041003', '4902430556781', 'Tã dán Pampers nội địa Nhật Bản cao cấp thượng hạng size M 52 miếng 6-11 kg', 'NCCDYQN', '2023-09-20 07:00:00', 10, '10%', 1000560, 30960),
-('0000001', 'B041003', '8657882990341', 'Nước giặt Downy vườn hoa thơm ngát túi 3.05kg', 'NCCDYQN', '2023-09-20 07:00:00', 20, '10%', 1966800, 89400),
-('0000001', 'B041003', '8809541033891', 'Mặt nạ chiết xuất từ nghệ Purederm dưỡng da', 'NCCDYQN', '2023-09-20 07:00:00', 100, '10%', 550000, 5000),
-('0000001', 'B041003', '8835166023316', 'Lốc 3 cuộn túi rác đen tự huỷ sinh học Bách Hóa XANH 64x78cm (1kg)\r\n', 'NCCDYQN', '2023-09-20 07:00:00', 50, '10%', 1848000, 33600),
-('0000001', 'B041003', '8843331098667', 'Thùng 24 bịch sữa tiệt trùng ít đường Dutch Lady Canxi & Protein 180ml', 'NCCDYQN', '2023-09-20 07:00:00', 5, '10%', 838200, 76200),
-('0000001', 'B041003', '8853301530293', 'Thức ăn cho chó lớn Pedigree vị bò kho và rau củ túi 130g', 'NCCDYQN', '2023-09-20 07:00:00', 100, '10%', 990000, 9000),
-('0000001', 'B041003', '8934558928122', 'Dầu ăn cao cấp Happi Koki chai 1 lít', 'NCCDYQN', '2023-09-20 07:00:00', 50, '10%', 1138500, 20700),
-('0000001', 'B041003', '8934561667891', 'Thùng 30 gói mì Hảo Hảo tôm chua cay 75g', 'NCCDYQN', '2023-09-20 07:00:00', 10, '10%', 712800, 64800),
-('0000001', 'B041003', '8934822561234', 'Thùng 12 lon bia Bia Việt 330ml', 'NCCDYQN', '2023-09-20 07:00:00', 10, '10%', 838200, 76200),
-('0000001', 'B041003', '8935162895621', 'Gạo thơm đặc sản Neptune ST25 túi 5kg', 'NCCDYQN', '2023-09-20 07:00:00', 10, '10%', 891000, 81000),
-('0000001', 'B041003', '8936011896782', 'Sữa chua dẻo phô mai Merino gói 50g', 'NCCDYQN', '2023-09-20 07:00:00', 50, '10%', 198000, 3600),
-('0000001', 'B041003', '8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', 'NCCDYQN', '2023-09-20 07:00:00', 10, '10%', 297000, 27000);
+INSERT INTO `phieunhap` (`MAPHIEUNHAP`, `MANV`, `MAHANGNHAP`, `TENHANGNHAP`, `MANCC`, `THOIGIANNHAP`, `SOLUONG`, `VAT`, `TONGTIEN`, `GIANHAP`, `TONTAI`) VALUES
+('0000001', 'B041003', '4902430556781', 'Tã dán Pampers nội địa Nhật Bản cao cấp thượng hạng size M 52 miếng 6-11 kg', 'NCCDYQN', '2023-09-20 07:00:00', 10, '10%', 3405600, 309600, 1),
+('0000001', 'B041003', '8657882990341', 'Nước giặt Downy vườn hoa thơm ngát túi 3.05kg', 'NCCDYQN', '2023-09-20 07:00:00', 20, '10%', 1966800, 89400, 1),
+('0000001', 'B041003', '8809541033891', 'Mặt nạ chiết xuất từ nghệ Purederm dưỡng da', 'NCCDYQN', '2023-09-20 07:00:00', 100, '10%', 550000, 5000, 1),
+('0000001', 'B041003', '8835166023316', 'Lốc 3 cuộn túi rác đen tự huỷ sinh học 64x78cm (1kg)\r\n', 'NCCDYQN', '2023-09-20 07:00:00', 50, '10%', 1848000, 33600, 1),
+('0000001', 'B041003', '8843331098667', 'Thùng 24 bịch sữa tiệt trùng ít đường Dutch Lady Canxi & Protein 180ml', 'NCCDYQN', '2023-09-20 07:00:00', 5, '10%', 838200, 76200, 1),
+('0000001', 'B041003', '8853301530293', 'Thức ăn cho chó lớn Pedigree vị bò kho và rau củ túi 130g', 'NCCDYQN', '2023-09-20 07:00:00', 100, '10%', 990000, 9000, 1),
+('0000001', 'B041003', '8934558928122', 'Dầu ăn cao cấp Happi Koki chai 1 lít', 'NCCDYQN', '2023-09-20 07:00:00', 50, '10%', 1138500, 20700, 1),
+('0000001', 'B041003', '8934561667891', 'Thùng 30 gói mì Hảo Hảo tôm chua cay 75g', 'NCCDYQN', '2023-09-20 07:00:00', 10, '10%', 712800, 64800, 1),
+('0000001', 'B041003', '8934822561234', 'Thùng 12 lon bia Bia Việt 330ml', 'NCCDYQN', '2023-09-20 07:00:00', 10, '10%', 838200, 76200, 1),
+('0000001', 'B041003', '8935162895621', 'Gạo thơm đặc sản Neptune ST25 túi 5kg', 'NCCDYQN', '2023-09-20 07:00:00', 10, '10%', 891000, 81000, 1),
+('0000001', 'B041003', '8936011896782', 'Sữa chua dẻo phô mai Merino gói 50g', 'NCCDYQN', '2023-09-20 07:00:00', 50, '10%', 198000, 3600, 1),
+('0000001', 'B041003', '8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', 'NCCDYQN', '2023-09-20 07:00:00', 10, '10%', 297000, 27000, 1);
 
 -- --------------------------------------------------------
 
@@ -397,15 +424,16 @@ CREATE TABLE `phieuxuat` (
   `MAHANGXUAT` char(13) NOT NULL,
   `SOLUONG` int(11) NOT NULL,
   `LYDO` text NOT NULL,
-  `GHICHU` text NOT NULL
+  `GHICHU` text NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `phieuxuat`
 --
 
-INSERT INTO `phieuxuat` (`MAPHIEUXUAT`, `MANV`, `THOIGIANXUAT`, `MAHANGXUAT`, `SOLUONG`, `LYDO`, `GHICHU`) VALUES
-('0000001', 'B041003', '2023-09-25 07:00:00', '4902430556781', 5, 'xuất hàng lên kệ', '');
+INSERT INTO `phieuxuat` (`MAPHIEUXUAT`, `MANV`, `THOIGIANXUAT`, `MAHANGXUAT`, `SOLUONG`, `LYDO`, `GHICHU`, `TONTAI`) VALUES
+('0000001', 'B041003', '2023-09-25 07:00:00', '4902430556781', 10, 'xuất hàng đến kho A', '', 1);
 
 -- --------------------------------------------------------
 
@@ -416,20 +444,21 @@ INSERT INTO `phieuxuat` (`MAPHIEUXUAT`, `MANV`, `THOIGIANXUAT`, `MAHANGXUAT`, `S
 CREATE TABLE `taikhoan` (
   `MANV` char(7) NOT NULL,
   `MATKHAU` text NOT NULL,
-  `MAPQ` char(7) NOT NULL
+  `MAPQ` char(7) NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `taikhoan`
 --
 
-INSERT INTO `taikhoan` (`MANV`, `MATKHAU`, `MAPQ`) VALUES
-('A000001', 'xhne', 'NVBH203'),
-('A000003', 'tuoine', 'NVTK203'),
-('A038645', '130613', 'NVTK203'),
-('A070103', '070103', 'NVBH203'),
-('A140403', '140403', 'NVBH203'),
-('B041003', '100403', 'QL20003');
+INSERT INTO `taikhoan` (`MANV`, `MATKHAU`, `MAPQ`, `TONTAI`) VALUES
+('A000001', 'xhne', 'NVBH203', 1),
+('A000003', 'tuoine', 'NVTK203', 1),
+('A038645', '130613', 'NVTK203', 1),
+('A070103', '070103', 'NVBH203', 1),
+('A140403', '140403', 'NVBH203', 1),
+('B041003', '100403', 'QL20003', 1);
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -468,6 +497,13 @@ ALTER TABLE `calamviec`
 --
 ALTER TABLE `chamcong`
   ADD PRIMARY KEY (`MANV`,`THOIGIANCI`);
+
+--
+-- Chỉ mục cho bảng `chitiet_hoadon`
+--
+ALTER TABLE `chitiet_hoadon`
+  ADD PRIMARY KEY (`SOHD`,`MASP`),
+  ADD KEY `MASP` (`MASP`);
 
 --
 -- Chỉ mục cho bảng `hanghoa`
@@ -584,6 +620,13 @@ ALTER TABLE `bienbanbangiaoca`
 --
 ALTER TABLE `chamcong`
   ADD CONSTRAINT `chamcong_ibfk_1` FOREIGN KEY (`MANV`) REFERENCES `nhanvien` (`MANV`);
+
+--
+-- Các ràng buộc cho bảng `chitiet_hoadon`
+--
+ALTER TABLE `chitiet_hoadon`
+  ADD CONSTRAINT `chitiet_hoadon_ibfk_1` FOREIGN KEY (`SOHD`) REFERENCES `hoadon` (`SOHD`),
+  ADD CONSTRAINT `chitiet_hoadon_ibfk_2` FOREIGN KEY (`MASP`) REFERENCES `hanghoa` (`MASP`);
 
 --
 -- Các ràng buộc cho bảng `hanghoa`
