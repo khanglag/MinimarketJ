@@ -51,7 +51,7 @@ public class PhieuXuatHang extends javax.swing.JPanel {
         jtfSoLuong = new javax.swing.JTextField();
         jtfDonGia = new javax.swing.JTextField();
         jtfThanhTien = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
+        jtfGhiChu = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         btnThem = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
@@ -62,6 +62,7 @@ public class PhieuXuatHang extends javax.swing.JPanel {
         btnNhapExcel = new javax.swing.JButton();
         btnClear = new javax.swing.JButton();
         btnTim = new javax.swing.JButton();
+        btnTinhTien = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablePhieuXuatHang = new javax.swing.JTable();
 
@@ -107,7 +108,7 @@ public class PhieuXuatHang extends javax.swing.JPanel {
         jLabel9.setText("Thành tiền");
         jPanel3.add(jLabel9);
 
-        jLabel10.setText("jLabel5");
+        jLabel10.setText("Ghi chú");
         jPanel3.add(jLabel10);
 
         jPanel5.setPreferredSize(new java.awt.Dimension(180, 130));
@@ -116,7 +117,7 @@ public class PhieuXuatHang extends javax.swing.JPanel {
         jPanel5.add(jtfSoLuong);
         jPanel5.add(jtfDonGia);
         jPanel5.add(jtfThanhTien);
-        jPanel5.add(jTextField10);
+        jPanel5.add(jtfGhiChu);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -219,6 +220,9 @@ public class PhieuXuatHang extends javax.swing.JPanel {
         });
         jPanel7.add(btnTim);
 
+        btnTinhTien.setText("Tính tiền");
+        jPanel7.add(btnTinhTien);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -243,17 +247,17 @@ public class PhieuXuatHang extends javax.swing.JPanel {
 
         tablePhieuXuatHang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã phiếu xuất", "Mã nhân viên", "Tên khách hàng", "Mã hàng", "Tên hàng", "Đơn vị tính", "Số lượng", "Đơn giá", "Thành tiền"
+                "STT", "Mã phiếu xuất", "Mã nhân viên", "Tên khách hàng", "Mã hàng", "Tên hàng", "Đơn vị tính", "Số lượng", "Đơn giá", "Thành tiền", "Ghi chú"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -313,6 +317,7 @@ public class PhieuXuatHang extends javax.swing.JPanel {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTim;
+    private javax.swing.JButton btnTinhTien;
     private javax.swing.JButton btnXoa;
     private javax.swing.JButton btnXuatExcel;
     private javax.swing.JLabel jLabel1;
@@ -333,9 +338,9 @@ public class PhieuXuatHang extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jtfDonGia;
     private javax.swing.JTextField jtfDonViTinh;
+    private javax.swing.JTextField jtfGhiChu;
     private javax.swing.JTextField jtfMaHang;
     private javax.swing.JTextField jtfMaNhanVien;
     private javax.swing.JTextField jtfMaPhieuXuat;
