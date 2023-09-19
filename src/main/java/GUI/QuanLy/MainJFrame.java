@@ -19,7 +19,7 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         jPanel3.setLayout(new BorderLayout());
-        jPanel3.add(new QuanLyKhachHang());
+        jPanel3.add(new QuanLyNhanVien());
         
     }
 
