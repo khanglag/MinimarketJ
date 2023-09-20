@@ -37,7 +37,11 @@ public class ConnectDB {
     String ipAddress = "localhost:3306";
     
     public ConnectDB() {
-        DB = "qlstmini";
+// <<<<<<< thu
+//         DB = "qlstmini";
+// =======
+//         DB = "QLTV";
+// >>>>>>> main
         //DB= "testDB";
         user = "root";
         //password = "200303410";
@@ -126,7 +130,11 @@ public class ConnectDB {
         Connection cons = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url ="jdbc:mysql://localhost:3306/qlstmini";
+// <<<<<<< thu
+//             String url ="jdbc:mysql://localhost:3306/qlstmini";
+// =======
+//             String url ="jdbc:mysql://localhost:3306/qltv";
+// >>>>>>> main
 //           cons = DriverManager.getConnection(url, "root", "200303410");
             cons = DriverManager.getConnection(url, "root", "");
         } catch (Exception e) {
