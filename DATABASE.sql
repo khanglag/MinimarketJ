@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th9 20, 2023 lúc 05:37 PM
+-- Thời gian đã tạo: Th9 20, 2023 lúc 05:55 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -139,18 +139,21 @@ CREATE TABLE `hanghoa` (
 --
 
 INSERT INTO `hanghoa` (`MASP`, `TENSP`, `MANH`, `MANCC`, `DONVI`, `GIANHAP`, `GIABAN`, `SOLUONG`, `XUATXU`, `TONTAI`) VALUES
-('4902430556781', 'Tã dán Pampers nội địa Nhật Bản cao cấp thượng hạn size M 52 miếng 6-11 kg', '0000004', 'NCCDYQN', 'gói', 309600, 433440, 10, 'Mỹ', 0),
-('8657882990341', 'Nước giặt Downy vườn hoa thơm ngát túi 3.05kg', '0000003', 'NCCDYQN', 'túi', 89400, 125160, 20, 'Mỹ', 0),
-('8809541033891', 'Mặt nạ chiết xuất từ nghệ Purederm dưỡng da', '0000005', 'NCCDYQN', 'miếng', 5000, 7000, 100, 'Mỹ', 0),
-('8835166023316', 'Lốc 3 cuộn túi rác đen tự huỷ sinh học 64x78cm (1kg)', '0000002', 'NCCDYQN', 'lốc', 33600, 47040, 50, 'Mỹ', 0),
-('8843331098667', 'Thùng 24 bịch sữa tiệt trùng ít đường Dutch Lady 180ml', '0000007', 'NCCDYQN', 'thùng', 76200, 106680, 5, 'Mỹ', 0),
-('8853301530293', 'Thức ăn cho chó lớn Pedigree vị bò kho và rau củ túi 130g', '0000001', 'NCCDYQN', 'túi', 9000, 12600, 100, 'Mỹ', 0),
-('8934558928122', 'Dầu ăn cao cấp Happi Koki chai 1 lít', '0000012', 'NCCDYQN', 'chai', 20700, 28980, 50, 'Mỹ', 0),
-('8934561667891', 'Thùng 30 gói mì Hảo Hảo tôm chua cay 75g', '0000010', 'NCCDYQN', 'thùng', 64800, 90720, 10, 'Mỹ', 0),
-('8934822561234', 'Thùng 12 lon bia Bia Việt 330ml', '0000008', 'NCCDYQN', 'thùng', 80600, 112840, 10, 'Mỹ', 0),
-('8935162895621', 'Gạo thơm đặc sản Neptune ST25 túi 5kg', '0000009', 'NCCDYQN', 'túi', 81000, 113400, 10, 'Mỹ', 0),
-('8936011896782', 'Sữa chua dẻo phô mai Merino gói 50g', '0000011', 'NCCDYQN', 'gói', 3600, 5040, 50, 'Mỹ', 0),
-('8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', '0000006', 'NCCDYQN', 'cái', 27000, 37800, 10, 'Mỹ', 0);
+('4902430556781', 'Tã dán Pampers nội địa Nhật Bản cao cấp thượng hạn size M 52 miếng 6-11 kg', '0000004', 'NCCDYQN', 'gói', 309600, 433440, 10, 'Mỹ', 1),
+('8657882990341', 'Nước giặt Downy vườn hoa thơm ngát túi 3.05kg', '0000003', 'NCCDYQN', 'túi', 89400, 125160, 20, 'Mỹ', 1),
+('8809541033891', 'Mặt nạ chiết xuất từ nghệ Purederm dưỡng da', '0000005', 'NCCDYQN', 'miếng', 5000, 7000, 100, 'Mỹ', 1),
+('8835166023316', 'Lốc 3 cuộn túi rác đen tự huỷ sinh học 64x78cm (1kg)', '0000002', 'NCCDYQN', 'lốc', 33600, 47040, 50, 'Mỹ', 1),
+('8843331098667', 'Thùng 24 bịch sữa tiệt trùng ít đường Dutch Lady 180ml', '0000007', 'NCCDYQN', 'thùng', 76200, 106680, 5, 'Mỹ', 1),
+('8853301530293', 'Thức ăn cho chó lớn Pedigree vị bò kho và rau củ túi 130g', '0000001', 'NCCDYQN', 'túi', 9000, 12600, 100, 'Mỹ', 1),
+('8934558928122', 'Dầu ăn cao cấp Happi Koki chai 1 lít', '0000012', 'NCCDYQN', 'chai', 20700, 28980, 50, 'Mỹ', 1),
+('8934561667891', 'Thùng 30 gói mì Hảo Hảo tôm chua cay 75g', '0000010', 'NCCDYQN', 'thùng', 64800, 90720, 10, 'Mỹ', 1),
+('8934563138165', 'Mì Hảo Hảo gói 75g', '0000010', 'NCCDYQN', 'gói', 1800, 2520, 300, 'Việt Nam', 1),
+('8934822220112', 'Lon bia Việt 330ml', '0000008', 'NCCDYQN', 'lon', 8500, 11900, 300, 'Việt Nam', 1),
+('8934822561234', 'Thùng 12 lon bia Bia Việt 330ml', '0000008', 'NCCDYQN', 'thùng', 80600, 112840, 10, 'Mỹ', 1),
+('8934841903058', 'Bịch sữa tiệt trùng ít đường Dutch Lady 180ml', '0000007', 'NCCDYQN', 'bịch', 3100, 4340, 300, 'Việt Nam', 1),
+('8935162895621', 'Gạo thơm đặc sản Neptune ST25 túi 5kg', '0000009', 'NCCDYQN', 'túi', 81000, 113400, 10, 'Mỹ', 1),
+('8936011896782', 'Sữa chua dẻo phô mai Merino gói 50g', '0000011', 'NCCDYQN', 'gói', 3600, 5040, 50, 'Mỹ', 1),
+('8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', '0000006', 'NCCDYQN', 'cái', 27000, 37800, 10, 'Mỹ', 1);
 
 -- --------------------------------------------------------
 
