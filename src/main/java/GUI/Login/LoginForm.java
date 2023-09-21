@@ -3,6 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package GUI.Login;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.TextField;
+import javax.swing.JTextField;
+
 
 /**
  *
@@ -15,8 +20,24 @@ public class LoginForm extends javax.swing.JFrame {
      */
     public LoginForm() {
         initComponents();
+        //add
+        addPlaceholderStyle(jtfUser);
+        addPlaceholderStyle(jpfPass);
     }
 
+    public void addPlaceholderStyle(JTextField jTextField){
+        Font font = jTextField.getFont();
+        font = font.deriveFont(Font.ITALIC);
+        jTextField.setFont(font);
+        jTextField.setForeground(Color.GRAY);
+    }
+    
+    public void removePlaceholderStyle(JTextField jTextField){
+        Font font = jTextField.getFont();
+        font = font.deriveFont(Font.PLAIN|Font.BOLD);
+        jTextField.setFont(font);
+        jTextField.setForeground(Color.black);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,9 +47,18 @@ public class LoginForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jtfUser = new javax.swing.JTextField();
+        jpfPass = new javax.swing.JPasswordField();
+        btnSign = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-<<<<<<< Updated upstream
-=======
+
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);
@@ -38,7 +68,9 @@ public class LoginForm extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
+
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -90,7 +122,9 @@ public class LoginForm extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
+
         btnSign.setBackground(new java.awt.Color(240, 90, 118));
+
         btnSign.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         btnSign.setForeground(new java.awt.Color(255, 255, 255));
         btnSign.setText("Sign in");
@@ -126,7 +160,9 @@ public class LoginForm extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2);
 
+
         jPanel3.setBackground(new java.awt.Color(112, 198, 167));
+
         jPanel3.setAlignmentX(0.0F);
         jPanel3.setAlignmentY(0.0F);
         jPanel3.setPreferredSize(new java.awt.Dimension(300, 0));
@@ -153,21 +189,66 @@ public class LoginForm extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel3);
->>>>>>> Stashed changes
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jtfUserFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfUserFocusGained
+        // TODO add your handling code here:
+        if(jtfUser.getText().equals("Username")){
+            jtfUser.setText(null);
+            jtfUser.requestFocus();
+            //remove placeholder
+            removePlaceholderStyle(jtfUser);
+        }
+    }//GEN-LAST:event_jtfUserFocusGained
+
+    private void jpfPassFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jpfPassFocusGained
+        // TODO add your handling code here:
+        if(jpfPass.getText().equals("Password")){
+            jpfPass.setText(null);
+            jpfPass.requestFocus();
+            //remove placeholder
+            jpfPass.setEchoChar('*');
+            removePlaceholderStyle(jpfPass);
+        }
+    }//GEN-LAST:event_jpfPassFocusGained
+
+    private void jtfUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jtfUserFocusLost
+        // TODO add your handling code here:
+        if(jtfUser.getText().length()==0){
+            //add palceholder
+            addPlaceholderStyle(jtfUser);
+            jtfUser.setText("Username");
+        }
+    }//GEN-LAST:event_jtfUserFocusLost
+
+    private void jpfPassFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jpfPassFocusLost
+        // TODO add your handling code here:
+        if(jpfPass.getText().length()==0){
+            //add palceholder
+            addPlaceholderStyle(jpfPass);
+            jpfPass.setText("Password");
+            jpfPass.setEchoChar('\u0000');
+        }
+    }//GEN-LAST:event_jpfPassFocusLost
+
+    private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
+        // TODO add your handling code here:
+        this.requestFocusInWindow();
+    }//GEN-LAST:event_formWindowGainedFocus
 
     /**
      * @param args the command line arguments
@@ -205,5 +286,14 @@ public class LoginForm extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSign;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPasswordField jpfPass;
+    private javax.swing.JTextField jtfUser;
     // End of variables declaration//GEN-END:variables
 }
