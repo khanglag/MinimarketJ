@@ -37,9 +37,7 @@ public class ConnectDB {
     String ipAddress = "localhost:3306";
     
     public ConnectDB() {
-// <<<<<<< thu
-//         DB = "qlstmini";
-// =======
+         DB = "qlstmini";
 //         DB = "QLTV";
 // >>>>>>> main
         //DB= "testDB";
@@ -131,7 +129,7 @@ public class ConnectDB {
         try {
             Class.forName("com.mysql.jdbc.Driver");
 // <<<<<<< thu
-//             String url ="jdbc:mysql://localhost:3306/qlstmini";
+             String url ="jdbc:mysql://localhost:3306/qlstmini";
 // =======
 //             String url ="jdbc:mysql://localhost:3306/qltv";
 // >>>>>>> main
