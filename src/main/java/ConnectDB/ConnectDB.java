@@ -38,7 +38,6 @@ public class ConnectDB {
     
     public ConnectDB() {
          DB = "qlstmini";
-//        DB = "QLTV";
         //DB= "testDB";
         user = "root";
         //password = "200303410";
@@ -127,7 +126,9 @@ public class ConnectDB {
         Connection cons = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
+
              String url ="jdbc:mysql://localhost:3306/qlstmini";
+
 //             String url ="jdbc:mysql://localhost:3306/qltv";
            cons = DriverManager.getConnection(url, "root", "200303410");
             cons = DriverManager.getConnection(url, "root", "");
