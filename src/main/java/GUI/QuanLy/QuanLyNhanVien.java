@@ -71,9 +71,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableQlnv = new javax.swing.JTable();
 
@@ -293,17 +290,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             }
         });
 
-        jButton6.setText("Quản lý ca làm");
-
-        jButton7.setText("Tạo phiếu phạt");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-
-        jButton8.setText("Tính lương");
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -319,12 +305,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                 .addComponent(jButton5)
                 .addGap(18, 18, 18)
                 .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jButton6)
-                .addGap(33, 33, 33)
-                .addComponent(jButton7)
-                .addGap(18, 18, 18)
-                .addComponent(jButton8)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -336,10 +316,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                     .addComponent(jButton4)
                     .addComponent(jButton3)
                     .addComponent(jButton5)
-                    .addComponent(jButton1)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7)
-                    .addComponent(jButton8))
+                    .addComponent(jButton1))
                 .addContainerGap())
         );
 
@@ -392,42 +369,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-                // TODO add your handling code here:
-                 JPanel panel = new JPanel();
-    
-    // Tạo các label và textfield
-    JLabel maNhanVienLabel = new JLabel("Mã nhân viên:");
-    JTextField maNhanVienField = new JTextField(10);
-    
-    JLabel noiDungPhatLabel = new JLabel("Nội dung phạt:");
-    JTextField noiDungPhatField = new JTextField(10);
-    
-    JLabel tienPhatLabel = new JLabel("Tiền phạt:");
-    JTextField tienPhatField = new JTextField(10);
-    
-    // Thêm các label và textfield vào panel
-    panel.add(maNhanVienLabel);
-    panel.add(maNhanVienField);
-    
-    panel.add(noiDungPhatLabel);
-    panel.add(noiDungPhatField);
-    
-    panel.add(tienPhatLabel);
-    panel.add(tienPhatField);
-    
-    // Hiển thị hộp thoại JOptionPane với panel chứa các thành phần
-    int result = JOptionPane.showConfirmDialog(null, panel, "Thông tin phạt", JOptionPane.OK_CANCEL_OPTION);
-    if (result == JOptionPane.OK_OPTION) {
-        // Xử lý dữ liệu sau khi người dùng nhấn OK
-        String maNhanVien = maNhanVienField.getText();
-        String noiDungPhat = noiDungPhatField.getText();
-        String tienPhat = tienPhatField.getText();
-        
-        // Thực hiện xử lý dữ liệu ở đây
-    }
-    }//GEN-LAST:event_jButton7ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -435,9 +376,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel27;
