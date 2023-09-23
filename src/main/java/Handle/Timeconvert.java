@@ -40,8 +40,6 @@ public class Timeconvert {
         String str= date.format(formatter);
         return str;
     }
-   
-
     public static LocalDate convert(java.sql.Date date) {
         LocalDate d;
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -51,9 +49,7 @@ public class Timeconvert {
         else
             d = date.toInstant().atZone(defaultZoneId).toLocalDate();
         return d;
-    }
-  
-
+    } 
     public static int TruDate(LocalDate date1, LocalDate date2) {
         long diffDays = ChronoUnit.DAYS.between(date1, date2);
         int diffDaysInt = (int) diffDays;

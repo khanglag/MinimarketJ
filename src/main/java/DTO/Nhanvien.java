@@ -36,7 +36,10 @@ public class Nhanvien {
         this.Dia_chi = Dia_chi;
         this.Ma_quyen = Ma_quyen;
         this.Ngay_lam = Ngay_lam;
-        this.Ngay_nghi = Ngay_nghi;
+        if (Ngay_nghi.equals("01-01-1970")) {
+            this.Ngay_nghi = "Chưa nghỉ";
+        }
+        else this.Ngay_nghi = Ngay_nghi;
         this.email = email;
         this.hs_luong = hs_luong;
         this.Tontai = Tontai;
