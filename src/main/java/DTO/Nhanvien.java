@@ -36,10 +36,7 @@ public class Nhanvien {
         this.Dia_chi = Dia_chi;
         this.Ma_quyen = Ma_quyen;
         this.Ngay_lam = Ngay_lam;
-        if (Ngay_nghi.equals("01-01-1970")) {
-            this.Ngay_nghi = "Chưa nghỉ";
-        }
-        else this.Ngay_nghi = Ngay_nghi;
+        this.Ngay_nghi=Ngay_nghi;
         this.email = email;
         this.hs_luong = hs_luong;
         this.Tontai = Tontai;
@@ -141,8 +138,12 @@ public class Nhanvien {
         this.hs_luong = hs_luong;
     }
 
-    public Boolean isTontai() {
-        return this.Tontai;
+    public int isTontai() {
+        if (Tontai) {
+            return 1;
+        }
+        ;
+        return 0;
     }
 
     public Boolean getTontai() {

@@ -13,8 +13,9 @@ import DTO.Nhanvien;
 public class NewClass {
      public static void main(String[] args) {
         NhanvienDao nvDao=new NhanvienDao();
-        Nhanvien nv=new Nhanvien(Ma_nv, Ten_nv, Ngay_sinh, Gioi_tinh, CCCD, SDT, Dia_chi, Ma_quyen, Ngay_lam, Ngay_nghi, email, 0, Boolean.TRUE);
+        Nhanvien nv=new Nhanvien("Ma_nv", "Ten_nv","04-10-2003", "Gioi_tinh", "CCCD", "SDT"," Dia_chi","NVBH203", "20-01-2023","01-01-1970", "email", 12312, Boolean.TRUE);
         nvDao.ReadNhanviens();
+        nvDao.update(nv);
         for(Nhanvien temp:nvDao.ReadNhanviens())
         {
             System.out.println(temp.toString());

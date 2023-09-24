@@ -54,12 +54,73 @@ public class NhanvienDao {
         connectDB=new ConnectDB();
         succsec=connectDB.sqlUpdate(
                 "INSERT INTO `nhanvien`(`MANV`, `TENNV`, `NGAYSINH`, `GIOITINH`, `CCCD`, `SDT`, `EMAIL`, `DIACHI`, `MAQUYEN`, `NGAYBATDAU`, `NGAYNGHIVIEC`, `HESOLUONG`, `TONTAI`) VALUES "
-              + "('"+nv.getMa_nv()+"','"+nv.getTen_nv()+"','"+Date.valueOf(convert(nv.getNgay_sinh()))
-              +"','"+nv.getGioi_tinh()+"','"+nv.getCCCD()+"','"+nv.getSDT()+"','"+nv.getEmail()+"','"+nv.getDia_chi()+"','"+nv.getMa_quyen()+"','"+Date.valueOf(convert(nv.getNgay_lam()))+"','"+Date.valueOf(nv.getNgay_nghi())
-                        +"','"+nv.getHs_luong()+"','"+nv.isTontai()+"')"
+              + "('"+nv.getMa_nv()
+              +"','"+nv.getTen_nv()
+              +"','"+Date.valueOf(convert(nv.getNgay_sinh()))
+              +"','"+nv.getGioi_tinh()
+              +"','"+nv.getCCCD()+"','"
+              +nv.getSDT()+"','"
+              +nv.getEmail()+"','"+nv.getDia_chi()+"','"
+              +nv.getMa_quyen()
+              +"','"+Date.valueOf(convert(nv.getNgay_lam()))
+              +"','"+Date.valueOf(convert(nv.getNgay_nghi()))
+              +"','"+nv.getHs_luong()+"','"+nv.isTontai()+"')"
         );
         connectDB.closeConnect();
         return succsec;
     }
-    
+    public boolean delete(Nhanvien nhanVien) {
+        ConnectDB connectDB;
+        connectDB=new ConnectDB();
+        boolean success = connectDB
+                .sqlUpdate("UPDATE NHANVIEN SET TONTAI = 0 WHERE MANV ='" + nhanVien.getMa_nv() + "'");
+        System.out.println("UPDATE NHANVIEN SET TONTAI = 0 WHERE MANHANVIEN ='" + nhanVien.getMa_nv() + "'");
+        connectDB.closeConnect();
+        return success;
+    }
+    public boolean update(Nhanvien nhanVien) {
+        ConnectDB connectDB;
+        connectDB=new ConnectDB();
+        boolean success = connectDB
+                .sqlUpdate("UPDATE `nhanvien` SET "
+                 +"`TENNV`='"+nhanVien.getTen_nv()+"',`NGAYSINH`='"+Date.valueOf(convert(nhanVien.getNgay_sinh()))+
+                  "',`GIOITINH`='"+nhanVien.getGioi_tinh()
+                 +"',`CCCD`='"+nhanVien.getCCCD()
+                 +"',`SDT`='"+nhanVien.getSDT()
+                 +"',`EMAIL`='"+nhanVien.getEmail()
+                 +"',`DIACHI`='"+nhanVien.getDia_chi()
+                 +"',`MAQUYEN`='"+nhanVien.getMa_quyen()
+                 +"',`NGAYBATDAU`='"+Date.valueOf(convert(nhanVien.getNgay_lam()))
+                 +"',`NGAYNGHIVIEC`='"+Date.valueOf(convert(nhanVien.getNgay_nghi()))
+                 +"',`HESOLUONG`='"+nhanVien.getHs_luong()
+                 +"',`TONTAI`='"+nhanVien.isTontai()+"' WHERE `MANV`='"+nhanVien.getMa_nv()+"'");
+        System.out.println("UPDATE `nhanvien` SET "
+                 +"`TENNV`='"+nhanVien.getTen_nv()+"',`NGAYSINH`='"+Date.valueOf(convert(nhanVien.getNgay_sinh()))+
+                  "',`GIOITINH`='"+nhanVien.getGioi_tinh()
+                 +"',`CCCD`='"+nhanVien.getCCCD()
+                 +"',`SDT`='"+nhanVien.getSDT()
+                 +"',`EMAIL`='"+nhanVien.getEmail()
+                 +"',`DIACHI`='"+nhanVien.getDia_chi()
+                 +"',`MAQUYEN`='"+nhanVien.getMa_quyen()
+                 +"',`NGAYBATDAU`='"+Date.valueOf(convert(nhanVien.getNgay_lam()))
+                 +"',`NGAYNGHIVIEC`='"+Date.valueOf(convert(nhanVien.getNgay_nghi()))
+                 +"',`HESOLUONG`='"+nhanVien.getHs_luong()
+                 +"',`TONTAI`='"+nhanVien.isTontai()+"' WHERE `MANV`='"+nhanVien.getMa_nv()+"'");
+        connectDB.closeConnect();
+        return success;
+    }
+    public ArrayList<Nhanvien> search(String Ma_nv, String Ten_nv, String Ngay_sinh, 
+            String Gioi_tinh, String CCCD, String SDT, String Dia_chi,
+            String Ma_quyen, String Ngay_lam, String Ngay_nghi, String email, 
+            double hs_luong, Boolean Tontai){
+        ArrayList<Nhanvien> nhanviens =new ArrayList<>();
+        String qry = "SELECT * FROM `nhanvien` WHERE TONTAI= 1";
+        if (!Ma_nv.equals("")) 
+            qry+=" AND `MANV`= '" + Ma_nv + "'";
+        if (!Ten_nv.equals("")) 
+            qry+=" AND `TENNV`= '" + Ten_nv+ "'";
+        if (!Ten_nv.equals("")) 
+            qry+=" AND `TENNV`= '" + Ten_nv+ "'";
+        return nhanviens;
+    }
 }
