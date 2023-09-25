@@ -1,15 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Controller;
 
+ 
 import BEAN.DanhMucBean;
-import GUI.QuanLy.TrangChinh;
 import GUI.ThuKho.PhieuNhapHang;
 import GUI.ThuKho.PhieuXuatHang;
 import GUI.ThuKho.QuanLyNhapHang;
 import GUI.ThuKho.QuanLyXuatHang;
+import GUI.ThuKho.TrangChu;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -18,11 +15,17 @@ import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+
 /**
  *
  * @author khang
  */
 public class ThuKhoController {
+    
     private JPanel root;
     private String kindSelected="";
     private List<DanhMucBean> listItem = null;
@@ -30,25 +33,12 @@ public class ThuKhoController {
     public ThuKhoController(JPanel jpnRoot) {
         this.root = jpnRoot;
     }
-    
-    public void setDashboard(JPanel jpnItem, JLabel jlbItem) {
-       kindSelected = "TrangChinh";
-       jpnItem.setBackground(new Color(96, 100, 191));
-       jlbItem.setBackground(new Color(96, 100, 191));
-       JPanel node = new TrangChinh();
-       root.removeAll();
-       root.setLayout(new BorderLayout());
-       root.add(node);
-       root.validate();
-       root.repaint();
-}
 
     public void setView(JPanel jpnItem, JLabel jlbItem){
-        kindSelected = "TrangChu";
-        
+        kindSelected = "PhieuXuatHang";    
         root.removeAll();
         root.setLayout(new BorderLayout());
-        root.add(new TrangChinh());
+        root.add(new TrangChu());
         root.validate();
         root.repaint();
     }
@@ -74,24 +64,24 @@ public class ThuKhoController {
             this.jlbItem = jlbItem;
         }
         
-        
-
         @Override
         public void mouseClicked(MouseEvent e) {
+            
             switch (kind) {
-                case "TrangChinh":
-                    node = new TrangChinh();
+                case "TrangChu":
+                    node = new TrangChu();
                     break;
                 case "PhieuNhapHang":
                     node = new PhieuNhapHang();
+                    System.out.println("PNH");
                     break;
-                case "QuanLyNhapHang":
+                case "QuanLyPhieuNhap":
                     node = new QuanLyNhapHang();
                     break;
                 case "PhieuXuatHang":
                     node = new PhieuXuatHang();
                     break;
-                case "QuanLyXuatHang":
+                case "QuanLyPhieuXuat":
                     node = new QuanLyXuatHang();
                     break;
 
@@ -104,12 +94,14 @@ public class ThuKhoController {
            root.add(node);
            root.validate();
            root.repaint();
-            setChangeBackGround(kind);
-            
+           setChangeBackGround(kind);
+            System.out.println("chay mouseClicked");
         }
+
 
          @Override
       public void mousePressed(MouseEvent e) {
+          System.out.println("chay mousepress");
            kindSelected = kind;
            jpnItem.setBackground(new Color(0,0,0));
            jlbItem.setBackground(new Color(0,0,0));
@@ -117,17 +109,20 @@ public class ThuKhoController {
 
       @Override
       public void mouseReleased(MouseEvent e) {
+          System.out.println("chay mousereleased");
 
       }
 
       @Override
       public void mouseEntered(MouseEvent e) {
+          System.out.println("chay mouseenter");
           jpnItem.setBackground(new Color(0,0,0));
           jlbItem.setBackground(new Color(0,0,0));
       }
 
       @Override
       public void mouseExited(MouseEvent e) {
+          System.out.println("chay mouseexit");
           if (!kindSelected.equalsIgnoreCase(kind)) {
                 jpnItem.setBackground(new Color(51,51,51));
                 jlbItem.setBackground(new Color(51,51,51));
@@ -136,6 +131,7 @@ public class ThuKhoController {
         
     }
     private void setChangeBackGround(String kind){
+        System.out.println("chay doi mau");
         for(DanhMucBean item: listItem){
             if(item.getKind().equalsIgnoreCase(kind)){
                 item.getJpn().setBackground(new Color(0,0,0));
@@ -149,3 +145,5 @@ public class ThuKhoController {
         
     }
 }
+
+
