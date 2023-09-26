@@ -14,23 +14,23 @@ public class KhachHang {
     private String NgaySinh;
     private String sdt;
     private String Cccd;
+    private String Diachi;
     private boolean TonTai;
-    
-    public KhachHang(){
-        
+    public KhachHang() {
     }
 
-    public KhachHang(String Ma_kh, String Ten_kh, String NgaySinh, String sdt, String Cccd, boolean TonTai) {
+    public KhachHang(String Ma_kh, String Ten_kh, String NgaySinh, String sdt, String Cccd, String Diachi, boolean TonTai) {
         this.Ma_kh = Ma_kh;
         this.Ten_kh = Ten_kh;
         this.NgaySinh = NgaySinh;
         this.sdt = sdt;
         this.Cccd = Cccd;
+        this.Diachi = Diachi;
         this.TonTai = TonTai;
     }
 
     public String getMa_kh() {
-        return Ma_kh;
+        return this.Ma_kh;
     }
 
     public void setMa_kh(String Ma_kh) {
@@ -38,7 +38,7 @@ public class KhachHang {
     }
 
     public String getTen_kh() {
-        return Ten_kh;
+        return this.Ten_kh;
     }
 
     public void setTen_kh(String Ten_kh) {
@@ -46,7 +46,7 @@ public class KhachHang {
     }
 
     public String getNgaySinh() {
-        return NgaySinh;
+        return this.NgaySinh;
     }
 
     public void setNgaySinh(String NgaySinh) {
@@ -54,7 +54,7 @@ public class KhachHang {
     }
 
     public String getSdt() {
-        return sdt;
+        return this.sdt;
     }
 
     public void setSdt(String sdt) {
@@ -62,27 +62,77 @@ public class KhachHang {
     }
 
     public String getCccd() {
-        return Cccd;
+        return this.Cccd;
     }
 
     public void setCccd(String Cccd) {
         this.Cccd = Cccd;
     }
 
+    public String getDiachi() {
+        return this.Diachi;
+    }
+
+    public void setDiachi(String Diachi) {
+        this.Diachi = Diachi;
+    }
+
     public boolean isTonTai() {
-        return TonTai;
+        return this.TonTai;
+    }
+
+    public boolean getTonTai() {
+        return this.TonTai;
     }
 
     public void setTonTai(boolean TonTai) {
         this.TonTai = TonTai;
     }
 
+    public KhachHang Ma_kh(String Ma_kh) {
+        setMa_kh(Ma_kh);
+        return this;
+    }
+
+    public KhachHang Ten_kh(String Ten_kh) {
+        setTen_kh(Ten_kh);
+        return this;
+    }
+
+    public KhachHang NgaySinh(String NgaySinh) {
+        setNgaySinh(NgaySinh);
+        return this;
+    }
+
+    public KhachHang sdt(String sdt) {
+        setSdt(sdt);
+        return this;
+    }
+
+    public KhachHang Cccd(String Cccd) {
+        setCccd(Cccd);
+        return this;
+    }
+
+    public KhachHang Diachi(String Diachi) {
+        setDiachi(Diachi);
+        return this;
+    }
+
+    public KhachHang TonTai(boolean TonTai) {
+        setTonTai(TonTai);
+        return this;
+    }
     @Override
     public String toString() {
-        return "KhachHang{" + "Ma_kh=" + Ma_kh + ", Ten_kh=" + Ten_kh + ", NgaySinh=" + NgaySinh + ", sdt=" + sdt + ", Cccd=" + Cccd + ", TonTai=" + TonTai + '}';
+        return "{" +
+            " Ma_kh='" + getMa_kh() + "'" +
+            ", Ten_kh='" + getTen_kh() + "'" +
+            ", NgaySinh='" + getNgaySinh() + "'" +
+            ", sdt='" + getSdt() + "'" +
+            ", Cccd='" + getCccd() + "'" +
+            ", Diachi='" + getDiachi() + "'" +
+            ", TonTai='" + isTonTai() + "'" +
+            "}";
     }
-    
-    
-    
-
 }  

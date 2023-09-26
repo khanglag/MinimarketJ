@@ -19,13 +19,13 @@ import java.sql.SQLException;
  * @author pc
  */
 public class NhanvienDao {
-    ArrayList<Nhanvien> nvArrayList= new ArrayList<>();
     public NhanvienDao(){
     }
 //    Hàm đọc danh sách dứoi database và đưa ra danh sách dưới dạng arraylist
     public ArrayList<Nhanvien> ReadNhanviens(){
         ConnectDB connectDB;
         connectDB=new ConnectDB();
+        ArrayList<Nhanvien> nvArrayList= new ArrayList<>();
         String qry = "SELECT * FROM `nhanvien` WHERE TONTAI = 1";
             ResultSet rset = connectDB.sqlQuery(qry);
             try {
@@ -82,7 +82,7 @@ public class NhanvienDao {
         connectDB.closeConnect();
         return success;
     }
-//    Hàm sửa thông tin nhân viên, trả true false theo 
+//    Hàm sửa thông tin nhân viên, trả true false theo việc sửa nhân viên
     public boolean update(Nhanvien nhanVien) {
         ConnectDB connectDB;
         connectDB=new ConnectDB();
@@ -114,6 +114,7 @@ public class NhanvienDao {
         connectDB.closeConnect();
         return success;
     }
+//    Hàm tìm kiếm nhân viên theo mã nhân viên, trả ra nhân viên
     public Nhanvien search(String Ma_nv){
        Nhanvien nhanvien=null;
         String qry = "SELECT * FROM `nhanvien` WHERE TONTAI= 1 AND `MANV`='" + Ma_nv +"'";
