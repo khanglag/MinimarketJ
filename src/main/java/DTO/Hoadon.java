@@ -9,7 +9,7 @@ package DTO;
  * @author pc
  */
 public class Hoadon {
-    private String So_hd;
+    private int So_hd;
     private String Ma_nv;
     private String Ngay_lap;
     private String Ma_kh;
@@ -22,7 +22,7 @@ public class Hoadon {
     public Hoadon() {
     }
 
-    public Hoadon(String So_hd, String Ma_nv, String Ngay_lap, String Ma_kh, double Tien_kd, double Tien_kt, double VAT, double Thanh_tien, boolean Tontai) {
+    public Hoadon(int So_hd, String Ma_nv, String Ngay_lap, String Ma_kh, double Tien_kd, double Tien_kt, double VAT, double Thanh_tien, boolean Tontai) {
         this.So_hd = So_hd;
         this.Ma_nv = Ma_nv;
         this.Ngay_lap = Ngay_lap;
@@ -34,11 +34,11 @@ public class Hoadon {
         this.Tontai = Tontai;
     }
 
-    public String getSo_hd() {
+    public int getSo_hd() {
         return this.So_hd;
     }
 
-    public void setSo_hd(String So_hd) {
+    public void setSo_hd(int So_hd) {
         this.So_hd = So_hd;
     }
 
@@ -110,7 +110,7 @@ public class Hoadon {
         this.Tontai = Tontai;
     }
 
-    public Hoadon So_hd(String So_hd) {
+    public Hoadon So_hd(int So_hd) {
         setSo_hd(So_hd);
         return this;
     }
