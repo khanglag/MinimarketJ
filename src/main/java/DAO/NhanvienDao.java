@@ -119,8 +119,20 @@ public class NhanvienDao {
             qry+=" AND `MANV`= '" + Ma_nv + "'";
         if (!Ten_nv.equals("")) 
             qry+=" AND `TENNV`= '" + Ten_nv+ "'";
-        if (!Ten_nv.equals("")) 
-            qry+=" AND `TENNV`= '" + Ten_nv+ "'";
+        if (!Ngay_sinh.equals("")) 
+            qry+=" AND `NGAYSINH`= '" + Date.valueOf(convert(Ngay_sinh))+ "'";
+        if (!Gioi_tinh.equals("")) {
+            qry+=" AND `GIOITINH`= '" + Gioi_tinh+ "'";
+        }
+        if (!CCCD.equals("")) {
+            qry+=" AND `CCCD`= '" + CCCD+ "'";
+        }
+        if (!SDT.equals("")) {
+            qry+=" AND `SDT`= '" + SDT+ "'";
+        }
+        if (!email.equals("")) {
+            qry+=" AND `EMAIL`= '" + email+ "'";
+        }
         return nhanviens;
     }
 }
