@@ -8,17 +8,27 @@ package DTO;
  *
  * @author pc
  */
-class Taikhoan {
+public class Taikhoan {
     private String Ten_dn;
     private String Mat_khau;
+
+    public String getQuyen() {
+        return Quyen;
+    }
+
+    public void setQuyen(String Quyen) {
+        this.Quyen = Quyen;
+    }
+    private String Quyen;
     private boolean tontai;
 
     public Taikhoan() {
     }
 
-    public Taikhoan(String Ten_dn, String Mat_khau, boolean tontai) {
+    public Taikhoan(String Ten_dn, String Mat_khau,String Quyen, boolean tontai) {
         this.Ten_dn = Ten_dn;
         this.Mat_khau = Mat_khau;
+        this.Quyen = Quyen;
         this.tontai = tontai;
     }
 
