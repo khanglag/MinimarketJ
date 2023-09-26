@@ -58,6 +58,7 @@ public class LoginForm extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);
@@ -67,7 +68,9 @@ public class LoginForm extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-        jPanel1.setLayout(new java.awt.GridLayout());
+
+        jPanel1.setLayout(new java.awt.GridLayout(1, 0));
+
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -119,7 +122,9 @@ public class LoginForm extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        btnSign.setBackground(new java.awt.Color(244, 64, 95));
+
+        btnSign.setBackground(new java.awt.Color(240, 90, 118));
+
         btnSign.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
         btnSign.setForeground(new java.awt.Color(255, 255, 255));
         btnSign.setText("Sign in");
@@ -155,7 +160,9 @@ public class LoginForm extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2);
 
-        jPanel3.setBackground(new java.awt.Color(244, 64, 95));
+
+        jPanel3.setBackground(new java.awt.Color(112, 198, 167));
+
         jPanel3.setAlignmentX(0.0F);
         jPanel3.setAlignmentY(0.0F);
         jPanel3.setPreferredSize(new java.awt.Dimension(300, 0));
@@ -182,6 +189,7 @@ public class LoginForm extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel3);
+
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

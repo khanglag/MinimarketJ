@@ -9,11 +9,12 @@ package DTO;
  * @author pc
  */
 public class Nhacungcap {
-    private String Ma_ncc;
+     private String Ma_ncc;
     private String Ten_ncc;
     private String SDT;
     private String Diachi;
-     public Nhacungcap() {
+
+    public Nhacungcap() {
     }
 
     public Nhacungcap(String Ma_ncc, String Ten_ncc, String SDT, String Diachi) {
@@ -74,6 +75,7 @@ public class Nhacungcap {
         setDiachi(Diachi);
         return this;
     }
+
     @Override
     public String toString() {
         return "{" +

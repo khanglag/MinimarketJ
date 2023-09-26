@@ -6,8 +6,7 @@ package DTO;
 
 /**
  *
- * @author béo
- * 
+ * @author pc
  */
 public class Hoadon {
     private String So_hd;
@@ -18,11 +17,12 @@ public class Hoadon {
     private double Tien_kt;
     private double VAT;
     private double Thanh_tien;
+    private boolean Tontai;
 
     public Hoadon() {
     }
 
-    public Hoadon(String So_hd, String Ma_nv, String Ngay_lap, String Ma_kh, double Tien_kd, double Tien_kt, double VAT, double Thanh_tien) {
+    public Hoadon(String So_hd, String Ma_nv, String Ngay_lap, String Ma_kh, double Tien_kd, double Tien_kt, double VAT, double Thanh_tien, boolean Tontai) {
         this.So_hd = So_hd;
         this.Ma_nv = Ma_nv;
         this.Ngay_lap = Ngay_lap;
@@ -31,6 +31,7 @@ public class Hoadon {
         this.Tien_kt = Tien_kt;
         this.VAT = VAT;
         this.Thanh_tien = Thanh_tien;
+        this.Tontai = Tontai;
     }
 
     public String getSo_hd() {
@@ -97,6 +98,18 @@ public class Hoadon {
         this.Thanh_tien = Thanh_tien;
     }
 
+    public boolean isTontai() {
+        return this.Tontai;
+    }
+
+    public boolean getTontai() {
+        return this.Tontai;
+    }
+
+    public void setTontai(boolean Tontai) {
+        this.Tontai = Tontai;
+    }
+
     public Hoadon So_hd(String So_hd) {
         setSo_hd(So_hd);
         return this;
@@ -137,6 +150,11 @@ public class Hoadon {
         return this;
     }
 
+    public Hoadon Tontai(boolean Tontai) {
+        setTontai(Tontai);
+        return this;
+    }
+
     @Override
     public String toString() {
         return "{" +
@@ -148,7 +166,7 @@ public class Hoadon {
             ", Tien_kt='" + getTien_kt() + "'" +
             ", VAT='" + getVAT() + "'" +
             ", Thanh_tien='" + getThanh_tien() + "'" +
+            ", Tontai='" + isTontai() + "'" +
             "}";
     }
-      
 }

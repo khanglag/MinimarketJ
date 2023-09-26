@@ -9,7 +9,7 @@ package DTO;
  * @author pc
  */
 public class Phieunhap {
-    private String Ma_pn;
+     private String Ma_pn;
     private String Ma_nv;
     private String Ma_sp;
     private String Ma_ncc;
@@ -18,7 +18,8 @@ public class Phieunhap {
     private double Gia_nhap;
     private double Gia_ban;
     private int soluong;
-     public Phieunhap() {
+
+    public Phieunhap() {
     }
 
     public Phieunhap(String Ma_pn, String Ma_nv, String Ma_sp, String Ma_ncc, String Ngay_tp, double VAT, double Gia_nhap, double Gia_ban, int soluong) {

@@ -9,7 +9,7 @@ package DTO;
  * @author pc
  */
 public class Nhanvien {
-    private String Ma_nv;
+     private String Ma_nv;
     private String Ten_nv;
     private String Ngay_sinh;
     private String Gioi_tinh;
@@ -21,11 +21,12 @@ public class Nhanvien {
     private String Ngay_nghi;
     private String email;
     private double hs_luong;
+    private Boolean Tontai;
 
     public Nhanvien() {
     }
 
-    public Nhanvien(String Ma_nv, String Ten_nv, String Ngay_sinh, String Gioi_tinh, String CCCD, String SDT, String Dia_chi, String Ma_quyen, String Ngay_lam, String Ngay_nghi, String email, double hs_luong) {
+    public Nhanvien(String Ma_nv, String Ten_nv, String Ngay_sinh, String Gioi_tinh, String CCCD, String SDT, String Dia_chi, String Ma_quyen, String Ngay_lam, String Ngay_nghi, String email, double hs_luong, Boolean Tontai) {
         this.Ma_nv = Ma_nv;
         this.Ten_nv = Ten_nv;
         this.Ngay_sinh = Ngay_sinh;
@@ -35,9 +36,10 @@ public class Nhanvien {
         this.Dia_chi = Dia_chi;
         this.Ma_quyen = Ma_quyen;
         this.Ngay_lam = Ngay_lam;
-        this.Ngay_nghi = Ngay_nghi;
+        this.Ngay_nghi=Ngay_nghi;
         this.email = email;
         this.hs_luong = hs_luong;
+        this.Tontai = Tontai;
     }
 
     public String getMa_nv() {
@@ -136,6 +138,22 @@ public class Nhanvien {
         this.hs_luong = hs_luong;
     }
 
+    public int isTontai() {
+        if (Tontai) {
+            return 1;
+        }
+        ;
+        return 0;
+    }
+
+    public Boolean getTontai() {
+        return this.Tontai;
+    }
+
+    public void setTontai(Boolean Tontai) {
+        this.Tontai = Tontai;
+    }
+
     public Nhanvien Ma_nv(String Ma_nv) {
         setMa_nv(Ma_nv);
         return this;
@@ -195,6 +213,11 @@ public class Nhanvien {
         setHs_luong(hs_luong);
         return this;
     }
+
+    public Nhanvien Tontai(Boolean Tontai) {
+        setTontai(Tontai);
+        return this;
+    }
     @Override
     public String toString() {
         return "{" +
@@ -210,6 +233,7 @@ public class Nhanvien {
             ", Ngay_nghi='" + getNgay_nghi() + "'" +
             ", email='" + getEmail() + "'" +
             ", hs_luong='" + getHs_luong() + "'" +
+            ", Tontai='" + isTontai() + "'" +
             "}";
     }
 }
