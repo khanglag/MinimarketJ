@@ -52,10 +52,10 @@ public class NhanvienDao {
     }
 //    Hàm thêm nhân viên vào danh sách, trả ra true flase theo kết quả của việc thêm nhân viên
     public boolean add(Nhanvien nv){
-        boolean succsec=false;
+        boolean success=false;
         ConnectDB connectDB;
         connectDB=new ConnectDB();
-        succsec=connectDB.sqlUpdate(
+        success=connectDB.sqlUpdate(
                 "INSERT INTO `nhanvien`(`MANV`, `TENNV`, `NGAYSINH`, `GIOITINH`, `CCCD`, `SDT`, `EMAIL`, `DIACHI`, `MAQUYEN`, `NGAYBATDAU`, `NGAYNGHIVIEC`, `HESOLUONG`, `TONTAI`) VALUES "
               + "('"+nv.getMa_nv()
               +"','"+nv.getTen_nv()
@@ -70,7 +70,7 @@ public class NhanvienDao {
               +"','"+nv.getHs_luong()+"','"+nv.isTontai()+"')"
         );
         connectDB.closeConnect();
-        return succsec;
+        return success;
     }
 //    Hàm xoá nhân viên khỏi danh sách, trả ra kiểm dữ liệu true flase theo kết quả của việc xoá nhân viên
     public boolean delete(Nhanvien nhanVien) {

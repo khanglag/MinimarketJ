@@ -4,8 +4,6 @@
  */
 package DAO;
 
-import DTO.Hoadon;
-import DTO.Nhanvien;
 
 /**
  *

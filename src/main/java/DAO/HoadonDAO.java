@@ -8,6 +8,7 @@ import ConnectDB.ConnectDB;
 import DTO.Hoadon;
 import Handle.Timeconvert;
 import static Handle.Timeconvert.convert;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
@@ -18,6 +19,7 @@ import java.util.ArrayList;
 public class HoadonDAO {
     public HoadonDAO(){
 }
+//    hàm đọc danh sách hoá đơn, trả ra arraylist
     public ArrayList<Hoadon> ReadHoadons(){
         ArrayList<Hoadon> ds=new ArrayList<>();
         ConnectDB connectDB=new ConnectDB();
@@ -43,39 +45,16 @@ public class HoadonDAO {
         }
         return ds;
     }
-    
+//      Hàm thêm hoá đơn vào danh sách, trả ra true flase theo kết quả của việc thêm hoá đơn
+    public boolean add(Hoadon hd){
+        ConnectDB connectBD=new ConnectDB();
+        boolean success =connectBD.sqlUpdate("INSERT INTO `hoadon`(`SOHD`, `MANV`, `THOIGIANLAP`, `MAKH`, `TONGHD`,"
+                + " `CHIETKHAU`, `THANHTOAN`, `TIENKHACHDUA`, `TIENTRAKHACH`, `TONTAI`) VALUES "
+                + "('"+hd.getSo_hd()+"','"+hd.getMa_nv()+"','"+Date.valueOf(convert(hd.getNgay_lap()))+"','"+hd.getMa_kh()+"','"+hd.getThanh_tien()+"',"
+                + "'"+hd.getVAT()+"','[value-7]','[value-8]','[value-9]','[value-10]')");
+    }
 }
-//ArrayList<Nhanvien> nvArrayList= new ArrayList<>();
-//    public NhanvienDao(){
-//    }
-////    Hàm đọc danh sách dứoi database và đưa ra danh sách dưới dạng arraylist
-//    public ArrayList<Nhanvien> ReadNhanviens(){
-//        ConnectDB connectDB;
-//        connectDB=new ConnectDB();
-//        String qry = "SELECT * FROM `nhanvien` WHERE TONTAI = 1";
-//            ResultSet rset = connectDB.sqlQuery(qry);
-//            try {
-//            if(rset!=null){
-//                while(rset.next()){
-//                    Nhanvien nv =new Nhanvien(rset.getNString("MANV")
-//                            ,rset.getNString("TENNV"), convert(rset.getDate("NGAYSINH").toLocalDate())
-//                            ,rset.getNString("GIOITINH"), rset.getNString("CCCD"),
-//                            rset.getNString("SDT"),rset.getNString("DIACHI"), rset.getNString("MAQUYEN"),
-//                            convert(rset.getDate("NGAYBATDAU").toLocalDate()),
-//                            convert(rset.getDate("NGAYNGHIVIEC").toLocalDate()), rset.getNString("EMAIL"), 
-//                            rset.getInt("HESOLUONG"), 
-//                            rset.getBoolean("TONTAI"));
-//                    nvArrayList.add(nv);
-//                    
-//                }
-//            }
-//        } catch (Exception e) {
-//                System.out.println("Lỗi truy vấn Nhân viên");
-//                e.printStackTrace();
-//        }
-//            connectDB.closeConnect();
-//            return nvArrayList;
-//    }
+//
 ////    Hàm thêm nhân viên vào danh sách, trả ra true flase theo kết quả của việc thêm nhân viên
 //    public boolean add(Nhanvien nv){
 //        boolean succsec=false;
