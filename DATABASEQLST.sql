@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th9 20, 2023 lúc 05:55 PM
+-- Thời gian đã tạo: Th9 23, 2023 lúc 10:56 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -63,10 +63,11 @@ CREATE TABLE `chitiet_phieunhap` (
   `MAHANGNHAP` char(13) NOT NULL,
   `TENHANGNHAP` text NOT NULL,
   `VAT` double NOT NULL,
+  `XUATXU` text NOT NULL,
   `SOLUONG` int(11) NOT NULL,
   `DONVI` text NOT NULL,
-  `GIANHAP` int(11) NOT NULL,
-  `TONGTIENNHAP` int(11) NOT NULL,
+  `GIANHAP` double NOT NULL,
+  `TONGTIENNHAP` double NOT NULL,
   `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -74,22 +75,22 @@ CREATE TABLE `chitiet_phieunhap` (
 -- Đang đổ dữ liệu cho bảng `chitiet_phieunhap`
 --
 
-INSERT INTO `chitiet_phieunhap` (`MAPHIEUNHAP`, `MAHANGNHAP`, `TENHANGNHAP`, `VAT`, `SOLUONG`, `DONVI`, `GIANHAP`, `TONGTIENNHAP`, `TONTAI`) VALUES
-('0000001', '4902430556781', 'Tã dán Pampers nội địa Nhật Bản cao cấp thượng hạn size M 52 miếng 6-11 kg', 0.08, 10, 'gói', 309600, 3343680, 1),
-('0000001', '8657882990341', 'Nước giặt Downy vườn hoa thơm ngát túi 3.05kg', 0.08, 20, 'túi', 89400, 1931040, 1),
-('0000001', '8809541033891', 'Mặt nạ chiết xuất từ nghệ Purederm dưỡng da', 0.08, 100, 'miếng', 5000, 540000, 1),
-('0000001', '8835166023316', 'Lốc 3 cuộn túi rác đen tự huỷ sinh học 64x78cm (1kg)', 0.08, 50, 'lốc', 33600, 1814400, 1),
-('0000001', '8843331098667', 'Thùng 24 bịch sữa tiệt trùng ít đường Dutch Lady 180ml', 0.08, 5, 'thùng', 76200, 411480, 1),
-('0000001', '8853301530293', 'Thức ăn cho chó lớn Pedigree vị bò kho và rau củ túi 130g', 0.08, 100, 'túi', 9000, 972000, 1),
-('0000001', '8934558928122', 'Dầu ăn cao cấp Happi Koki chai 1 lít', 0.08, 50, 'chai', 20700, 1117800, 1),
-('0000001', '8934561667891', 'Thùng 30 gói mì Hảo Hảo tôm chua cay 75g', 0.08, 10, 'thùng', 64800, 699840, 1),
-('0000001', '8934822561234', 'Thùng 12 lon bia Bia Việt 330ml', 0.08, 10, 'thùng', 80600, 870480, 1),
-('0000001', '8935162895621', 'Gạo thơm đặc sản Neptune ST25 túi 5kg', 0.08, 10, 'túi', 81000, 874800, 1),
-('0000001', '8936011896782', 'Sữa chua dẻo phô mai Merino gói 50g', 0.08, 50, 'gói', 3600, 194400, 1),
-('0000001', '8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', 0.08, 10, 'cái', 27000, 291600, 1),
-('0000002', '8934563138165', 'Mì Hảo Hảo gói 75g', 0.08, 300, 'gói', 1800, 583200, 1),
-('0000002', '8934822220112', 'Lon bia Việt 330ml', 0.08, 300, 'lon', 8500, 2754000, 1),
-('0000002', '8934841903058', 'Bịch sữa tiệt trùng ít đường Dutch Lady 180ml', 0.08, 300, 'bịch', 3100, 1004400, 1);
+INSERT INTO `chitiet_phieunhap` (`MAPHIEUNHAP`, `MAHANGNHAP`, `TENHANGNHAP`, `VAT`, `XUATXU`, `SOLUONG`, `DONVI`, `GIANHAP`, `TONGTIENNHAP`, `TONTAI`) VALUES
+('0000001', '4902430556781', 'Tã dán Pampers nội địa Nhật Bản cao cấp thượng hạn size M 52 miếng 6-11 kg', 0.08, 'Việt Nam', 10, 'gói', 309600, 3343680, 1),
+('0000001', '8657882990341', 'Nước giặt Downy vườn hoa thơm ngát túi 3.05kg', 0.08, 'Việt Nam', 20, 'túi', 89400, 1931040, 1),
+('0000001', '8809541033891', 'Mặt nạ chiết xuất từ nghệ Purederm dưỡng da', 0.08, 'Việt Nam', 100, 'miếng', 5000, 540000, 1),
+('0000001', '8835166023316', 'Lốc 3 cuộn túi rác đen tự huỷ sinh học 64x78cm (1kg)', 0.08, 'Việt Nam', 50, 'lốc', 33600, 1814400, 1),
+('0000001', '8843331098667', 'Thùng 24 bịch sữa tiệt trùng ít đường Dutch Lady 180ml', 0.08, 'Việt Nam', 5, 'thùng', 76200, 411480, 1),
+('0000001', '8853301530293', 'Thức ăn cho chó lớn Pedigree vị bò kho và rau củ túi 130g', 0.08, 'Việt Nam', 100, 'túi', 9000, 972000, 1),
+('0000001', '8934558928122', 'Dầu ăn cao cấp Happi Koki chai 1 lít', 0.08, 'Việt Nam', 50, 'chai', 20700, 1117800, 1),
+('0000001', '8934561667891', 'Thùng 30 gói mì Hảo Hảo tôm chua cay 75g', 0.08, 'Việt Nam', 10, 'thùng', 64800, 699840, 1),
+('0000001', '8934822561234', 'Thùng 12 lon bia Bia Việt 330ml', 0.08, 'Việt Nam', 10, 'thùng', 80600, 870480, 1),
+('0000001', '8935162895621', 'Gạo thơm đặc sản Neptune ST25 túi 5kg', 0.08, 'Việt Nam', 10, 'túi', 81000, 874800, 1),
+('0000001', '8936011896782', 'Sữa chua dẻo phô mai Merino gói 50g', 0.08, 'Việt Nam', 50, 'gói', 3600, 194400, 1),
+('0000001', '8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', 0.08, 'Việt Nam', 10, 'cái', 27000, 291600, 1),
+('0000002', '8934563138165', 'Mì Hảo Hảo gói 75g', 0.08, 'Việt Nam', 300, 'gói', 1800, 583200, 1),
+('0000002', '8934822220112', 'Lon bia Việt 330ml', 0.08, 'Việt Nam', 300, 'lon', 8500, 2754000, 1),
+('0000002', '8934841903058', 'Bịch sữa tiệt trùng ít đường Dutch Lady 180ml', 0.08, 'Việt Nam', 300, 'bịch', 3100, 1004400, 1);
 
 -- --------------------------------------------------------
 
@@ -103,8 +104,8 @@ CREATE TABLE `chitiet_phieuxuat` (
   `SOLUONGYEUCAU` int(11) NOT NULL,
   `SOLUONGTHUCXUAT` int(11) NOT NULL,
   `DONVI` text NOT NULL,
-  `DONGIA` int(11) NOT NULL,
-  `THANHTIEN` int(11) NOT NULL,
+  `DONGIA` double NOT NULL,
+  `THANHTIEN` double NOT NULL,
   `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -113,7 +114,8 @@ CREATE TABLE `chitiet_phieuxuat` (
 --
 
 INSERT INTO `chitiet_phieuxuat` (`MAPHIEUXUAT`, `MAHANGXUAT`, `SOLUONGYEUCAU`, `SOLUONGTHUCXUAT`, `DONVI`, `DONGIA`, `THANHTIEN`, `TONTAI`) VALUES
-('0000001', '4902430556781', 10, 10, '', 0, 0, 1);
+('0000001', '4902430556781', 3, 3, 'gói', 433440, 1300320, 1),
+('0000001', '8657882990341', 3, 3, 'túi', 125160, 375480, 1);
 
 -- --------------------------------------------------------
 
@@ -127,8 +129,8 @@ CREATE TABLE `hanghoa` (
   `MANH` char(7) NOT NULL,
   `MANCC` char(7) NOT NULL,
   `DONVI` text NOT NULL,
-  `GIANHAP` int(11) NOT NULL,
-  `GIABAN` int(11) NOT NULL,
+  `GIANHAP` double NOT NULL,
+  `GIABAN` double NOT NULL,
   `SOLUONG` int(11) NOT NULL,
   `XUATXU` text NOT NULL,
   `TONTAI` tinyint(1) NOT NULL
@@ -139,21 +141,21 @@ CREATE TABLE `hanghoa` (
 --
 
 INSERT INTO `hanghoa` (`MASP`, `TENSP`, `MANH`, `MANCC`, `DONVI`, `GIANHAP`, `GIABAN`, `SOLUONG`, `XUATXU`, `TONTAI`) VALUES
-('4902430556781', 'Tã dán Pampers nội địa Nhật Bản cao cấp thượng hạn size M 52 miếng 6-11 kg', '0000004', 'NCCDYQN', 'gói', 309600, 433440, 10, 'Mỹ', 1),
-('8657882990341', 'Nước giặt Downy vườn hoa thơm ngát túi 3.05kg', '0000003', 'NCCDYQN', 'túi', 89400, 125160, 20, 'Mỹ', 1),
-('8809541033891', 'Mặt nạ chiết xuất từ nghệ Purederm dưỡng da', '0000005', 'NCCDYQN', 'miếng', 5000, 7000, 100, 'Mỹ', 1),
-('8835166023316', 'Lốc 3 cuộn túi rác đen tự huỷ sinh học 64x78cm (1kg)', '0000002', 'NCCDYQN', 'lốc', 33600, 47040, 50, 'Mỹ', 1),
-('8843331098667', 'Thùng 24 bịch sữa tiệt trùng ít đường Dutch Lady 180ml', '0000007', 'NCCDYQN', 'thùng', 76200, 106680, 5, 'Mỹ', 1),
-('8853301530293', 'Thức ăn cho chó lớn Pedigree vị bò kho và rau củ túi 130g', '0000001', 'NCCDYQN', 'túi', 9000, 12600, 100, 'Mỹ', 1),
-('8934558928122', 'Dầu ăn cao cấp Happi Koki chai 1 lít', '0000012', 'NCCDYQN', 'chai', 20700, 28980, 50, 'Mỹ', 1),
-('8934561667891', 'Thùng 30 gói mì Hảo Hảo tôm chua cay 75g', '0000010', 'NCCDYQN', 'thùng', 64800, 90720, 10, 'Mỹ', 1),
+('4902430556781', 'Tã dán Pampers nội địa Nhật Bản cao cấp thượng hạn size M 52 miếng 6-11 kg', '0000004', 'NCCDYQN', 'gói', 309600, 433440, 10, 'Việt Nam', 1),
+('8657882990341', 'Nước giặt Downy vườn hoa thơm ngát túi 3.05kg', '0000003', 'NCCDYQN', 'túi', 89400, 125160, 20, 'Việt Nam', 1),
+('8809541033891', 'Mặt nạ chiết xuất từ nghệ Purederm dưỡng da', '0000005', 'NCCDYQN', 'miếng', 5000, 7000, 100, 'Việt Nam', 1),
+('8835166023316', 'Lốc 3 cuộn túi rác đen tự huỷ sinh học 64x78cm (1kg)', '0000002', 'NCCDYQN', 'lốc', 33600, 47040, 50, 'Việt Nam', 1),
+('8843331098667', 'Thùng 24 bịch sữa tiệt trùng ít đường Dutch Lady 180ml', '0000007', 'NCCDYQN', 'thùng', 76200, 99060, 5, 'Việt Nam', 1),
+('8853301530293', 'Thức ăn cho chó lớn Pedigree vị bò kho và rau củ túi 130g', '0000001', 'NCCDYQN', 'túi', 9000, 12600, 100, 'Việt Nam', 1),
+('8934558928122', 'Dầu ăn cao cấp Happi Koki chai 1 lít', '0000012', 'NCCDYQN', 'chai', 20700, 28980, 50, 'Việt Nam', 1),
+('8934561667891', 'Thùng 30 gói mì Hảo Hảo tôm chua cay 75g', '0000010', 'NCCDYQN', 'thùng', 64800, 84240, 10, 'Việt Nam', 1),
 ('8934563138165', 'Mì Hảo Hảo gói 75g', '0000010', 'NCCDYQN', 'gói', 1800, 2520, 300, 'Việt Nam', 1),
 ('8934822220112', 'Lon bia Việt 330ml', '0000008', 'NCCDYQN', 'lon', 8500, 11900, 300, 'Việt Nam', 1),
-('8934822561234', 'Thùng 12 lon bia Bia Việt 330ml', '0000008', 'NCCDYQN', 'thùng', 80600, 112840, 10, 'Mỹ', 1),
+('8934822561234', 'Thùng 12 lon bia Bia Việt 330ml', '0000008', 'NCCDYQN', 'thùng', 80600, 104780, 10, 'Việt Nam', 1),
 ('8934841903058', 'Bịch sữa tiệt trùng ít đường Dutch Lady 180ml', '0000007', 'NCCDYQN', 'bịch', 3100, 4340, 300, 'Việt Nam', 1),
-('8935162895621', 'Gạo thơm đặc sản Neptune ST25 túi 5kg', '0000009', 'NCCDYQN', 'túi', 81000, 113400, 10, 'Mỹ', 1),
-('8936011896782', 'Sữa chua dẻo phô mai Merino gói 50g', '0000011', 'NCCDYQN', 'gói', 3600, 5040, 50, 'Mỹ', 1),
-('8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', '0000006', 'NCCDYQN', 'cái', 27000, 37800, 10, 'Mỹ', 1);
+('8935162895621', 'Gạo thơm đặc sản Neptune ST25 túi 5kg', '0000009', 'NCCDYQN', 'túi', 81000, 113400, 10, 'Việt Nam', 1),
+('8936011896782', 'Sữa chua dẻo phô mai Merino gói 50g', '0000011', 'NCCDYQN', 'gói', 3600, 5040, 50, 'Việt Nam', 1),
+('8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', '0000006', 'NCCDYQN', 'cái', 27000, 37800, 10, 'Việt Nam', 1);
 
 -- --------------------------------------------------------
 
@@ -166,11 +168,11 @@ CREATE TABLE `hoadon` (
   `MANV` char(7) NOT NULL,
   `THOIGIANLAP` datetime NOT NULL,
   `MAKH` char(7) NOT NULL,
-  `TONGHD` int(11) NOT NULL,
-  `CHIETKHAU` int(11) NOT NULL,
-  `THANHTOAN` int(11) NOT NULL,
-  `TIENKHACHDUA` int(11) NOT NULL,
-  `TIENTRAKHACH` int(11) NOT NULL,
+  `TONGHD` double NOT NULL,
+  `CHIETKHAU` double NOT NULL,
+  `THANHTOAN` double NOT NULL,
+  `TIENKHACHDUA` double NOT NULL,
+  `TIENTRAKHACH` double NOT NULL,
   `TONTAI` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -319,7 +321,7 @@ INSERT INTO `phanquyen` (`MAQUYEN`, `TENQUYEN`, `TONTAI`) VALUES
 
 CREATE TABLE `phieuchi` (
   `MAPHIEUCHI` char(7) NOT NULL,
-  `SOTIEN` int(11) NOT NULL,
+  `SOTIEN` double NOT NULL,
   `MANV` char(7) NOT NULL,
   `THOIGIANCHI` datetime NOT NULL,
   `LYDO` text NOT NULL,
@@ -332,8 +334,8 @@ CREATE TABLE `phieuchi` (
 --
 
 INSERT INTO `phieuchi` (`MAPHIEUCHI`, `SOTIEN`, `MANV`, `THOIGIANCHI`, `LYDO`, `GHICHU`, `TONTAI`) VALUES
-('0000001', 11403720, 'B041003', '2023-09-20 07:30:00', 'Chi tiền hàng nhập chẳn', '', 1),
-('0000002', 4341600, 'B041003', '2023-09-20 17:35:17', 'chi tiền hàng nhập lẻ', '', 1);
+('0000001', 11403720, 'B041003', '2023-09-20 07:30:00', 'Chi tiền hàng nhập phiếu 1', '', 1),
+('0000002', 4341600, 'B041003', '2023-09-20 17:35:17', 'chi tiền hàng nhập phiếu 2', '', 1);
 
 -- --------------------------------------------------------
 
@@ -346,9 +348,9 @@ CREATE TABLE `phieunhap` (
   `MANV` char(7) NOT NULL,
   `MANCC` char(7) NOT NULL,
   `THOIGIANLAP` datetime NOT NULL,
-  `VAT` text NOT NULL,
+  `VAT` double NOT NULL,
   `SOMATHANG` int(11) NOT NULL,
-  `TONGTIEN` int(11) NOT NULL,
+  `TONGTIEN` double NOT NULL,
   `TONTAI` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -357,8 +359,8 @@ CREATE TABLE `phieunhap` (
 --
 
 INSERT INTO `phieunhap` (`MAPHIEUNHAP`, `MANV`, `MANCC`, `THOIGIANLAP`, `VAT`, `SOMATHANG`, `TONGTIEN`, `TONTAI`) VALUES
-('0000001', 'A038645', 'NCCDYQN', '2023-09-20 08:49:50', '0.08', 12, 11403720, 1),
-('0000002', 'B041003', 'NCCDYQN', '2023-09-20 16:32:34', '0.08', 3, 4341600, 1);
+('0000001', 'A038645', 'NCCDYQN', '2023-09-20 08:49:50', 0.08, 12, 11403720, 1),
+('0000002', 'B041003', 'NCCDYQN', '2023-09-20 16:32:34', 0.08, 3, 4341600, 1);
 
 -- --------------------------------------------------------
 
@@ -370,6 +372,7 @@ CREATE TABLE `phieuxuat` (
   `MAPHIEUXUAT` char(7) NOT NULL,
   `MANV` char(7) NOT NULL,
   `MAKH` char(7) NOT NULL,
+  `TONGTIEN` double NOT NULL,
   `LYDO` text NOT NULL,
   `GHICHU` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -378,8 +381,8 @@ CREATE TABLE `phieuxuat` (
 -- Đang đổ dữ liệu cho bảng `phieuxuat`
 --
 
-INSERT INTO `phieuxuat` (`MAPHIEUXUAT`, `MANV`, `MAKH`, `LYDO`, `GHICHU`) VALUES
-('0000001', 'A038645', '0000001', 'xuat hang', '');
+INSERT INTO `phieuxuat` (`MAPHIEUXUAT`, `MANV`, `MAKH`, `TONGTIEN`, `LYDO`, `GHICHU`) VALUES
+('0000001', 'A038645', '0000001', 1675800, 'xuat hang', '');
 
 -- --------------------------------------------------------
 
@@ -433,7 +436,7 @@ ALTER TABLE `chitiet_phieunhap`
 -- Chỉ mục cho bảng `chitiet_phieuxuat`
 --
 ALTER TABLE `chitiet_phieuxuat`
-  ADD PRIMARY KEY (`MAPHIEUXUAT`),
+  ADD PRIMARY KEY (`MAPHIEUXUAT`,`MAHANGXUAT`),
   ADD KEY `MAHANGXUAT` (`MAHANGXUAT`);
 
 --

@@ -8,6 +8,8 @@ import java.awt.Font;
 import java.awt.TextField;
 import javax.swing.JTextField;
 
+import Controller.TaiKhoanController;
+
 
 /**
  *
@@ -23,6 +25,17 @@ public class LoginForm extends javax.swing.JFrame {
         //add
         addPlaceholderStyle(jtfUser);
         addPlaceholderStyle(jpfPass);
+
+        TaiKhoanController controller = new TaiKhoanController(this, btnSubmit, jtfUser, jpfPass);
+        controller.setEvent();
+    }
+
+    public static void login(){
+        LoginForm loginForm = new LoginForm();
+        loginForm.setTitle("Đăng nhập hệ thống");
+        loginForm.setResizable(false);
+        loginForm.setLocationRelativeTo(null);
+        loginForm.setVisible(true);
     }
 
     public void addPlaceholderStyle(JTextField jTextField){
@@ -53,12 +66,11 @@ public class LoginForm extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jtfUser = new javax.swing.JTextField();
         jpfPass = new javax.swing.JPasswordField();
-        btnSign = new javax.swing.JButton();
+        btnSubmit = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
                 formWindowGainedFocus(evt);
@@ -68,9 +80,7 @@ public class LoginForm extends javax.swing.JFrame {
         });
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
-
         jPanel1.setLayout(new java.awt.GridLayout(1, 0));
-
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -122,12 +132,10 @@ public class LoginForm extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-
-        btnSign.setBackground(new java.awt.Color(240, 90, 118));
-
-        btnSign.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
-        btnSign.setForeground(new java.awt.Color(255, 255, 255));
-        btnSign.setText("Sign in");
+        btnSubmit.setBackground(new java.awt.Color(240, 90, 118));
+        btnSubmit.setFont(new java.awt.Font("Segoe UI Black", 1, 14)); // NOI18N
+        btnSubmit.setForeground(new java.awt.Color(255, 255, 255));
+        btnSubmit.setText("Sign in");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -143,7 +151,7 @@ public class LoginForm extends javax.swing.JFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(106, 106, 106)
-                        .addComponent(btnSign, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -154,15 +162,13 @@ public class LoginForm extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnSign, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSubmit, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(83, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2);
 
-
         jPanel3.setBackground(new java.awt.Color(112, 198, 167));
-
         jPanel3.setAlignmentX(0.0F);
         jPanel3.setAlignmentY(0.0F);
         jPanel3.setPreferredSize(new java.awt.Dimension(300, 0));
@@ -189,7 +195,6 @@ public class LoginForm extends javax.swing.JFrame {
         );
 
         jPanel1.add(jPanel3);
-
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -254,39 +259,11 @@ public class LoginForm extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoginForm().setVisible(true);
-            }
-        });
+        login();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnSign;
+    private javax.swing.JButton btnSubmit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -11,12 +11,25 @@ package DTO;
 public class Taikhoan {
     private String Ten_dn;
     private String Mat_khau;
+
+    public String getQuyen() {
+        return Quyen;
+    }
+
+    public void setQuyen(String Quyen) {
+        this.Quyen = Quyen;
+    }
+    private String Quyen;
+    private boolean tontai;
+
     public Taikhoan() {
     }
 
-    public Taikhoan(String Ten_dn, String Mat_khau) {
+    public Taikhoan(String Ten_dn, String Mat_khau,String Quyen, boolean tontai) {
         this.Ten_dn = Ten_dn;
         this.Mat_khau = Mat_khau;
+        this.Quyen = Quyen;
+        this.tontai = tontai;
     }
 
     public String getTen_dn() {
@@ -35,6 +48,18 @@ public class Taikhoan {
         this.Mat_khau = Mat_khau;
     }
 
+    public boolean isTontai() {
+        return this.tontai;
+    }
+
+    public boolean getTontai() {
+        return this.tontai;
+    }
+
+    public void setTontai(boolean tontai) {
+        this.tontai = tontai;
+    }
+
     public Taikhoan Ten_dn(String Ten_dn) {
         setTen_dn(Ten_dn);
         return this;
@@ -44,11 +69,19 @@ public class Taikhoan {
         setMat_khau(Mat_khau);
         return this;
     }
+
+    public Taikhoan tontai(boolean tontai) {
+        setTontai(tontai);
+        return this;
+    }
+
     @Override
     public String toString() {
         return "{" +
-            " Ten_dn='" + getTen_dn() + "'" +
-            ", Mat_khau='" + getMat_khau() + "'" +
-            "}";
+                " Ten_dn='" + getTen_dn() + "'" +
+                ", Mat_khau='" + getMat_khau() + "'" +
+                ", tontai='" + isTontai() + "'" +
+                "}";
     }
 }
+

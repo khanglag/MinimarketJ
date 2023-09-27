@@ -6,17 +6,20 @@ package DTO;
 
 /**
  *
- * @author beo
+ * @author pc
  */
 public class Phanquyen {
     private String Ma_pq;
     private String Tenquyen;
-      public Phanquyen() {
+    private boolean Tontai;
+
+    public Phanquyen() {
     }
 
-    public Phanquyen(String Ma_pq, String Tenquyen) {
+    public Phanquyen(String Ma_pq, String Tenquyen, boolean Tontai) {
         this.Ma_pq = Ma_pq;
         this.Tenquyen = Tenquyen;
+        this.Tontai = Tontai;
     }
 
     public String getMa_pq() {
@@ -35,6 +38,18 @@ public class Phanquyen {
         this.Tenquyen = Tenquyen;
     }
 
+    public boolean isTontai() {
+        return this.Tontai;
+    }
+
+    public boolean getTontai() {
+        return this.Tontai;
+    }
+
+    public void setTontai(boolean Tontai) {
+        this.Tontai = Tontai;
+    }
+
     public Phanquyen Ma_pq(String Ma_pq) {
         setMa_pq(Ma_pq);
         return this;
@@ -44,12 +59,17 @@ public class Phanquyen {
         setTenquyen(Tenquyen);
         return this;
     }
+
+    public Phanquyen Tontai(boolean Tontai) {
+        setTontai(Tontai);
+        return this;
+    }
     @Override
     public String toString() {
         return "{" +
             " Ma_pq='" + getMa_pq() + "'" +
             ", Tenquyen='" + getTenquyen() + "'" +
-         "}";
-    
-}
+            ", Tontai='" + isTontai() + "'" +
+            "}";
+    }
 }

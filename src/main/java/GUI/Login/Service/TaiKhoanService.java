@@ -2,14 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DTO;
+package GUI.Login.Service;
+
+import DTO.Taikhoan;
 
 /**
  *
- * @author pc
+ * @author khang
  */
-public class Nhomhang {
-    private String Ma_nh;
-    private String Ten_nh;
-    
+//chức năng login
+public interface TaiKhoanService {
+    public Taikhoan login(String tenDangNhap, String matKhau);
 }
