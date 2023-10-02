@@ -35,7 +35,6 @@ public class PhieuNhapHang extends javax.swing.JPanel {
         jtfMSP = new javax.swing.JTextField();
         jtfTen = new javax.swing.JTextField();
         jtfDonGia = new javax.swing.JTextField();
-        jtfSoLuong = new javax.swing.JTextField();
         btnThem = new javax.swing.JButton();
         jPanel6 = new javax.swing.JPanel();
         jtfTim = new javax.swing.JTextField();
@@ -56,8 +55,6 @@ public class PhieuNhapHang extends javax.swing.JPanel {
         jLabel39 = new javax.swing.JLabel();
         jtfVAT = new javax.swing.JTextField();
         jPanel37 = new javax.swing.JPanel();
-        jLabel43 = new javax.swing.JLabel();
-        jtfSL = new javax.swing.JTextField();
         jLabel40 = new javax.swing.JLabel();
         jtfDonVi = new javax.swing.JTextField();
         jLabel41 = new javax.swing.JLabel();
@@ -97,8 +94,6 @@ public class PhieuNhapHang extends javax.swing.JPanel {
 
         jtfDonGia.setBorder(javax.swing.BorderFactory.createTitledBorder("Đơn giá"));
 
-        jtfSoLuong.setBorder(javax.swing.BorderFactory.createTitledBorder("Số lượng"));
-
         btnThem.setText("Thêm");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -114,8 +109,7 @@ public class PhieuNhapHang extends javax.swing.JPanel {
                 .addGap(0, 0, 0)
                 .addComponent(jtfDonGia, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jtfSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addGap(172, 172, 172)
                 .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel5Layout.setVerticalGroup(
@@ -127,9 +121,7 @@ public class PhieuNhapHang extends javax.swing.JPanel {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtfTen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfDonGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtfSoLuong, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
@@ -171,6 +163,8 @@ public class PhieuNhapHang extends javax.swing.JPanel {
 
         jButton1.setText("Tìm");
         jPanel34.add(jButton1);
+
+        jButton2.setText("Làm mới");
         jPanel34.add(jButton2);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -203,13 +197,13 @@ public class PhieuNhapHang extends javax.swing.JPanel {
 
         tableChiTietPhieuXuat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "MPN", "MHX", "SLYC", "SLTX", "Đơn vị", "Đơn giá", "Thành tiền", "Ghi chú"
+                "MPN", "MHN", "SL", "Đơn vị", "Đơn giá", "Thành tiền"
             }
         ));
         jScrollPane9.setViewportView(tableChiTietPhieuXuat);
@@ -238,10 +232,6 @@ public class PhieuNhapHang extends javax.swing.JPanel {
 
         jPanel37.setLayout(new java.awt.GridLayout(4, 2, 0, 5));
 
-        jLabel43.setText("Số lượng");
-        jPanel37.add(jLabel43);
-        jPanel37.add(jtfSL);
-
         jLabel40.setText("Đơn vị");
         jPanel37.add(jLabel40);
         jPanel37.add(jtfDonVi);
@@ -266,7 +256,7 @@ public class PhieuNhapHang extends javax.swing.JPanel {
 
         btnHuy.setText("Huỷ");
 
-        jButton4.setText("Xuất hàng");
+        jButton4.setText("Yêu cầu nhập hàng");
 
         javax.swing.GroupLayout jPanel35Layout = new javax.swing.GroupLayout(jPanel35);
         jPanel35.setLayout(jPanel35Layout);
@@ -346,7 +336,6 @@ public class PhieuNhapHang extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
-    private javax.swing.JLabel jLabel43;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel34;
@@ -365,8 +354,6 @@ public class PhieuNhapHang extends javax.swing.JPanel {
     private javax.swing.JTextField jtfMSP;
     private javax.swing.JTextField jtfMaHangXuat;
     private javax.swing.JTextField jtfMaPhieuXuat;
-    private javax.swing.JTextField jtfSL;
-    private javax.swing.JTextField jtfSoLuong;
     private javax.swing.JTextField jtfSoLuongYeuCau;
     private javax.swing.JTextField jtfTen;
     private javax.swing.JTextField jtfThanhTien;
