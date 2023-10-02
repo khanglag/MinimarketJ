@@ -12,18 +12,20 @@ import Handle.Convert;
 import static Handle.Convert.stringtobool;
 import static Handle.Timeconvert.convert;
 import java.sql.Date;
+import java.sql.SQLException;
 
 /**
  *
  * @author pc
  */
 public class NhanvienDao {
-    ArrayList<Nhanvien> nvArrayList= new ArrayList<>();
     public NhanvienDao(){
     }
+//    Hàm đọc danh sách dứoi database và đưa ra danh sách dưới dạng arraylist
     public ArrayList<Nhanvien> ReadNhanviens(){
         ConnectDB connectDB;
         connectDB=new ConnectDB();
+        ArrayList<Nhanvien> nvArrayList= new ArrayList<>();
         String qry = "SELECT * FROM `nhanvien` WHERE TONTAI = 1";
             ResultSet rset = connectDB.sqlQuery(qry);
             try {
@@ -48,6 +50,7 @@ public class NhanvienDao {
             connectDB.closeConnect();
             return nvArrayList;
     }
+//    Hàm thêm nhân viên vào danh sách, trả ra true flase theo kết quả của việc thêm nhân viên
     public boolean add(Nhanvien nv){
         boolean succsec=false;
         ConnectDB connectDB;
@@ -69,6 +72,7 @@ public class NhanvienDao {
         connectDB.closeConnect();
         return succsec;
     }
+//    Hàm xoá nhân viên khỏi danh sách, trả ra kiểm dữ liệu true flase theo kết quả của việc xoá nhân viên
     public boolean delete(Nhanvien nhanVien) {
         ConnectDB connectDB;
         connectDB=new ConnectDB();
@@ -78,6 +82,7 @@ public class NhanvienDao {
         connectDB.closeConnect();
         return success;
     }
+//    Hàm sửa thông tin nhân viên, trả true false theo việc sửa nhân viên
     public boolean update(Nhanvien nhanVien) {
         ConnectDB connectDB;
         connectDB=new ConnectDB();
@@ -109,18 +114,28 @@ public class NhanvienDao {
         connectDB.closeConnect();
         return success;
     }
-    public ArrayList<Nhanvien> search(String Ma_nv, String Ten_nv, String Ngay_sinh, 
-            String Gioi_tinh, String CCCD, String SDT, String Dia_chi,
-            String Ma_quyen, String Ngay_lam, String Ngay_nghi, String email, 
-            double hs_luong, Boolean Tontai){
-        ArrayList<Nhanvien> nhanviens =new ArrayList<>();
-        String qry = "SELECT * FROM `nhanvien` WHERE TONTAI= 1";
-        if (!Ma_nv.equals("")) 
-            qry+=" AND `MANV`= '" + Ma_nv + "'";
-        if (!Ten_nv.equals("")) 
-            qry+=" AND `TENNV`= '" + Ten_nv+ "'";
-        if (!Ten_nv.equals("")) 
-            qry+=" AND `TENNV`= '" + Ten_nv+ "'";
-        return nhanviens;
+//    Hàm tìm kiếm nhân viên theo mã nhân viên, trả ra nhân viên
+    public Nhanvien search(String Ma_nv){
+       Nhanvien nhanvien=null;
+        String qry = "SELECT * FROM `nhanvien` WHERE TONTAI= 1 AND `MANV`='" + Ma_nv +"'";
+        ConnectDB connectDB= new ConnectDB();
+        ResultSet rset = connectDB.sqlQuery(qry);
+       try {
+            if (rset != null) {
+                while (rset.next()) {
+                     nhanvien =new Nhanvien(rset.getNString("MANV")
+                            ,rset.getNString("TENNV"), convert(rset.getDate("NGAYSINH").toLocalDate())
+                            ,rset.getNString("GIOITINH"), rset.getNString("CCCD"),
+                            rset.getNString("SDT"),rset.getNString("DIACHI"), rset.getNString("MAQUYEN"),
+                            convert(rset.getDate("NGAYBATDAU").toLocalDate()),
+                            convert(rset.getDate("NGAYNGHIVIEC").toLocalDate()), rset.getNString("EMAIL"), 
+                            rset.getInt("HESOLUONG"), 
+                            rset.getBoolean("TONTAI"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return nhanvien;
     }
 }
