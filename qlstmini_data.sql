@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 01, 2023 lúc 06:49 PM
+-- Thời gian đã tạo: Th10 02, 2023 lúc 05:02 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -151,42 +151,6 @@ INSERT INTO `hanghoa` (`MASP`, `TENSP`, `MANH`, `MANCC`, `DONVI`, `GIANHAP`, `GI
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hanghoathucte`
---
-
-CREATE TABLE `hanghoathucte` (
-  `MASP` char(13) NOT NULL,
-  `TENSP` text NOT NULL,
-  `DONVI` text NOT NULL,
-  `SOLUONGTHUCTE` int(11) NOT NULL,
-  `NGAYKIEM` date NOT NULL,
-  `TONTAI` tinyint(1) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `hanghoathucte`
---
-
-INSERT INTO `hanghoathucte` (`MASP`, `TENSP`, `DONVI`, `SOLUONGTHUCTE`, `NGAYKIEM`, `TONTAI`) VALUES
-('4902430556781', 'Tã dán Pampers nội địa Nhật Bản cao cấp thượng hạn size M 52 miếng 6-11 kg', 'gói', 7, '2023-10-01', 1),
-('8657882990341', 'Nước giặt Downy vườn hoa thơm ngát túi 3.05kg', 'túi', 17, '2023-10-01', 1),
-('8809541033891', 'Mặt nạ chiết xuất từ nghệ Purederm dưỡng da', 'miếng', 99, '2023-10-01', 1),
-('8835166023316', 'Lốc 3 cuộn túi rác đen tự huỷ sinh học 64x78cm (1kg)', 'lốc', 50, '2023-10-01', 1),
-('8843331098667', 'Thùng 24 bịch sữa tiệt trùng ít đường Dutch Lady 180ml', 'thùng', 5, '2023-10-01', 1),
-('8853301530293', 'Thức ăn cho chó lớn Pedigree vị bò kho và rau củ túi 130g', 'túi', 100, '2023-10-01', 1),
-('8934558928122', 'Dầu ăn cao cấp Happi Koki chai 1 lít', 'chai', 50, '2023-10-01', 1),
-('8934561667891', 'Thùng 30 gói mì Hảo Hảo tôm chua cay 75g', 'thùng', 10, '2023-10-01', 1),
-('8934563138165', 'Mì Hảo Hảo gói 75g', 'gói', 300, '2023-10-01', 1),
-('8934822220112', 'Lon bia Việt 330ml', 'lon', 300, '2023-10-01', 1),
-('8934822561234', 'Thùng 12 lon bia Bia Việt 330ml', 'thùng', 10, '2023-10-01', 1),
-('8934841903058', 'Bịch sữa tiệt trùng ít đường Dutch Lady 180ml', 'bịch', 300, '2023-10-01', 1),
-('8935162895621', 'Gạo thơm đặc sản Neptune ST25 túi 5kg', 'túi', 10, '2023-10-01', 1),
-('8936011896782', 'Sữa chua dẻo phô mai Merino gói 50g', 'gói', 50, '2023-10-01', 1),
-('8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', 'cái', 10, '2023-10-01', 1);
-
--- --------------------------------------------------------
-
---
 -- Cấu trúc bảng cho bảng `hoadon`
 --
 
@@ -230,6 +194,42 @@ CREATE TABLE `khachhang` (
 
 INSERT INTO `khachhang` (`MAKH`, `TENKH`, `NGAYSINH`, `SDT`, `DIACHI`, `TONTAI`) VALUES
 ('0000001', 'Jeon JungKook', '1997-09-01', '0368779041', 'Seoul', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `kiemtrahanghoa`
+--
+
+CREATE TABLE `kiemtrahanghoa` (
+  `MASP` char(13) NOT NULL,
+  `TENSP` text NOT NULL,
+  `DONVI` text NOT NULL,
+  `SOLUONGCHECK` int(11) NOT NULL,
+  `NGAYKIEM` date NOT NULL,
+  `TONTAI` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `kiemtrahanghoa`
+--
+
+INSERT INTO `kiemtrahanghoa` (`MASP`, `TENSP`, `DONVI`, `SOLUONGCHECK`, `NGAYKIEM`, `TONTAI`) VALUES
+('4902430556781', 'Tã dán Pampers nội địa Nhật Bản cao cấp thượng hạn size M 52 miếng 6-11 kg', 'gói', 7, '2023-10-01', 1),
+('8657882990341', 'Nước giặt Downy vườn hoa thơm ngát túi 3.05kg', 'túi', 17, '2023-10-01', 1),
+('8809541033891', 'Mặt nạ chiết xuất từ nghệ Purederm dưỡng da', 'miếng', 99, '2023-10-01', 1),
+('8835166023316', 'Lốc 3 cuộn túi rác đen tự huỷ sinh học 64x78cm (1kg)', 'lốc', 50, '2023-10-01', 1),
+('8843331098667', 'Thùng 24 bịch sữa tiệt trùng ít đường Dutch Lady 180ml', 'thùng', 5, '2023-10-01', 1),
+('8853301530293', 'Thức ăn cho chó lớn Pedigree vị bò kho và rau củ túi 130g', 'túi', 100, '2023-10-01', 1),
+('8934558928122', 'Dầu ăn cao cấp Happi Koki chai 1 lít', 'chai', 50, '2023-10-01', 1),
+('8934561667891', 'Thùng 30 gói mì Hảo Hảo tôm chua cay 75g', 'thùng', 10, '2023-10-01', 1),
+('8934563138165', 'Mì Hảo Hảo gói 75g', 'gói', 300, '2023-10-01', 1),
+('8934822220112', 'Lon bia Việt 330ml', 'lon', 300, '2023-10-01', 1),
+('8934822561234', 'Thùng 12 lon bia Bia Việt 330ml', 'thùng', 10, '2023-10-01', 1),
+('8934841903058', 'Bịch sữa tiệt trùng ít đường Dutch Lady 180ml', 'bịch', 300, '2023-10-01', 1),
+('8935162895621', 'Gạo thơm đặc sản Neptune ST25 túi 5kg', 'túi', 10, '2023-10-01', 1),
+('8936011896782', 'Sữa chua dẻo phô mai Merino gói 50g', 'gói', 50, '2023-10-01', 1),
+('8936021003321', 'Bánh trung thu Kinh Đô Heo Vàng nhân phô mai 120g', 'cái', 10, '2023-10-01', 1);
 
 -- --------------------------------------------------------
 
@@ -481,12 +481,6 @@ ALTER TABLE `hanghoa`
   ADD KEY `MANCC` (`MANCC`);
 
 --
--- Chỉ mục cho bảng `hanghoathucte`
---
-ALTER TABLE `hanghoathucte`
-  ADD PRIMARY KEY (`MASP`,`NGAYKIEM`);
-
---
 -- Chỉ mục cho bảng `hoadon`
 --
 ALTER TABLE `hoadon`
@@ -499,6 +493,12 @@ ALTER TABLE `hoadon`
 --
 ALTER TABLE `khachhang`
   ADD PRIMARY KEY (`MAKH`);
+
+--
+-- Chỉ mục cho bảng `kiemtrahanghoa`
+--
+ALTER TABLE `kiemtrahanghoa`
+  ADD PRIMARY KEY (`MASP`,`NGAYKIEM`);
 
 --
 -- Chỉ mục cho bảng `nhacungcap`
@@ -594,17 +594,17 @@ ALTER TABLE `hanghoa`
   ADD CONSTRAINT `hanghoa_ibfk_3` FOREIGN KEY (`MANH`) REFERENCES `nhomhang` (`MANH`);
 
 --
--- Các ràng buộc cho bảng `hanghoathucte`
---
-ALTER TABLE `hanghoathucte`
-  ADD CONSTRAINT `hanghoathucte_ibfk_1` FOREIGN KEY (`MASP`) REFERENCES `hanghoa` (`MASP`);
-
---
 -- Các ràng buộc cho bảng `hoadon`
 --
 ALTER TABLE `hoadon`
   ADD CONSTRAINT `hoadon_ibfk_1` FOREIGN KEY (`MANV`) REFERENCES `nhanvien` (`MANV`),
   ADD CONSTRAINT `hoadon_ibfk_2` FOREIGN KEY (`MAKH`) REFERENCES `khachhang` (`MAKH`);
+
+--
+-- Các ràng buộc cho bảng `kiemtrahanghoa`
+--
+ALTER TABLE `kiemtrahanghoa`
+  ADD CONSTRAINT `kiemtrahanghoa_ibfk_1` FOREIGN KEY (`MASP`) REFERENCES `hanghoa` (`MASP`);
 
 --
 -- Các ràng buộc cho bảng `nhanvien`
