@@ -4,14 +4,16 @@
  */
 package DTO;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Admin
  */
 public class HoaDon_DTO {
-    private String soHD;
+    private int soHD;
     private String maNV;
-    private String thoiGianLap;
+    private LocalDate thoiGianLap;
     private String maKH;
     private double tongHD;
     private double thanhToan;
@@ -22,7 +24,7 @@ public class HoaDon_DTO {
     public HoaDon_DTO() {
     }
 
-    public HoaDon_DTO(String soHD, String maNV, String thoiGianLap, String maKH, double tongHD, double thanhToan, double tienKhachDua, double tienTraKhach, boolean tonTai) {
+    public HoaDon_DTO(int soHD, String maNV, LocalDate thoiGianLap, String maKH, double tongHD, double thanhToan, double tienKhachDua, double tienTraKhach, boolean tonTai) {
         this.soHD = soHD;
         this.maNV = maNV;
         this.thoiGianLap = thoiGianLap;
@@ -34,11 +36,11 @@ public class HoaDon_DTO {
         this.tonTai = tonTai;
     }
 
-    public String getSoHD() {
+    public int getSoHD() {
         return soHD;
     }
 
-    public void setSoHD(String soHD) {
+    public void setSoHD(int soHD) {
         this.soHD = soHD;
     }
 
@@ -50,11 +52,11 @@ public class HoaDon_DTO {
         this.maNV = maNV;
     }
 
-    public String getThoiGianLap() {
+    public LocalDate getThoiGianLap() {
         return thoiGianLap;
     }
 
-    public void setThoiGianLap(String thoiGianLap) {
+    public void setThoiGianLap(LocalDate thoiGianLap) {
         this.thoiGianLap = thoiGianLap;
     }
 

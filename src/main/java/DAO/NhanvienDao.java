@@ -1,136 +1,106 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DAO;
 
 import ConnectDB.ConnectDB;
-import DTO.Nhanvien;
+import DTO.NhanVien_DTO;
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import Handle.Convert;
-import static Handle.Convert.stringtobool;
-import static Handle.Timeconvert.convert;
 import java.sql.Date;
 import java.sql.SQLException;
 
-/**
- *
- * @author pc
- */
-public class NhanvienDao {
-    public NhanvienDao(){
-    }
-//    Hàm đọc danh sách dứoi database và đưa ra danh sách dưới dạng arraylist
-    public ArrayList<Nhanvien> ReadNhanviens(){
-        ConnectDB connectDB;
-        connectDB=new ConnectDB();
-        ArrayList<Nhanvien> nvArrayList= new ArrayList<>();
+public class NhanVienDAO {
+    public ArrayList<NhanVien_DTO> ReadNhanviens() {
+        ConnectDB connectDB = new ConnectDB();
+        ArrayList<NhanVien_DTO> nvArrayList = new ArrayList<>();
         String qry = "SELECT * FROM `nhanvien` WHERE TONTAI = 1";
-            ResultSet rset = connectDB.sqlQuery(qry);
-            try {
-            if(rset!=null){
-                while(rset.next()){
-                    Nhanvien nv =new Nhanvien(rset.getNString("MANV")
-                            ,rset.getNString("TENNV"), convert(rset.getDate("NGAYSINH").toLocalDate())
-                            ,rset.getNString("GIOITINH"), rset.getNString("CCCD"),
-                            rset.getNString("SDT"),rset.getNString("DIACHI"), rset.getNString("MAQUYEN"),
-                            convert(rset.getDate("NGAYBATDAU").toLocalDate()),
-                            convert(rset.getDate("NGAYNGHIVIEC").toLocalDate()), rset.getNString("EMAIL"), 
-                            rset.getInt("HESOLUONG"), 
-                            rset.getBoolean("TONTAI"));
-                    nvArrayList.add(nv);
-                    
+        ResultSet rset = connectDB.sqlQuery(qry);
+        try {
+            if (rset != null) {
+                while (rset.next()) {
+                    NhanVien_DTO nhanvien = new NhanVien_DTO(
+                    rset.getString("MANV"),
+                    rset.getNString("TENNV"),
+                    rset.getDate("NGAYSINH").toLocalDate(),
+                    rset.getNString("GIOITINH"),
+                    rset.getString("CCCD"),
+                    rset.getString("SDT"),
+                    rset.getString("EMAIL"),
+                    rset.getNString("DIACHI"),
+                    rset.getString("MAQUYEN"),
+                    rset.getBoolean("TONTAI"));                           
+                    nvArrayList.add(nhanvien);
                 }
             }
         } catch (Exception e) {
-                System.out.println("Lỗi truy vấn Nhân viên");
-                e.printStackTrace();
+            System.out.println("Lỗi truy vấn Nhân viên");
+            e.printStackTrace();
         }
-            connectDB.closeConnect();
-            return nvArrayList;
+        connectDB.closeConnect();
+        return nvArrayList;
     }
-//    Hàm thêm nhân viên vào danh sách, trả ra true flase theo kết quả của việc thêm nhân viên
-    public boolean add(Nhanvien nv){
-        boolean succsec=false;
-        ConnectDB connectDB;
-        connectDB=new ConnectDB();
-        succsec=connectDB.sqlUpdate(
-                "INSERT INTO `nhanvien`(`MANV`, `TENNV`, `NGAYSINH`, `GIOITINH`, `CCCD`, `SDT`, `EMAIL`, `DIACHI`, `MAQUYEN`, `NGAYBATDAU`, `NGAYNGHIVIEC`, `HESOLUONG`, `TONTAI`) VALUES "
-              + "('"+nv.getMa_nv()
-              +"','"+nv.getTen_nv()
-              +"','"+Date.valueOf(convert(nv.getNgay_sinh()))
-              +"','"+nv.getGioi_tinh()
-              +"','"+nv.getCCCD()+"','"
-              +nv.getSDT()+"','"
-              +nv.getEmail()+"','"+nv.getDia_chi()+"','"
-              +nv.getMa_quyen()
-              +"','"+Date.valueOf(convert(nv.getNgay_lam()))
-              +"','"+Date.valueOf(convert(nv.getNgay_nghi()))
-              +"','"+nv.getHs_luong()+"','"+nv.isTontai()+"')"
+
+    public boolean add(NhanVien_DTO nv) {
+        boolean success = false;
+        ConnectDB connectDB = new ConnectDB();
+        success = connectDB.sqlUpdate(
+                "INSERT INTO `nhanvien`(`MANV`, `TENNV`, `NGAYSINH`, `GIOITINH`, `CCCD`, `SDT`, `EMAIL`, `DIACHI`, `MAQUYEN`, `TONTAI`) VALUES "
+                        + "('" + nv.getMaNV() 
+                        + "','" + nv.getTenNV()
+                        + "','" + Date.valueOf(nv.getNgaySinh())
+                        + "','" + nv.getGioiTinh()
+                        + "','" + nv.getCccd()
+                        + "','" + nv.getSdt() 
+                        + "','" + nv.getEmail() 
+                        + "','" + nv.getDiaChi() 
+                        + "','" + nv.getMaQuyen()
+                        + "','1')"
         );
         connectDB.closeConnect();
-        return succsec;
+        return success;
     }
-//    Hàm xoá nhân viên khỏi danh sách, trả ra kiểm dữ liệu true flase theo kết quả của việc xoá nhân viên
-    public boolean delete(Nhanvien nhanVien) {
-        ConnectDB connectDB;
-        connectDB=new ConnectDB();
+    
+
+    public boolean delete(NhanVien_DTO nhanVien) {
+        ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
-                .sqlUpdate("UPDATE NHANVIEN SET TONTAI = 0 WHERE MANV ='" + nhanVien.getMa_nv() + "'");
-        System.out.println("UPDATE NHANVIEN SET TONTAI = 0 WHERE MANHANVIEN ='" + nhanVien.getMa_nv() + "'");
+                .sqlUpdate("UPDATE NHANVIEN SET TONTAI = 0 WHERE MANV ='" + nhanVien.getMaNV() + "'");
         connectDB.closeConnect();
         return success;
     }
-//    Hàm sửa thông tin nhân viên, trả true false theo việc sửa nhân viên
-    public boolean update(Nhanvien nhanVien) {
-        ConnectDB connectDB;
-        connectDB=new ConnectDB();
+
+
+    public boolean update(NhanVien_DTO nhanVien) {
+        ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
                 .sqlUpdate("UPDATE `nhanvien` SET "
-                 +"`TENNV`='"+nhanVien.getTen_nv()+"',`NGAYSINH`='"+Date.valueOf(convert(nhanVien.getNgay_sinh()))+
-                  "',`GIOITINH`='"+nhanVien.getGioi_tinh()
-                 +"',`CCCD`='"+nhanVien.getCCCD()
-                 +"',`SDT`='"+nhanVien.getSDT()
-                 +"',`EMAIL`='"+nhanVien.getEmail()
-                 +"',`DIACHI`='"+nhanVien.getDia_chi()
-                 +"',`MAQUYEN`='"+nhanVien.getMa_quyen()
-                 +"',`NGAYBATDAU`='"+Date.valueOf(convert(nhanVien.getNgay_lam()))
-                 +"',`NGAYNGHIVIEC`='"+Date.valueOf(convert(nhanVien.getNgay_nghi()))
-                 +"',`HESOLUONG`='"+nhanVien.getHs_luong()
-                 +"',`TONTAI`='"+nhanVien.isTontai()+"' WHERE `MANV`='"+nhanVien.getMa_nv()+"'");
-        System.out.println("UPDATE `nhanvien` SET "
-                 +"`TENNV`='"+nhanVien.getTen_nv()+"',`NGAYSINH`='"+Date.valueOf(convert(nhanVien.getNgay_sinh()))+
-                  "',`GIOITINH`='"+nhanVien.getGioi_tinh()
-                 +"',`CCCD`='"+nhanVien.getCCCD()
-                 +"',`SDT`='"+nhanVien.getSDT()
-                 +"',`EMAIL`='"+nhanVien.getEmail()
-                 +"',`DIACHI`='"+nhanVien.getDia_chi()
-                 +"',`MAQUYEN`='"+nhanVien.getMa_quyen()
-                 +"',`NGAYBATDAU`='"+Date.valueOf(convert(nhanVien.getNgay_lam()))
-                 +"',`NGAYNGHIVIEC`='"+Date.valueOf(convert(nhanVien.getNgay_nghi()))
-                 +"',`HESOLUONG`='"+nhanVien.getHs_luong()
-                 +"',`TONTAI`='"+nhanVien.isTontai()+"' WHERE `MANV`='"+nhanVien.getMa_nv()+"'");
+                        + "`TENNV`='" + nhanVien.getTenNV() 
+                        + "',`NGAYSINH`='" + Date.valueOf(nhanVien.getNgaySinh())
+                        + "',`SDT`='" + nhanVien.getSdt()
+                        + "',`EMAIL`='" + nhanVien.getEmail()
+                        + "',`DIACHI`='" + nhanVien.getDiaChi()
+                        + "' WHERE `MANV`='" + nhanVien.getMaNV() + "'");
         connectDB.closeConnect();
         return success;
     }
-//    Hàm tìm kiếm nhân viên theo mã nhân viên, trả ra nhân viên
-    public Nhanvien search(String Ma_nv){
-       Nhanvien nhanvien=null;
-        String qry = "SELECT * FROM `nhanvien` WHERE TONTAI= 1 AND `MANV`='" + Ma_nv +"'";
-        ConnectDB connectDB= new ConnectDB();
+
+    public NhanVien_DTO search(String maNV) {
+        NhanVien_DTO nhanvien = null;
+        String qry = "SELECT * FROM `nhanvien` WHERE TONTAI= 1 AND `MANV`='" + maNV + "'";
+        ConnectDB connectDB = new ConnectDB();
         ResultSet rset = connectDB.sqlQuery(qry);
-       try {
+        try {
             if (rset != null) {
                 while (rset.next()) {
-                     nhanvien =new Nhanvien(rset.getNString("MANV")
-                            ,rset.getNString("TENNV"), convert(rset.getDate("NGAYSINH").toLocalDate())
-                            ,rset.getNString("GIOITINH"), rset.getNString("CCCD"),
-                            rset.getNString("SDT"),rset.getNString("DIACHI"), rset.getNString("MAQUYEN"),
-                            convert(rset.getDate("NGAYBATDAU").toLocalDate()),
-                            convert(rset.getDate("NGAYNGHIVIEC").toLocalDate()), rset.getNString("EMAIL"), 
-                            rset.getInt("HESOLUONG"), 
-                            rset.getBoolean("TONTAI"));
+                    nhanvien = new NhanVien_DTO(
+                    rset.getString("MANV"),
+                    rset.getNString("TENNV"),
+                    rset.getDate("NGAYSINH").toLocalDate(),
+                    rset.getNString("GIOITINH"),
+                    rset.getString("CCCD"),
+                    rset.getString("SDT"),
+                    rset.getString("EMAIL"),
+                    rset.getNString("DIACHI"),
+                    rset.getString("MAQUYEN"),
+                    rset.getBoolean("TONTAI"));   
                 }
             }
         } catch (SQLException e) {

@@ -4,6 +4,8 @@
  */
 package DTO;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Admin
@@ -11,7 +13,7 @@ package DTO;
 public class KhachHang_DTO {
     private String maKH;
     private String tenKH;
-    private String ngaySinh;
+    private LocalDate ngaySinh;
     private String sdt;
     private String diaChi;
     private boolean tonTai;
@@ -19,7 +21,7 @@ public class KhachHang_DTO {
     public KhachHang_DTO() {
     }
 
-    public KhachHang_DTO(String maKH, String tenKH, String ngaySinh, String sdt, String diaChi, boolean tonTai) {
+    public KhachHang_DTO(String maKH, String tenKH, LocalDate ngaySinh, String sdt, String diaChi, boolean tonTai) {
         this.maKH = maKH;
         this.tenKH = tenKH;
         this.ngaySinh = ngaySinh;
@@ -27,6 +29,7 @@ public class KhachHang_DTO {
         this.diaChi = diaChi;
         this.tonTai = tonTai;
     }
+
 
     public String getMaKH() {
         return maKH;
@@ -44,11 +47,11 @@ public class KhachHang_DTO {
         this.tenKH = tenKH;
     }
 
-    public String getNgaySinh() {
+    public LocalDate getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(String ngaySinh) {
+    public void setNgaySinh(LocalDate ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
