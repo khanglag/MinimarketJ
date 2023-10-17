@@ -4,6 +4,8 @@
  */
 package GUI.Saler;
 
+import DAO.HangHoaDAO;
+import DTO.HangHoa_DTO;
 import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.Image;
@@ -14,6 +16,9 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import GUI.Saler.item;
 import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.GridLayout;
+import java.util.ArrayList;
 
 /**
  *
@@ -26,15 +31,27 @@ public class BanHang extends javax.swing.JPanel {
      */
     public BanHang() {
         initComponents();
-        PanelItems.setLayout(new FlowLayout(FlowLayout.CENTER));
-        for (int i = 0; i <= 5; i++) {
+        showItems();
+        dataItems();
+    }
+    public void showItems(){
+        PanelItems.setLayout(new GridLayout(0, 2));       
+        for (int i = 0; i <= 10; i++) {
             PanelItems.add(new item());
-
         }
         PanelItems.revalidate();
         PanelItems.repaint();
     }
-
+    public void dataItems(){
+        HangHoaDAO hhd = new HangHoaDAO();
+        ArrayList<HangHoa_DTO> danhSachSanPham = hhd.ReadHangHoa();
+        int soLuongSP = danhSachSanPham.size();
+        for(int i = 0;i<soLuongSP;i++){
+           HangHoa_DTO sanPham = danhSachSanPham.get(i);
+           String maSP = sanPham.getMaSP();
+             System.out.println("Mã sản phẩm: " + maSP);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
