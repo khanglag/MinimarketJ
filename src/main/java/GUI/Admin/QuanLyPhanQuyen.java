@@ -29,7 +29,7 @@ public class QuanLyPhanQuyen extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jcbMaNhanVien = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jcbMaQuyen = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
@@ -48,8 +48,8 @@ public class QuanLyPhanQuyen extends javax.swing.JPanel {
         jLabel4.setText("Mã nhân viên");
         jPanel2.add(jLabel4);
 
-        jcbMaNhanVien.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel2.add(jcbMaNhanVien);
+        jTextField1.setText("jTextField1");
+        jPanel2.add(jTextField1);
 
         jLabel1.setText("Mã quyền");
         jPanel2.add(jLabel1);
@@ -163,7 +163,7 @@ public class QuanLyPhanQuyen extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JComboBox<String> jcbMaNhanVien;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JComboBox<String> jcbMaQuyen;
     private javax.swing.JTextField jtfTenQuyen;
     private javax.swing.JTextField jtfTonTai;
