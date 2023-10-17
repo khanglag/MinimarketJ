@@ -13,20 +13,16 @@ import java.time.LocalDate;
 public class KhachHang_DTO {
     private String maKH;
     private String tenKH;
-    private LocalDate ngaySinh;
     private String sdt;
-    private String diaChi;
     private boolean tonTai;
 
     public KhachHang_DTO() {
     }
 
-    public KhachHang_DTO(String maKH, String tenKH, LocalDate ngaySinh, String sdt, String diaChi, boolean tonTai) {
+    public KhachHang_DTO(String maKH, String tenKH, String sdt, boolean tonTai) {
         this.maKH = maKH;
         this.tenKH = tenKH;
-        this.ngaySinh = ngaySinh;
         this.sdt = sdt;
-        this.diaChi = diaChi;
         this.tonTai = tonTai;
     }
 
@@ -47,28 +43,12 @@ public class KhachHang_DTO {
         this.tenKH = tenKH;
     }
 
-    public LocalDate getNgaySinh() {
-        return ngaySinh;
-    }
-
-    public void setNgaySinh(LocalDate ngaySinh) {
-        this.ngaySinh = ngaySinh;
-    }
-
     public String getSdt() {
         return sdt;
     }
 
     public void setSdt(String sdt) {
         this.sdt = sdt;
-    }
-
-    public String getDiaChi() {
-        return diaChi;
-    }
-
-    public void setDiaChi(String diaChi) {
-        this.diaChi = diaChi;
     }
 
     public boolean isTonTai() {
@@ -81,7 +61,7 @@ public class KhachHang_DTO {
 
     @Override
     public String toString() {
-        return "KhachHang_DTO{" + "maKH=" + maKH + ", tenKH=" + tenKH + ", ngaySinh=" + ngaySinh + ", sdt=" + sdt + ", diaChi=" + diaChi + ", tonTai=" + tonTai + '}';
+        return "KhachHang_DTO{" + "maKH=" + maKH + ", tenKH=" + tenKH + ", ngaySinh="  + ", tonTai=" + tonTai + '}';
     }
     
     

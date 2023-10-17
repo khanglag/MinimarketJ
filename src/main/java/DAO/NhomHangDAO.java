@@ -3,66 +3,66 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAO;
+
 import ConnectDB.ConnectDB;
-import java.util.ArrayList;
-import DTO.ChiTietHoaDon_DTO;
+import DTO.NhomHang_DTO;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.ArrayList;
+
 /**
  *
  * @author pc
  */
-public class ChiTietHoaDonDAO {
-    public ChiTietHoaDonDAO(){
+public class NhomHangDAO {
+     public NhomHangDAO(){
     }
-    public ArrayList<ChiTietHoaDon_DTO> readBD(){
+    public ArrayList<NhomHang_DTO> readBD(){
         ConnectDB connectDB = new ConnectDB();
-        ArrayList<ChiTietHoaDon_DTO> chiTietHoaDon_DTOs = new ArrayList<>();
-        String qry = "SELECT * FROM `chitiet_hoadon` WHERE TONTAI = 1"; 
+        ArrayList<NhomHang_DTO> dsnh = new ArrayList<>();
+        String qry = "SELECT * FROM `nhomhang` WHERE TONTAI = 1"; 
         ResultSet rSet = null;
         try {
             rSet = connectDB.sqlQuery(qry);
             if (rSet != null) {
                 while (rSet.next()) {
-                    ChiTietHoaDon_DTO cthddto = new ChiTietHoaDon_DTO(
-                    rSet.getInt("SOHD"),
-                    rSet.getNString("MASP"),
-                    rSet.getInt("SOLUONG"),
-                    rSet.getBoolean("TONTAI"));
-                    chiTietHoaDon_DTOs.add(cthddto);
+                    NhomHang_DTO nh  = new NhomHang_DTO(
+                            rSet.getNString("MANH"),
+                            rSet.getNString("TENNH"),
+                            rSet.getBoolean("TONTAI")
+                    );
+                    dsnh.add(nh);
                 }
             }
         } catch (Exception e) {
             System.out.println("Lỗi truy vấn hàng hóa");
             e.printStackTrace();
         }
-        return  chiTietHoaDon_DTOs;
+        return  dsnh;
     }
     
-    public boolean add(ChiTietHoaDon_DTO ct) {
+    public boolean add(NhomHang_DTO nh) {
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
         success = connectDB.sqlUpdate(""
-                + "INSERT INTO `chitiet_hoadon`(`SOHD`, `MASP`, `SOLUONG`, `TONTAI`) VALUES ("
-                + "'"+ct.getMaSP()+"',"
-                + "'"+ct.getMaSP()+"',"
-                + "'"+ct.getSoLuong()+"',"
-                + "'"+ct.isTonTai()+"')"
+                + "INSERT INTO `nhomhang`(`MANH`, `TENNH`, `TONTAI`) VALUES ('"
+                + ""+nh.getMaNH()+"',"
+                + "'"+nh.getTenNH()+"',"
+                + "'"+nh.isTonTai()+"')"
         );
         connectDB.closeConnect();
         return success;
     }
-    public boolean delete(ChiTietHoaDon_DTO ct) {
+    public boolean delete(NhomHang_DTO nh) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
-                .sqlUpdate("UPDATE `chitiet_hoadon` SET TONTAI = 0 WHERE `SOHD`=" + ct.getSoHD() + "'");
+                .sqlUpdate("UPDATE `nhomhang` SET TONTAI = 0 WHERE `MANH`=" + nh.getMaNH() + "'");
         connectDB.closeConnect();
         return success;
     }
-    public boolean update(ChiTietHoaDon_DTO ct) {
+    public boolean update(NhomHang_DTO nh) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
-                .sqlUpdate("UPDATE `chitiet_hoadon` SET `SOHD`='"+ct.getSoHD()+"',`MASP`='"+ct.getMaSP()+"',`SOLUONG`='"+ct.getSoLuong()+"',`TONTAI`='"+ct.isTonTai()+"'");
+                .sqlUpdate("UPDATE `nhomhang` SET `MANH`='"+nh.getMaNH()+"',`TENNH`='"+nh.getTenNH()+"',`TONTAI`='"+nh.isTonTai()+"'");
         connectDB.closeConnect();
         return success;
     }

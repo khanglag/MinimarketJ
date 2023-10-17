@@ -23,9 +23,7 @@ public class KhachHangDAO {
                     KhachHang_DTO khachHang = new KhachHang_DTO(
                             rSet.getString("MAKH"),
                             rSet.getNString("TENKH"),
-                            rSet.getDate("NGAYSINH").toLocalDate(),
                             rSet.getString("SDT"),
-                            rSet.getNString("DIACHI"),
                             rSet.getBoolean("TONTAI"));
                     khArrayList.add(khachHang);
                 }
@@ -44,9 +42,7 @@ public class KhachHangDAO {
                 "INSERT INTO `khachhang`(`MAKH`, `TENKH`, `NGAYSINH`, `SDT`, `DIACHI`, `TONTAI`) VALUES "
                         + "('" + khachHang.getMaKH()
                         + "','" + khachHang.getTenKH()
-                        + "','" + khachHang.getNgaySinh()
                         + "','" + khachHang.getSdt()
-                        + "','" + khachHang.getDiaChi()
                         + "','1')"
         );
         connectDB.closeConnect();
@@ -65,7 +61,6 @@ public class KhachHangDAO {
                 .sqlUpdate("UPDATE `khachhang` SET "
                         + "','TENKH ='" + khachHang.getTenKH()
                         + "',`SDT`='" + khachHang.getSdt()
-                        + "',`DIACHI`='" + khachHang.getDiaChi()
                         + "' WHERE `MAKH`='" + khachHang.getMaKH() + "'");
         connectDB.closeConnect();
         return success;
@@ -81,9 +76,7 @@ public class KhachHangDAO {
                     khachHang = new KhachHang_DTO(
                     rSet.getString("MAKH"),
                     rSet.getNString("TENKH"),
-                    rSet.getDate("NGAYSINH").toLocalDate(),
                     rSet.getString("SDT"),
-                    rSet.getNString("DIACHI"),
                     rSet.getBoolean("TONTAI"));
                 }
             }
