@@ -72,9 +72,9 @@ public class KhachHangDAO {
         connectDB.closeConnect();
         return success;
     }
-     public KhachHang_DTO search(String maKH) {
+    public KhachHang_DTO search(String sdt) {
         KhachHang_DTO khachHang = null;
-        String qry = "SELECT * FROM `khachhang` WHERE TONTAI= 1 AND `MAKH`='" + maKH + "'";
+        String qry = "SELECT * FROM `khachhang` WHERE TONTAI= 1 AND `SDT`= ? '";
         ConnectDB connectDB = new ConnectDB();
         ResultSet rSet = connectDB.sqlQuery(qry);
         try {

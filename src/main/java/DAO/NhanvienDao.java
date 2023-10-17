@@ -82,30 +82,49 @@ public class NhanVienDAO {
         return success;
     }
 
-    public NhanVien_DTO search(String maNV) {
-        NhanVien_DTO nhanvien = null;
-        String qry = "SELECT * FROM `nhanvien` WHERE TONTAI= 1 AND `MANV`='" + maNV + "'";
+    public ArrayList<NhanVien_DTO> searchNhanVien(String maNV, String tenNV, String maQuyen) {
+        ArrayList<NhanVien_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
-        ResultSet rset = connectDB.sqlQuery(qry);
+    
+        StringBuilder qry = new StringBuilder("SELECT * FROM `nhanvien` WHERE TONTAI = 1");
+    
+        if (maNV != null && !maNV.isEmpty()) {
+            qry.append(" AND `MANV` = '").append(maNV).append("'");
+        }
+    
+        if (tenNV != null && !tenNV.isEmpty()) {
+            qry.append(" AND `TENNV` LIKE '%").append(tenNV).append("%'");
+        }
+    
+        if (maQuyen != null && !maQuyen.isEmpty()) {
+            qry.append(" AND `MAQUYEN` = '").append(maQuyen).append("'");
+        }
+    
+        ResultSet rset = connectDB.sqlQuery(qry.toString());
+    
         try {
             if (rset != null) {
                 while (rset.next()) {
-                    nhanvien = new NhanVien_DTO(
-                    rset.getString("MANV"),
-                    rset.getNString("TENNV"),
-                    rset.getDate("NGAYSINH").toLocalDate(),
-                    rset.getNString("GIOITINH"),
-                    rset.getString("CCCD"),
-                    rset.getString("SDT"),
-                    rset.getString("EMAIL"),
-                    rset.getNString("DIACHI"),
-                    rset.getString("MAQUYEN"),
-                    rset.getBoolean("TONTAI"));   
+                    NhanVien_DTO nhanVien = new NhanVien_DTO(
+                        rset.getString("MANV"),
+                        rset.getNString("TENNV"),
+                        rset.getDate("NGAYSINH").toLocalDate(),
+                        rset.getNString("GIOITINH"),
+                        rset.getString("CCCD"),
+                        rset.getString("SDT"),
+                        rset.getString("EMAIL"),
+                        rset.getNString("DIACHI"),
+                        rset.getString("MAQUYEN"),
+                        rset.getBoolean("TONTAI")
+                    );
+                    ds.add(nhanVien);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return nhanvien;
+    
+        return ds;
     }
+    
 }

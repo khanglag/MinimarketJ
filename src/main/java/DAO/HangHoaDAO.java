@@ -84,31 +84,52 @@ public class HangHoaDAO {
         connectDB.closeConnect();
         return success;
     }
-     public HangHoa_DTO search(String maSP) {
-        HangHoa_DTO hangHoa = null;
-        String qry = "SELECT * FROM `hanghoa` WHERE TONTAI= 1 AND `MASP`='" + maSP + "'";
-        ConnectDB connectDB = new ConnectDB();
-        ResultSet rset = connectDB.sqlQuery(qry);
-        try {
-            if (rset != null) {
-                while (rset.next()) {
-                    hangHoa = new HangHoa_DTO(
-                    rset.getString("MASP"),
-                    rset.getNString("TENSP"),
-                    rset.getString("MANH"),
-                    rset.getString("MANCC"),
-                    rset.getNString("DONVI"),
-                    rset.getDouble("GIANHAP"), 
-                    rset.getDouble("GIABAN"),
-                    rset.getInt("SOLUONG"),
-                    rset.getNString("XUATXU"),
-                    rset.getString("ANHSP"), 
-                    rset.getBoolean("TONTAI")); 
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return hangHoa;
+    public ArrayList<HangHoa_DTO> search(String tenSP, String maNH, double giaBan, String xuatXu) {
+    ConnectDB connectDB = new ConnectDB();
+    ArrayList<HangHoa_DTO> searchResults = new ArrayList<>();
+    String qry = "SELECT * FROM `hanghoa` WHERE TONTAI = 1";
+
+    if (!tenSP.isEmpty()) {
+        qry += " AND `TENSP` LIKE '%" + tenSP + "%'";
     }
+
+    if (!maNH.isEmpty()) {
+        qry += " AND `MANH` = '" + maNH + "'";
+    }
+
+    if (giaBan > 0) {
+        qry += " AND `GIABAN` = " + giaBan;
+    }
+
+    if (!xuatXu.isEmpty()) {
+        qry += " AND `XUATXU` LIKE '%" + xuatXu + "%'";
+    }
+
+    ResultSet rSet = connectDB.sqlQuery(qry);
+
+    try {
+        if (rSet != null) {
+            while (rSet.next()) {
+                HangHoa_DTO hanghoa = new HangHoa_DTO(
+                        rSet.getString("MASP"),
+                        rSet.getNString("TENSP"),
+                        rSet.getString("MANH"),
+                        rSet.getString("MANCC"),
+                        rSet.getNString("DONVI"),
+                        rSet.getDouble("GIANHAP"), 
+                        rSet.getDouble("GIABAN"),
+                        rSet.getInt("SOLUONG"),
+                        rSet.getNString("XUATXU"),
+                        rSet.getString("ANHSP"), 
+                        rSet.getBoolean("TONTAI"));
+                searchResults.add(hanghoa);
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    connectDB.closeConnect();
+    return searchResults;
+}
 }

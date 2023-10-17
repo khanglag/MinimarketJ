@@ -9,6 +9,7 @@ import DTO.HoaDon_DTO;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -83,31 +84,45 @@ public class HoaDonDAO {
         return success;
     }
 
-    public HoaDon_DTO search(int soHD) {
-        HoaDon_DTO hoaDon = null;
-        String qry = "SELECT * FROM `hoadon` WHERE TONTAI= 1 AND `SOHD`='" + soHD + "'";
-        ConnectDB connectDB = new ConnectDB();
-        ResultSet rset = connectDB.sqlQuery(qry);
-        try {
-            if (rset != null) {
-                while (rset.next()) {
-                            hoaDon =new HoaDon_DTO(
-                            rset.getInt("SOHD"), 
-                            rset.getString("MANV"),
-                            rset.getDate("THOIGIANLAP").toLocalDate(),
-                            rset.getNString("MAKH"), 
-                            rset.getDouble("TIENKHACHDUA"), 
-                            rset.getDouble("TIENTRAKHACH"), 
-                            rset.getDouble("CHIETKHAU"), 
-                            rset.getDouble("TONGHD"),
-                            rset.getBoolean("TONTAI")); 
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return hoaDon;
+    public ArrayList<HoaDon_DTO> searchHoaDon(int soHD, LocalDate thoiGianLap) {
+    ArrayList<HoaDon_DTO> ds = new ArrayList<>();
+    ConnectDB connectDB = new ConnectDB();
+
+    StringBuilder qry = new StringBuilder("SELECT * FROM `hoadon` WHERE TONTAI = 1");
+
+    if (soHD > 0) {
+        qry.append(" AND `SOHD` = ").append(soHD);
     }
+
+    if (thoiGianLap != null) {
+        qry.append(" AND `THOIGIANLAP` = '").append(Date.valueOf(thoiGianLap)).append("'");
+    }
+
+    ResultSet rset = connectDB.sqlQuery(qry.toString());
+
+    try {
+        if (rset != null) {
+            while (rset.next()) {
+                HoaDon_DTO hoaDon = new HoaDon_DTO(
+                    rset.getInt("SOHD"),
+                    rset.getString("MANV"),
+                    rset.getDate("THOIGIANLAP").toLocalDate(),
+                    rset.getNString("MAKH"),
+                    rset.getDouble("TIENKHACHDUA"),
+                    rset.getDouble("TIENTRAKHACH"),
+                    rset.getDouble("CHIETKHAU"),
+                    rset.getDouble("TONGHD"),
+                    rset.getBoolean("TONTAI"));
+                ds.add(hoaDon);
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return ds;
+}
+
 }
 
 
