@@ -16,7 +16,7 @@ import java.util.ArrayList;
  * @author pc
  */
 public class HoaDonDAO {
-    public HoaDonDAO(){
+    public  HoaDonDAO(){
 }
     public ArrayList<HoaDon_DTO> ReadHoadons(){
         ArrayList<HoaDon_DTO> ds=new ArrayList<>();
@@ -109,5 +109,3 @@ public class HoaDonDAO {
         return hoaDon;
     }
 }
-
-
