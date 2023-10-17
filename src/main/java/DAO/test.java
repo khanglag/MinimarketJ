@@ -2,11 +2,12 @@ package DAO;
 
 import java.util.ArrayList;
 
+import DTO.NhaCungCap_DTO;
 import DTO.NhanVien_DTO;
 
 public class test {
     public static void main(String[] args) {
-        NhanVienDAO nhanVienDAO = new NhanVienDAO();
+        NhaCungCapDAO nhanVienDAO = new NhaCungCapDAO();
 
         // // Tìm kiếm theo mã nhân viên
         // String maNVToSearch = "NV001";
@@ -20,15 +21,15 @@ public class test {
         // }
 
         // Tìm kiếm theo tên nhân viên
-        String tenNVToSearch = "Khang";
-        ArrayList<NhanVien_DTO> resultTenNV = nhanVienDAO.searchNhanVien("A140403", tenNVToSearch, null);
+        // String tenNVToSearch = "Khang";
+        ArrayList<NhaCungCap_DTO> resultTenNV = nhanVienDAO.search("Nhà cung cấp cho CH",null);
         if (!resultTenNV.isEmpty()) {
             System.out.println("\nKết quả tìm kiếm theo tên nhân viên:");
-            for (NhanVien_DTO nhanVien : resultTenNV) {
+            for (NhaCungCap_DTO nhanVien : resultTenNV) {
                 System.out.println(nhanVien);
             }
         } else {
-            System.out.println("Không tìm thấy nhân viên với tên " + tenNVToSearch);
+            System.out.println("Không tìm thấy nhân viên với tên " );
         }
 
 //         // Tìm kiếm theo mã quyền

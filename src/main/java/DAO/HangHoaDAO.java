@@ -1,12 +1,14 @@
 package DAO;
 
 import DTO.HangHoa_DTO;
+import DTO.NhanVien_DTO;
+
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import ConnectDB.ConnectDB;
- // Import the HangHoa_DTO class
+// Import the HangHoa_DTO class
 
 public class HangHoaDAO {
     public HangHoaDAO() {
@@ -15,7 +17,7 @@ public class HangHoaDAO {
     public ArrayList<HangHoa_DTO> ReadHangHoa() {
         ConnectDB connectDB = new ConnectDB();
         ArrayList<HangHoa_DTO> hhArrayList = new ArrayList<>();
-        String qry = "SELECT * FROM hanghoa WHERE TONTAI = 1"; 
+        String qry = "SELECT * FROM hanghoa WHERE TONTAI = 1";
         ResultSet rSet = null;
 
         try {
@@ -28,11 +30,11 @@ public class HangHoaDAO {
                             rSet.getString("MANH"),
                             rSet.getString("MANCC"),
                             rSet.getNString("DONVI"),
-                            rSet.getDouble("GIANHAP"), 
+                            rSet.getDouble("GIANHAP"),
                             rSet.getDouble("GIABAN"),
                             rSet.getInt("SOLUONG"),
                             rSet.getNString("XUATXU"),
-                            rSet.getString("ANHSP"), 
+                            rSet.getString("ANHSP"),
                             rSet.getBoolean("TONTAI"));
                     hhArrayList.add(hanghoa);
                 }
@@ -44,6 +46,7 @@ public class HangHoaDAO {
         connectDB.closeConnect();
         return hhArrayList;
     }
+
     public boolean add(HangHoa_DTO hh) {
         boolean success = false;
         ConnectDB connectDB = new ConnectDB();
@@ -59,11 +62,11 @@ public class HangHoaDAO {
                         + "','" + hh.getSoLuong()
                         + "','" + hh.getXuatXu()
                         + "','" + hh.getAnhSP()
-                        + "','1')"
-        );
+                        + "','1')");
         connectDB.closeConnect();
         return success;
     }
+
     public boolean delete(HangHoa_DTO hangHoa) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
@@ -71,6 +74,7 @@ public class HangHoaDAO {
         connectDB.closeConnect();
         return success;
     }
+
     public boolean update(HangHoa_DTO hangHoa) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
@@ -84,52 +88,54 @@ public class HangHoaDAO {
         connectDB.closeConnect();
         return success;
     }
-    public ArrayList<HangHoa_DTO> search(String tenSP, String maNH, double giaBan, String xuatXu) {
-    ConnectDB connectDB = new ConnectDB();
-    ArrayList<HangHoa_DTO> searchResults = new ArrayList<>();
-    String qry = "SELECT * FROM `hanghoa` WHERE TONTAI = 1";
 
-    if (!tenSP.isEmpty()) {
-        qry += " AND `TENSP` LIKE '%" + tenSP + "%'";
-    }
+    public ArrayList<HangHoa_DTO> searchHangHoa(String tenSP, String maNH, double giaBan, String xuatXu) {
+        ArrayList<HangHoa_DTO> ds = new ArrayList<>();
+        ConnectDB connectDB = new ConnectDB();
 
-    if (!maNH.isEmpty()) {
-        qry += " AND `MANH` = '" + maNH + "'";
-    }
+        StringBuilder qry = new StringBuilder("SELECT * FROM `hanghoa` WHERE TONTAI = 1");
 
-    if (giaBan > 0) {
-        qry += " AND `GIABAN` = " + giaBan;
-    }
-
-    if (!xuatXu.isEmpty()) {
-        qry += " AND `XUATXU` LIKE '%" + xuatXu + "%'";
-    }
-
-    ResultSet rSet = connectDB.sqlQuery(qry);
-
-    try {
-        if (rSet != null) {
-            while (rSet.next()) {
-                HangHoa_DTO hanghoa = new HangHoa_DTO(
-                        rSet.getString("MASP"),
-                        rSet.getNString("TENSP"),
-                        rSet.getString("MANH"),
-                        rSet.getString("MANCC"),
-                        rSet.getNString("DONVI"),
-                        rSet.getDouble("GIANHAP"), 
-                        rSet.getDouble("GIABAN"),
-                        rSet.getInt("SOLUONG"),
-                        rSet.getNString("XUATXU"),
-                        rSet.getString("ANHSP"), 
-                        rSet.getBoolean("TONTAI"));
-                searchResults.add(hanghoa);
-            }
+        if (tenSP != null && !tenSP.isEmpty()) {
+            qry.append(" AND `TENSP` LIKE '%").append(tenSP).append("%'");
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
 
-    connectDB.closeConnect();
-    return searchResults;
-}
+        if (maNH != null && !maNH.isEmpty()) {
+            qry.append(" AND `MANH` = '").append(maNH).append("'");
+        }
+
+        if (giaBan > 0) {
+            qry.append(" AND `GIABAN` = ").append(giaBan);
+        }
+
+        if (xuatXu != null && !xuatXu.isEmpty()) {
+            qry.append(" AND `XUATXU` LIKE '%").append(xuatXu).append("%'");
+        }
+
+        ResultSet rSet = connectDB.sqlQuery(qry.toString());
+
+        try {
+            if (rSet != null) {
+                while (rSet.next()) {
+                    HangHoa_DTO hanghoa = new HangHoa_DTO(
+                            rSet.getString("MASP"),
+                            rSet.getNString("TENSP"),
+                            rSet.getString("MANH"),
+                            rSet.getString("MANCC"),
+                            rSet.getNString("DONVI"),
+                            rSet.getDouble("GIANHAP"),
+                            rSet.getDouble("GIABAN"),
+                            rSet.getInt("SOLUONG"),
+                            rSet.getNString("XUATXU"),
+                            rSet.getString("ANHSP"),
+                            rSet.getBoolean("TONTAI"));
+
+                    ds.add(hanghoa);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return ds;
+    }
 }

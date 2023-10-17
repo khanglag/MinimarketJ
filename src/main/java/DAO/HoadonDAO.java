@@ -65,21 +65,21 @@ public class HoaDonDAO {
     public boolean delete(HoaDon_DTO hoaDon) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
-                .sqlUpdate("UPDATE HOADON SET TONTAI = 0 WHERE MANV ='" + hoaDon.getSoHD() + "'");
+                .sqlUpdate("UPDATE HOADON SET TONTAI = 0 WHERE SOHD ='" + hoaDon.getSoHD() + "'");
         connectDB.closeConnect();
         return success;
     }
 
 
-    public boolean update(HoaDon_DTO haoDon) {
+    public boolean update(HoaDon_DTO hoaDon) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
                 .sqlUpdate("UPDATE `hoadon` SET "
-                        + "`TONGHD`='" + haoDon.getTongHD() 
-                        + "',`THANHTOAN`='" + haoDon.getThanhToan()
-                        + "',`TIENKHACHDUA`='" + haoDon.getTienKhachDua()
-                        + "',`TIENTRAKHACH`='" + haoDon.getTienTraKhach()
-                        + "' WHERE `SOHD`='" + haoDon.getSoHD() + "'");
+                        + "`TONGHD`='" + hoaDon.getTongHD() 
+                        + "',`THANHTOAN`='" + hoaDon.getThanhToan()
+                        + "',`TIENKHACHDUA`='" + hoaDon.getTienKhachDua()
+                        + "',`TIENTRAKHACH`='" + hoaDon.getTienTraKhach()
+                        + "' WHERE `SOHD`='" + hoaDon.getSoHD() + "'");
         connectDB.closeConnect();
         return success;
     }

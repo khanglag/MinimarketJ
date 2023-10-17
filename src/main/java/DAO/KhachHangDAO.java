@@ -1,7 +1,6 @@
 package DAO;
 
 import DTO.KhachHang_DTO;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -33,7 +32,7 @@ public class KhachHangDAO {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Lỗi truy vấn hàng hóa");
+            System.out.println("Lỗi truy vấn !!!");
             e.printStackTrace();
         }
         connectDB.closeConnect();
