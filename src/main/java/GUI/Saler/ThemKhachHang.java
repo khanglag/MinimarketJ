@@ -4,6 +4,11 @@
  */
 package GUI.Saler;
 
+import DAO.KhachHangDAO;
+import DTO.KhachHang_DTO;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author acer
@@ -13,10 +18,25 @@ public class ThemKhachHang extends javax.swing.JPanel {
     /**
      * Creates new form ThemKhachHang
      */
+     KhachHangDAO khd = new KhachHangDAO();
     public ThemKhachHang() {
         initComponents();
+        showCustomerInTable();
     }
-
+    public void showCustomerInTable(){
+        DefaultTableModel model = (DefaultTableModel) TableCustomer.getModel();
+        model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
+       
+        ArrayList<KhachHang_DTO> danhSachKhachHang = khd.ReadKhachHang();
+         int soLuongKH = danhSachKhachHang.size();
+        for (int i = 0; i < soLuongKH; i++) {
+            KhachHang_DTO khachHang = danhSachKhachHang.get(i);
+            String maKH = khachHang.getMaKH();
+            String tenKH = khachHang.getTenKH();
+            String sdt = khachHang.getSdt();
+            model.addRow(new Object[]{i+1, maKH, tenKH, sdt});
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,9 +49,9 @@ public class ThemKhachHang extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         jButton17 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
+        BtnAddCustomer = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableQlnv = new javax.swing.JTable();
+        TableCustomer = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -47,10 +67,15 @@ public class ThemKhachHang extends javax.swing.JPanel {
 
         jButton19.setText("Tìm kiếm");
 
-        jButton20.setText("Thêm");
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
+        BtnAddCustomer.setText("Thêm");
+        BtnAddCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnAddCustomerMouseClicked(evt);
+            }
+        });
+        BtnAddCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton20ActionPerformed(evt);
+                BtnAddCustomerActionPerformed(evt);
             }
         });
 
@@ -60,7 +85,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton20)
+                .addComponent(BtnAddCustomer)
                 .addGap(18, 18, 18)
                 .addComponent(jButton19)
                 .addGap(18, 18, 18)
@@ -74,11 +99,11 @@ public class ThemKhachHang extends javax.swing.JPanel {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton17)
                     .addComponent(jButton19)
-                    .addComponent(jButton20))
+                    .addComponent(BtnAddCustomer))
                 .addContainerGap())
         );
 
-        tableQlnv.setModel(new javax.swing.table.DefaultTableModel(
+        TableCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -94,7 +119,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableQlnv);
+        jScrollPane1.setViewportView(TableCustomer);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin khách hàng"));
 
@@ -169,15 +194,21 @@ public class ThemKhachHang extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+    private void BtnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddCustomerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton20ActionPerformed
+    }//GEN-LAST:event_BtnAddCustomerActionPerformed
+
+    private void BtnAddCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAddCustomerMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_BtnAddCustomerMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAddCustomer;
+    private javax.swing.JTable TableCustomer;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton20;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
@@ -188,6 +219,5 @@ public class ThemKhachHang extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTable tableQlnv;
     // End of variables declaration//GEN-END:variables
 }
