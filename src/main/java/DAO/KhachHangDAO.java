@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import ConnectDB.ConnectDB;
- // Import the HangHoa_DTO class
 
 public class KhachHangDAO {
     public KhachHangDAO() {
@@ -71,7 +70,7 @@ public class KhachHangDAO {
         connectDB.closeConnect();
         return success;
     }
-    public KhachHang_DTO search(String sdt) {
+    public KhachHang_DTO searchKhachHang(String sdt) {
         KhachHang_DTO khachHang = null;
         String qry = "SELECT * FROM `khachhang` WHERE TONTAI= 1 AND `SDT`= ? '";
         ConnectDB connectDB = new ConnectDB();

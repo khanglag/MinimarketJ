@@ -1,9 +1,6 @@
 package DAO;
 
 import DTO.HangHoa_DTO;
-import DTO.NhanVien_DTO;
-
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

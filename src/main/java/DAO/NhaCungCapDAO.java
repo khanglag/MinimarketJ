@@ -1,8 +1,6 @@
 package DAO;
 
 import DTO.NhaCungCap_DTO;
-import DTO.NhanVien_DTO;
-
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -71,7 +69,7 @@ public class NhaCungCapDAO {
         connectDB.closeConnect();
         return success;
     }
-     public ArrayList<NhaCungCap_DTO> search(String tenNCC, String diaChi) {
+    public ArrayList<NhaCungCap_DTO> searchNCC(String tenNCC, String diaChi) {
         ArrayList<NhaCungCap_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
     
@@ -94,9 +92,9 @@ public class NhaCungCapDAO {
                     NhaCungCap_DTO ncc = new NhaCungCap_DTO(
                         rset.getString("MANCC"),
                         rset.getNString("TENNCC"),
-                        rset.getString("SDT"),
-                        rset.getString("DIACHI"),
-                        rset.getBoolean("TONTAI"));
+                            rset.getString("SDT"),
+                            rset.getString("DIACHI"),
+                            rset.getBoolean("TONTAI"));
                     ds.add(ncc);
                 }
             }

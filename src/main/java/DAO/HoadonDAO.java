@@ -5,10 +5,12 @@
 package DAO;
 
 import ConnectDB.ConnectDB;
+import DTO.HangHoa_DTO;
 import DTO.HoaDon_DTO;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -26,7 +28,8 @@ public class HoaDonDAO {
         try {
             if(rset!=null){
                  while(rset.next()){
-                     HoaDon_DTO hoaDon =new HoaDon_DTO(rset.getInt("SOHD"), 
+                     HoaDon_DTO hoaDon =new HoaDon_DTO(
+                            rset.getInt("SOHD"), 
                             rset.getString("MANV"),
                             rset.getDate("THOIGIANLAP").toLocalDate(),
                             rset.getNString("MAKH"), 
@@ -64,34 +67,45 @@ public class HoaDonDAO {
     public boolean delete(HoaDon_DTO hoaDon) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
-                .sqlUpdate("UPDATE HOADON SET TONTAI = 0 WHERE MANV ='" + hoaDon.getSoHD() + "'");
+                .sqlUpdate("UPDATE HOADON SET TONTAI = 0 WHERE SOHD ='" + hoaDon.getSoHD() + "'");
         connectDB.closeConnect();
         return success;
     }
 
 
-    public boolean update(HoaDon_DTO haoDon) {
+    public boolean update(HoaDon_DTO hoaDon) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
                 .sqlUpdate("UPDATE `hoadon` SET "
-                        + "`TONGHD`='" + haoDon.getTongHD() 
-                        + "',`THANHTOAN`='" + haoDon.getThanhToan()
-                        + "',`TIENKHACHDUA`='" + haoDon.getTienKhachDua()
-                        + "',`TIENTRAKHACH`='" + haoDon.getTienTraKhach()
-                        + "' WHERE `SOHD`='" + haoDon.getSoHD() + "'");
+                        + "`TONGHD`='" + hoaDon.getTongHD() 
+                        + "',`THANHTOAN`='" + hoaDon.getThanhToan()
+                        + "',`TIENKHACHDUA`='" + hoaDon.getTienKhachDua()
+                        + "',`TIENTRAKHACH`='" + hoaDon.getTienTraKhach()
+                        + "' WHERE `SOHD`='" + hoaDon.getSoHD() + "'");
         connectDB.closeConnect();
         return success;
     }
 
-    public HoaDon_DTO search(int soHD) {
-        HoaDon_DTO hoaDon = null;
-        String qry = "SELECT * FROM `hoadon` WHERE TONTAI= 1 AND `SOHD`='" + soHD + "'";
+
+     public ArrayList<HoaDon_DTO> searchHoaDon(int soHD, LocalDate thoiGianLap) {
+        ArrayList<HoaDon_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
-        ResultSet rset = connectDB.sqlQuery(qry);
+
+        StringBuilder qry = new StringBuilder("SELECT * FROM `hoadon` WHERE TONTAI = 1");
+
+        if (soHD > 0) {
+            qry.append(" AND `SOHD` = ").append(soHD);
+        }
+        if (thoiGianLap != null) { 
+            qry.append(" AND `THOIGIANLAP` = '").append(Date.valueOf(thoiGianLap)).append("'");
+        }
+
+        ResultSet rset = connectDB.sqlQuery(qry.toString());
+
         try {
             if (rset != null) {
                 while (rset.next()) {
-                            hoaDon =new HoaDon_DTO(
+                    HoaDon_DTO hoadon = new HoaDon_DTO(
                             rset.getInt("SOHD"), 
                             rset.getString("MANV"),
                             rset.getDate("THOIGIANLAP").toLocalDate(),
@@ -100,12 +114,15 @@ public class HoaDonDAO {
                             rset.getDouble("TIENTRAKHACH"), 
                             rset.getDouble("CHIETKHAU"), 
                             rset.getDouble("TONGHD"),
-                            rset.getBoolean("TONTAI")); 
+                            rset.getBoolean("TONTAI"));
+
+                    ds.add(hoadon);
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return hoaDon;
+
+        return ds;
     }
 }
