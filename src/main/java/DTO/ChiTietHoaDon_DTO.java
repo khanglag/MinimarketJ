@@ -9,7 +9,7 @@ package DTO;
  * @author Admin
  */
 public class ChiTietHoaDon_DTO {
-    private String soHD;
+    private int soHD;
     private String maSP;
     private int soLuong;
     private boolean tonTai;
@@ -17,18 +17,18 @@ public class ChiTietHoaDon_DTO {
     public ChiTietHoaDon_DTO() {
     }
 
-    public ChiTietHoaDon_DTO(String soHD, String maSP, int soLuong, boolean tonTai) {
+    public ChiTietHoaDon_DTO(int soHD, String maSP, int soLuong, boolean tonTai) {
         this.soHD = soHD;
         this.maSP = maSP;
         this.soLuong = soLuong;
         this.tonTai = tonTai;
     }
 
-    public String getSoHD() {
+    public int getSoHD() {
         return soHD;
     }
 
-    public void setSoHD(String soHD) {
+    public void setSoHD(int soHD) {
         this.soHD = soHD;
     }
 
@@ -48,8 +48,11 @@ public class ChiTietHoaDon_DTO {
         this.soLuong = soLuong;
     }
 
-    public boolean isTonTai() {
-        return tonTai;
+    public int isTonTai() {
+        if (tonTai==true) {
+            return 1;
+        }
+        return 0;
     }
 
     public void setTonTai(boolean tonTai) {
