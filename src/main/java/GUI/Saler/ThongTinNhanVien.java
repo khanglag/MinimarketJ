@@ -35,6 +35,8 @@ public class ThongTinNhanVien extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(173, 187, 198));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

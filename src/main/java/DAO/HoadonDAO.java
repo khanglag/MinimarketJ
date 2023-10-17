@@ -9,7 +9,6 @@ import DTO.HoaDon_DTO;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -17,7 +16,7 @@ import java.util.ArrayList;
  * @author pc
  */
 public class HoaDonDAO {
-    public HoaDonDAO(){
+    public  HoaDonDAO(){
 }
     public ArrayList<HoaDon_DTO> ReadHoadons(){
         ArrayList<HoaDon_DTO> ds=new ArrayList<>();
@@ -65,64 +64,48 @@ public class HoaDonDAO {
     public boolean delete(HoaDon_DTO hoaDon) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
-                .sqlUpdate("UPDATE HOADON SET TONTAI = 0 WHERE SOHD ='" + hoaDon.getSoHD() + "'");
+                .sqlUpdate("UPDATE HOADON SET TONTAI = 0 WHERE MANV ='" + hoaDon.getSoHD() + "'");
         connectDB.closeConnect();
         return success;
     }
 
 
-    public boolean update(HoaDon_DTO hoaDon) {
+    public boolean update(HoaDon_DTO haoDon) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
                 .sqlUpdate("UPDATE `hoadon` SET "
-                        + "`TONGHD`='" + hoaDon.getTongHD() 
-                        + "',`THANHTOAN`='" + hoaDon.getThanhToan()
-                        + "',`TIENKHACHDUA`='" + hoaDon.getTienKhachDua()
-                        + "',`TIENTRAKHACH`='" + hoaDon.getTienTraKhach()
-                        + "' WHERE `SOHD`='" + hoaDon.getSoHD() + "'");
+                        + "`TONGHD`='" + haoDon.getTongHD() 
+                        + "',`THANHTOAN`='" + haoDon.getThanhToan()
+                        + "',`TIENKHACHDUA`='" + haoDon.getTienKhachDua()
+                        + "',`TIENTRAKHACH`='" + haoDon.getTienTraKhach()
+                        + "' WHERE `SOHD`='" + haoDon.getSoHD() + "'");
         connectDB.closeConnect();
         return success;
     }
 
-    public ArrayList<HoaDon_DTO> searchHoaDon(int soHD, LocalDate thoiGianLap) {
-    ArrayList<HoaDon_DTO> ds = new ArrayList<>();
-    ConnectDB connectDB = new ConnectDB();
-
-    StringBuilder qry = new StringBuilder("SELECT * FROM `hoadon` WHERE TONTAI = 1");
-
-    if (soHD > 0) {
-        qry.append(" AND `SOHD` = ").append(soHD);
-    }
-
-    if (thoiGianLap != null) {
-        qry.append(" AND `THOIGIANLAP` = '").append(Date.valueOf(thoiGianLap)).append("'");
-    }
-
-    ResultSet rset = connectDB.sqlQuery(qry.toString());
-
-    try {
-        if (rset != null) {
-            while (rset.next()) {
-                HoaDon_DTO hoaDon = new HoaDon_DTO(
-                    rset.getInt("SOHD"),
-                    rset.getString("MANV"),
-                    rset.getDate("THOIGIANLAP").toLocalDate(),
-                    rset.getNString("MAKH"),
-                    rset.getDouble("TIENKHACHDUA"),
-                    rset.getDouble("TIENTRAKHACH"),
-                    rset.getDouble("CHIETKHAU"),
-                    rset.getDouble("TONGHD"),
-                    rset.getBoolean("TONTAI"));
-                ds.add(hoaDon);
+    public HoaDon_DTO search(int soHD) {
+        HoaDon_DTO hoaDon = null;
+        String qry = "SELECT * FROM `hoadon` WHERE TONTAI= 1 AND `SOHD`='" + soHD + "'";
+        ConnectDB connectDB = new ConnectDB();
+        ResultSet rset = connectDB.sqlQuery(qry);
+        try {
+            if (rset != null) {
+                while (rset.next()) {
+                            hoaDon =new HoaDon_DTO(
+                            rset.getInt("SOHD"), 
+                            rset.getString("MANV"),
+                            rset.getDate("THOIGIANLAP").toLocalDate(),
+                            rset.getNString("MAKH"), 
+                            rset.getDouble("TIENKHACHDUA"), 
+                            rset.getDouble("TIENTRAKHACH"), 
+                            rset.getDouble("CHIETKHAU"), 
+                            rset.getDouble("TONGHD"),
+                            rset.getBoolean("TONTAI")); 
+                }
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-    } catch (SQLException e) {
-        e.printStackTrace();
+        return hoaDon;
     }
-
-    return ds;
 }
-
-}
-
-
