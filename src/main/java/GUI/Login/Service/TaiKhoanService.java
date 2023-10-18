@@ -4,7 +4,7 @@
  */
 package GUI.Login.Service;
 
-import GUI.Login.Taikhoan;
+import GUI.Login.TaiKhoan;
 
 /**
  *
@@ -12,5 +12,5 @@ import GUI.Login.Taikhoan;
  */
 // chức năng login
 public interface TaiKhoanService {
-    public Taikhoan login(String tenDangNhap, String matKhau);
+    public TaiKhoan login(String tenDangNhap, String matKhau);
 }

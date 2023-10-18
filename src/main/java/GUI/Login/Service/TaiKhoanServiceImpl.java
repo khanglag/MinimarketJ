@@ -4,7 +4,7 @@
  */
 package GUI.Login.Service;
 
-import GUI.Login.Taikhoan;
+import GUI.Login.TaiKhoan;
 import GUI.Login.DAO.TaiKhoanDAO;
 import GUI.Login.DAO.TaiKhoanDAOImpl;
 
@@ -22,7 +22,7 @@ public class TaiKhoanServiceImpl implements TaiKhoanService {
     }
 
     @Override
-    public Taikhoan login(String tenDangNhap, String matKhau) {
+    public TaiKhoan login(String tenDangNhap, String matKhau) {
         return taiKhoanDAO.login(tenDangNhap, matKhau);
     }
 

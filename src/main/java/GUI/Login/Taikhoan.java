@@ -1,6 +1,6 @@
 package GUI.Login;
 
-public class Taikhoan {
+public class TaiKhoan {
     private String Ten_dn;
     private String Mat_khau;
 
@@ -14,10 +14,10 @@ public class Taikhoan {
     private String Quyen;
     private boolean tontai;
 
-    public Taikhoan() {
+    public TaiKhoan() {
     }
 
-    public Taikhoan(String Ten_dn, String Mat_khau,String Quyen, boolean tontai) {
+    public TaiKhoan(String Ten_dn, String Mat_khau,String Quyen, boolean tontai) {
         this.Ten_dn = Ten_dn;
         this.Mat_khau = Mat_khau;
         this.Quyen = Quyen;
@@ -52,17 +52,17 @@ public class Taikhoan {
         this.tontai = tontai;
     }
 
-    public Taikhoan Ten_dn(String Ten_dn) {
+    public TaiKhoan Ten_dn(String Ten_dn) {
         setTen_dn(Ten_dn);
         return this;
     }
 
-    public Taikhoan Mat_khau(String Mat_khau) {
+    public TaiKhoan Mat_khau(String Mat_khau) {
         setMat_khau(Mat_khau);
         return this;
     }
 
-    public Taikhoan tontai(boolean tontai) {
+    public TaiKhoan tontai(boolean tontai) {
         setTontai(tontai);
         return this;
     }

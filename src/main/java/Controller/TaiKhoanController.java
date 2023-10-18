@@ -7,7 +7,7 @@ package Controller;
 import GUI.Admin.MainJFrameAd;
 import GUI.Login.Service.TaiKhoanService;
 import GUI.Login.Service.TaiKhoanServiceImpl;
-import GUI.Login.Taikhoan;
+import GUI.Login.TaiKhoan;
 import GUI.QuanLy.MainJFrame;
 import GUI.ThuKho.MainFrameThuKho;
 import java.awt.Dialog;
@@ -68,7 +68,7 @@ public class TaiKhoanController {
 
                     JOptionPane.showMessageDialog(null, "Vui lòng nhập dữ liệu bắt buộc");
                 } else {
-                    Taikhoan taiKhoan = taiKhoanService.login(jtfTenDangNhap.getText(), jtfMatKhau.getText());
+                    TaiKhoan taiKhoan = taiKhoanService.login(jtfTenDangNhap.getText(), jtfMatKhau.getText());
                     if (taiKhoan == null) {
                         JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc mật khẩu không chính xác!");
 

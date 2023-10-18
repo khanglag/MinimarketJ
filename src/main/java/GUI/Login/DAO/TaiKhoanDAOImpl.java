@@ -5,7 +5,7 @@
 package GUI.Login.DAO;
 
 import ConnectDB.ConnectDB;
-import GUI.Login.Taikhoan;
+import GUI.Login.TaiKhoan;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,18 +18,18 @@ import java.sql.ResultSet;
 public class TaiKhoanDAOImpl implements TaiKhoanDAO {
 
     @Override
-    public Taikhoan login(String tenDangNhap, String matKhau) {
+    public TaiKhoan login(String tenDangNhap, String matKhau) {
         ConnectDB conn = new ConnectDB();
         Connection cons = ConnectDB.getConnection();
         String sql = "SELECT * FROM taikhoan WHERE MANV LIKE ? AND MATKHAU LIKE ?";
-        Taikhoan taiKhoan = null;
+        TaiKhoan taiKhoan = null;
         try {
             PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
             ps.setString(1, tenDangNhap);
             ps.setString(2, matKhau);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                taiKhoan = new Taikhoan();
+                taiKhoan = new TaiKhoan();
 
                 taiKhoan.setTen_dn(rs.getString("MANV"));
                 taiKhoan.setMat_khau(rs.getString("MATKHAU"));

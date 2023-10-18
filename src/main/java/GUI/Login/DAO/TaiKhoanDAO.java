@@ -5,7 +5,7 @@
 package GUI.Login.DAO;
 
 
-import GUI.Login.Taikhoan;
+import GUI.Login.TaiKhoan;
 
 /**
  *
@@ -21,6 +21,6 @@ public interface TaiKhoanDAO {
      * @return
      */
 
-    public Taikhoan login(String tenDangNhap, String matKhau);
+    public TaiKhoan login(String tenDangNhap, String matKhau);
 
 }
