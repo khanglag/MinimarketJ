@@ -62,7 +62,7 @@ public class ChiTietHoaDonDAO {
     public boolean update(ChiTietHoaDon_DTO ct) {
         ConnectDB connectDB = new ConnectDB();
         boolean success = connectDB
-                .sqlUpdate("UPDATE `chitiet_hoadon` SET `SOHD`='"+ct.getSoHD()+"',`MASP`='"+ct.getMaSP()+"',`SOLUONG`='"+ct.getSoLuong()+"',`TONTAI`='"+ct.isTonTai()+"'");
+                .sqlUpdate("UPDATE `chitiet_hoadon` SET `MASP`='"+ct.getMaSP()+"',`SOLUONG`='"+ct.getSoLuong()+"',`TONTAI`='"+ct.isTonTai()+"' WHERE `SOHD`='"+ct.getSoHD()+"'");
         connectDB.closeConnect();
         return success;
     }

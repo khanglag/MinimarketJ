@@ -5,7 +5,6 @@
 package DAO;
 
 import ConnectDB.ConnectDB;
-import DTO.HangHoa_DTO;
 import DTO.HoaDon_DTO;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -15,7 +14,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author pc
+ * @author béo
  */
 public class HoaDonDAO {
     public  HoaDonDAO(){

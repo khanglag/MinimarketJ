@@ -5,6 +5,7 @@
 package DAO;
 
 import ConnectDB.ConnectDB;
+import DTO.ChiTietHoaDon_DTO;
 import DTO.NhomHang_DTO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -67,18 +68,22 @@ public class NhomHangDAO {
         connectDB.closeConnect();
         return success;
     }
-    public ArrayList<NhomHang_DTO> searchHangHoa(String maNH, String tenNH, boolean tonTai) {
-        ArrayList<NhomHang_DTO> ds = new ArrayList<>();
+    public ArrayList<ChiTietHoaDon_DTO> searchHangHoa(int soHD, String maSP, int soLuong, boolean tonTai) {
+        ArrayList<ChiTietHoaDon_DTO> ds = new ArrayList<>();
         ConnectDB connectDB = new ConnectDB();
 
-        StringBuilder qry = new StringBuilder("SELECT * FROM `nhomhang` WHERE TONTAI = 1");
+        StringBuilder qry = new StringBuilder("SELECT * FROM `chitiet_hoadon` WHERE TONTAI = 1");
 
-        if (maNH != null && !maNH.isEmpty()) {
-            qry.append(" AND `MANH` LIKE '%").append(maNH).append("%'");
+        if (soHD >=0) {
+            qry.append(" AND `SOHD` LIKE '%").append(soHD).append("%'");
         }
 
-        if (tenNH != null && !tenNH.isEmpty()) {
-            qry.append(" AND `TENNH` LIKE'%").append(tenNH).append("'");
+        if (maSP != null && !maSP.isEmpty()) {
+            qry.append(" AND `MASP` = '").append(maSP).append("'");
+        }
+
+        if (soLuong > 0) {
+            qry.append(" AND `SOLUONG` = ").append(soLuong);
         }
 
         ResultSet rSet = connectDB.sqlQuery(qry.toString());
@@ -86,13 +91,14 @@ public class NhomHangDAO {
         try {
             if (rSet != null) {
                 while (rSet.next()) {
-                    NhomHang_DTO nh;
-                    nh = new NhomHang_DTO(
-                            rSet.getNString("MANH"),
-                            rSet.getNString("TENNH"),
-                            rSet.getBoolean("TONTAI")
-                    );
-                    ds.add(nh);
+                    ChiTietHoaDon_DTO cthddto = new ChiTietHoaDon_DTO(
+                    rSet.getInt("SOHD"),
+                    rSet.getNString("MASP"),
+                    rSet.getInt("SOLUONG"),
+                    rSet.getBoolean("TONTAI"));
+                    ds.add(cthddto);
+
+                    ds.add(cthddto);
                 }
             }
         } catch (SQLException e) {
