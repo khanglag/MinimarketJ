@@ -25,7 +25,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
     public MainJFrame() {
         initComponents();
-        mainScreen.setLayout(new BorderLayout());
+       dashboardControl();
+        
+    }
+    public void dashboardControl(){
+         mainScreen.setLayout(new BorderLayout());
         mainScreen.add(new ThongTinNhanVien());
         DefaultColor = new Color(255, 255, 255);
         ClickedColor = new Color(240, 151, 57);
@@ -34,9 +38,7 @@ public class MainJFrame extends javax.swing.JFrame {
         panelsp.setBackground(DefaultColor);
         paneltkh.setBackground(DefaultColor);
         paneldx.setBackground(DefaultColor);
-        
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -319,6 +321,11 @@ public class MainJFrame extends javax.swing.JFrame {
         panelsp.setBackground(DefaultColor);
         paneltkh.setBackground(DefaultColor);
         paneldx.setBackground(DefaultColor);
+          ThongTinNhanVien ttnv = new ThongTinNhanVien();
+        mainScreen.removeAll();
+        mainScreen.revalidate();
+        mainScreen.repaint();
+        mainScreen.add(ttnv).setVisible(true);
     }//GEN-LAST:event_panelttcnMousePressed
 
     private void panelbhMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelbhMousePressed
@@ -327,6 +334,11 @@ public class MainJFrame extends javax.swing.JFrame {
         panelsp.setBackground(DefaultColor);
         paneltkh.setBackground(DefaultColor);
         paneldx.setBackground(DefaultColor);
+         BanHang bh = new BanHang();
+        mainScreen.removeAll();
+        mainScreen.revalidate();
+        mainScreen.repaint();
+        mainScreen.add(bh).setVisible(true);
     }//GEN-LAST:event_panelbhMousePressed
 
     private void panelspMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelspMousePressed
@@ -336,6 +348,11 @@ public class MainJFrame extends javax.swing.JFrame {
         panelsp.setBackground(ClickedColor);
         paneltkh.setBackground(DefaultColor);
         paneldx.setBackground(DefaultColor);
+         SanPham sp = new SanPham();
+         mainScreen.removeAll();
+        mainScreen.revalidate();
+        mainScreen.repaint();
+        mainScreen.add(sp).setVisible(true);
     }//GEN-LAST:event_panelspMousePressed
 
     private void paneltkhMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneltkhMousePressed
@@ -345,6 +362,11 @@ public class MainJFrame extends javax.swing.JFrame {
         panelsp.setBackground(DefaultColor);
         paneltkh.setBackground(ClickedColor);
         paneldx.setBackground(DefaultColor);
+        ThemKhachHang tkh = new ThemKhachHang();
+          mainScreen.removeAll();
+        mainScreen.revalidate();
+        mainScreen.repaint();
+        mainScreen.add(tkh).setVisible(true);
     }//GEN-LAST:event_paneltkhMousePressed
 
     private void paneldxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneldxMousePressed
@@ -359,39 +381,23 @@ public class MainJFrame extends javax.swing.JFrame {
     private void panelbhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelbhMouseClicked
         // TODO add your handling code here:
 
-        BanHang bh = new BanHang();
-        mainScreen.removeAll();
-        mainScreen.revalidate();
-        mainScreen.repaint();
-        mainScreen.add(bh).setVisible(true);
+       
     }//GEN-LAST:event_panelbhMouseClicked
 
     private void panelttcnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelttcnMouseClicked
         // TODO add your handling code here:
-        ThongTinNhanVien ttnv = new ThongTinNhanVien();
-        mainScreen.removeAll();
-        mainScreen.revalidate();
-        mainScreen.repaint();
-        mainScreen.add(ttnv).setVisible(true);
+      
 
     }//GEN-LAST:event_panelttcnMouseClicked
 
     private void panelspMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelspMouseClicked
         // TODO add your handling code here:
-        SanPham sp = new SanPham();
-         mainScreen.removeAll();
-        mainScreen.revalidate();
-        mainScreen.repaint();
-        mainScreen.add(sp).setVisible(true);
+       
     }//GEN-LAST:event_panelspMouseClicked
 
     private void paneltkhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paneltkhMouseClicked
         // TODO add your handling code here:
-        ThemKhachHang tkh = new ThemKhachHang();
-          mainScreen.removeAll();
-        mainScreen.revalidate();
-        mainScreen.repaint();
-        mainScreen.add(tkh).setVisible(true);
+        
     }//GEN-LAST:event_paneltkhMouseClicked
 
     /**
