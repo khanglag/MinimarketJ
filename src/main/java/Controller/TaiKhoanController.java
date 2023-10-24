@@ -7,6 +7,7 @@ package Controller;
 import GUI.Admin.MainJFrameAd;
 import GUI.Login.Service.TaiKhoanService;
 import GUI.Login.Service.TaiKhoanServiceImpl;
+import GUI.Login.TaiKhoan;
 import GUI.QuanLy.MainJFrame;
 import GUI.ThuKho.MainFrameThuKho;
 import java.awt.Dialog;
@@ -97,6 +98,7 @@ public class TaiKhoanController {
                                 setNgdn(1);
                                 dialog.dispose();
                                 frame = new MainFrameThuKho();
+                                frame.setLocationRelativeTo(null);
                                 frame.setTitle("Quản lý siêu thị mini");
                                 frame.setExtendedState(JFrame.ABORT);
                                 frame.setVisible(true);
@@ -104,6 +106,7 @@ public class TaiKhoanController {
                                 setNgdn(1);
                                 dialog.dispose();
                                 frame = new MainJFrameAd();
+                                frame.setLocationRelativeTo(null);
                                 frame.setTitle("Quản lý siêu thị mini");
                                 frame.setExtendedState(JFrame.ABORT);
                                 frame.setVisible(true);

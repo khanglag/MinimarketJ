@@ -4,7 +4,7 @@
  */
 package GUI.Login.Service;
 
-import DTO.Taikhoan;
+import GUI.Login.TaiKhoan;
 import GUI.Login.DAO.TaiKhoanDAO;
 import GUI.Login.DAO.TaiKhoanDAOImpl;
 
@@ -12,8 +12,8 @@ import GUI.Login.DAO.TaiKhoanDAOImpl;
  *
  * @author khang
  */
-//chức năng login
-public class TaiKhoanServiceImpl implements TaiKhoanService{
+// chức năng login
+public class TaiKhoanServiceImpl implements TaiKhoanService {
 
     private TaiKhoanDAO taiKhoanDAO = null;
 
@@ -22,8 +22,8 @@ public class TaiKhoanServiceImpl implements TaiKhoanService{
     }
 
     @Override
-    public Taikhoan login(String tenDangNhap, String matKhau) {
+    public TaiKhoan login(String tenDangNhap, String matKhau) {
         return taiKhoanDAO.login(tenDangNhap, matKhau);
     }
-    
+
 }

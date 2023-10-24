@@ -4,6 +4,15 @@
  */
 package GUI.QuanLy;
 
+import DAO.HangHoaDAO;
+import DAO.NhaCungCapDAO;
+import DTO.HangHoa_DTO;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import javax.swing.ButtonGroup;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author acer
@@ -13,8 +22,38 @@ public class QuanLySanPham extends javax.swing.JPanel {
     /**
      * Creates new form QuanLySanPham
      */
+    HangHoaDAO hhd = new HangHoaDAO();
+    NhaCungCapDAO nccd = new NhaCungCapDAO();
     public QuanLySanPham() {
         initComponents();
+        createButtonGroup();
+        //hiển thị sản phẩm vào table
+        showProductsInTable();
+    }
+
+    public void showProductsInTable() {
+        DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
+        model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
+        ArrayList<HangHoa_DTO> danhSachSanPham = hhd.ReadHangHoa();
+        int soLuongSP = danhSachSanPham.size();
+        for (int i = 0; i < soLuongSP; i++) {
+            HangHoa_DTO sanPham = danhSachSanPham.get(i);
+            String maSP = sanPham.getMaSP();
+            String tenSP = sanPham.getTenSP();
+            int soLuong = sanPham.getSoLuong();
+            double giaNhap = sanPham.getGiaNhap();
+            double giaBan = sanPham.getGiaBan();
+            
+            String xuatXu = sanPham.getXuatXu();
+            String donVi = sanPham.getDonVi();
+            model.addRow(new Object[]{maSP, tenSP, soLuong, giaBan, xuatXu, donVi});
+        }
+    }
+
+    public void createButtonGroup() {
+        ButtonGroup arrangeGroup = new ButtonGroup();
+        arrangeGroup.add(ChkArrangeByName);
+        arrangeGroup.add(ChkArrangeByPrice);
     }
 
     /**
@@ -28,7 +67,7 @@ public class QuanLySanPham extends javax.swing.JPanel {
 
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableQlnv = new javax.swing.JTable();
+        TableProducts = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -53,9 +92,9 @@ public class QuanLySanPham extends javax.swing.JPanel {
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        BtnArrange = new javax.swing.JButton();
+        ChkArrangeByName = new javax.swing.JRadioButton();
+        ChkArrangeByPrice = new javax.swing.JRadioButton();
         jPanel4 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -70,23 +109,23 @@ public class QuanLySanPham extends javax.swing.JPanel {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("QUẢN LÝ SẢN PHẨM");
 
-        tableQlnv.setModel(new javax.swing.table.DefaultTableModel(
+        TableProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Ngày sản xuất", "Giá nhập", "Giá bán", "Nhà cung cấp", "Xuất xứ", "Đơn vị"
+                "Mã sản phẩm", "Tên sản phẩm", "Số lượng", "Giá nhập", "Giá bán", "Nhà cung cấp", "Xuất xứ", "Đơn vị"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableQlnv);
+        jScrollPane1.setViewportView(TableProducts);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin sản phẩm"));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -219,22 +258,27 @@ public class QuanLySanPham extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton6.setText("Sắp xếp");
+        BtnArrange.setText("Sắp xếp");
+        BtnArrange.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnArrangeMouseClicked(evt);
+            }
+        });
 
-        jRadioButton1.setText("Theo tên");
+        ChkArrangeByName.setText("Theo tên");
 
-        jRadioButton2.setText("Theo giá");
+        ChkArrangeByPrice.setText("Theo giá");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jButton6)
+                .addComponent(BtnArrange)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ChkArrangeByName, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(ChkArrangeByPrice, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 85, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
@@ -242,9 +286,9 @@ public class QuanLySanPham extends javax.swing.JPanel {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(BtnArrange)
+                    .addComponent(ChkArrangeByName)
+                    .addComponent(ChkArrangeByPrice))
                 .addContainerGap(107, Short.MAX_VALUE))
         );
 
@@ -356,14 +400,76 @@ public class QuanLySanPham extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void BtnArrangeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnArrangeMouseClicked
+        // TODO add your handling code here:
+        if (ChkArrangeByName.isSelected()) {
+            DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
+            model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
+            ArrayList<HangHoa_DTO> danhSachSanPham = hhd.ReadHangHoa();
+
+            // Sắp xếp danh sách theo tenSP bằng cách sử dụng Comparator
+            Collections.sort(danhSachSanPham, new Comparator<HangHoa_DTO>() {
+                @Override
+                public int compare(HangHoa_DTO sp1, HangHoa_DTO sp2) {
+                    return sp1.getTenSP().compareTo(sp2.getTenSP());
+                }
+            });
+
+            int soLuongSP = danhSachSanPham.size();
+            for (int i = 0; i < soLuongSP; i++) {
+                HangHoa_DTO sanPham = danhSachSanPham.get(i);
+                String maSP = sanPham.getMaSP();
+                String tenSP = sanPham.getTenSP();
+                int soLuong = sanPham.getSoLuong();
+
+                double giaBan = sanPham.getGiaBan();
+                String xuatXu = sanPham.getXuatXu();
+                String donVi = sanPham.getDonVi();
+                model.addRow(new Object[]{maSP, tenSP, soLuong, giaBan, xuatXu, donVi});
+            }
+        }
+        if (ChkArrangeByPrice.isSelected()) {
+            DefaultTableModel model = (DefaultTableModel) TableProducts.getModel();
+            model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
+            ArrayList<HangHoa_DTO> danhSachSanPham = hhd.ReadHangHoa();
+
+// Sắp xếp danh sách theo giaBan bằng cách sử dụng Comparator
+            Collections.sort(danhSachSanPham, new Comparator<HangHoa_DTO>() {
+                @Override
+                public int compare(HangHoa_DTO sp1, HangHoa_DTO sp2) {
+                    double giaBan1 = sp1.getGiaBan();
+                    double giaBan2 = sp2.getGiaBan();
+                    return Double.compare(giaBan1, giaBan2);
+                }
+            });
+
+            int soLuongSP = danhSachSanPham.size();
+            for (int i = 0; i < soLuongSP; i++) {
+                HangHoa_DTO sanPham = danhSachSanPham.get(i);
+                String maSP = sanPham.getMaSP();
+                String tenSP = sanPham.getTenSP();
+                int soLuong = sanPham.getSoLuong();
+
+                double giaBan = sanPham.getGiaBan();
+                String xuatXu = sanPham.getXuatXu();
+                String donVi = sanPham.getDonVi();
+                model.addRow(new Object[]{maSP, tenSP, soLuong, giaBan, xuatXu, donVi});
+            }
+
+        }
+    }//GEN-LAST:event_BtnArrangeMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnArrange;
+    private javax.swing.JRadioButton ChkArrangeByName;
+    private javax.swing.JRadioButton ChkArrangeByPrice;
+    private javax.swing.JTable TableProducts;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
@@ -381,8 +487,6 @@ public class QuanLySanPham extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField2;
@@ -393,6 +497,5 @@ public class QuanLySanPham extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
-    private javax.swing.JTable tableQlnv;
     // End of variables declaration//GEN-END:variables
 }

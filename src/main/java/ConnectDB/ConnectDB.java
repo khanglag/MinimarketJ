@@ -37,11 +37,8 @@ public class ConnectDB {
     String ipAddress = "localhost:3306";
     
     public ConnectDB() {
-         DB = "qlstmini";
-        //DB= "testDB";
+        DB = "qlstmini_data";
         user = "root";
-        //password = "200303410";
-        //password="5731";
         password="";
         setupConnect();
     }

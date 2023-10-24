@@ -4,13 +4,14 @@
  */
 package GUI.Login.DAO;
 
-import DTO.Taikhoan;
+
+import GUI.Login.TaiKhoan;
 
 /**
  *
  * @author khang
  */
-//chức năng login
+// chức năng login
 public interface TaiKhoanDAO {
 
     /**
@@ -20,6 +21,6 @@ public interface TaiKhoanDAO {
      * @return
      */
 
-    public Taikhoan login(String tenDangNhap, String matKhau);
-    
+    public TaiKhoan login(String tenDangNhap, String matKhau);
+
 }

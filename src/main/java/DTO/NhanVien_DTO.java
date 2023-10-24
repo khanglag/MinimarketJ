@@ -4,6 +4,9 @@
  */
 package DTO;
 
+import java.sql.Date;
+import java.time.LocalDate;
+
 /**
  *
  * @author Admin
@@ -11,7 +14,7 @@ package DTO;
 public class NhanVien_DTO {
     private String maNV;
     private String tenNV;
-    private String ngaySinh;
+    private LocalDate ngaySinh;
     private String gioiTinh;
     private String cccd;
     private String sdt;
@@ -23,7 +26,7 @@ public class NhanVien_DTO {
     public NhanVien_DTO() {
     }
 
-    public NhanVien_DTO(String maNV, String tenNV, String ngaySinh, String gioiTinh, String cccd, String sdt, String email, String diaChi, String maQuyen, boolean tonTai) {
+    public NhanVien_DTO(String maNV, String tenNV, LocalDate ngaySinh, String gioiTinh, String cccd, String sdt, String email, String diaChi, String maQuyen, boolean tonTai) {
         this.maNV = maNV;
         this.tenNV = tenNV;
         this.ngaySinh = ngaySinh;
@@ -52,11 +55,11 @@ public class NhanVien_DTO {
         this.tenNV = tenNV;
     }
 
-    public String getNgaySinh() {
+    public LocalDate getNgaySinh() {
         return ngaySinh;
-    }
+       }
 
-    public void setNgaySinh(String ngaySinh) {
+    public void setNgaySinh(LocalDate ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
 
