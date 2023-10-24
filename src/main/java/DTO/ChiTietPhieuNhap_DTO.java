@@ -11,7 +11,7 @@ package DTO;
 public class ChiTietPhieuNhap_DTO {
     private String maPhieuNhap;
     private String maHangNhap;
-    private String tenHangNhap;
+    private String tenDangNhap;
     private double VAT;
     private String xuatXu;
     private String anhSP;
@@ -24,10 +24,10 @@ public class ChiTietPhieuNhap_DTO {
     public ChiTietPhieuNhap_DTO() {
     }
 
-    public ChiTietPhieuNhap_DTO(String maPhieuNhap, String maHangNhap, String tenHangNhap, double VAT, String xuatXu, String anhSP, int soLuong, String donVi, double giaNhap, double tongTienNhap, boolean tonTai) {
+    public ChiTietPhieuNhap_DTO(String maPhieuNhap, String maHangNhap, String tenDangNhap, double VAT, String xuatXu, String anhSP, int soLuong, String donVi, double giaNhap, double tongTienNhap, boolean tonTai) {
         this.maPhieuNhap = maPhieuNhap;
         this.maHangNhap = maHangNhap;
-        this.tenHangNhap = tenHangNhap;
+        this.tenDangNhap = tenDangNhap;
         this.VAT = VAT;
         this.xuatXu = xuatXu;
         this.anhSP = anhSP;
@@ -54,15 +54,13 @@ public class ChiTietPhieuNhap_DTO {
         this.maHangNhap = maHangNhap;
     }
 
-    public String getTenHangNhap() {
-        return tenHangNhap;
+    public String getTenDangNhap() {
+        return tenDangNhap;
     }
 
-    public void setTenHangNhap(String tenHangNhap) {
-        this.tenHangNhap = tenHangNhap;
+    public void setTenDangNhap(String tenDangNhap) {
+        this.tenDangNhap = tenDangNhap;
     }
-
-    
 
     public double getVAT() {
         return VAT;
@@ -130,10 +128,8 @@ public class ChiTietPhieuNhap_DTO {
 
     @Override
     public String toString() {
-        return "ChiTietPhieuNhap_DTO{" + "maPhieuNhap=" + maPhieuNhap + ", maHangNhap=" + maHangNhap + ", tenHangNhap=" + tenHangNhap + ", VAT=" + VAT + ", xuatXu=" + xuatXu + ", anhSP=" + anhSP + ", soLuong=" + soLuong + ", donVi=" + donVi + ", giaNhap=" + giaNhap + ", tongTienNhap=" + tongTienNhap + ", tonTai=" + tonTai + '}';
+        return "ChiTietPhieuNhap_DTO{" + "maPhieuNhap=" + maPhieuNhap + ", maHangNhap=" + maHangNhap + ", tenDangNhap=" + tenDangNhap + ", VAT=" + VAT + ", xuatXu=" + xuatXu + ", anhSP=" + anhSP + ", soLuong=" + soLuong + ", donVi=" + donVi + ", giaNhap=" + giaNhap + ", tongTienNhap=" + tongTienNhap + ", tonTai=" + tonTai + '}';
     }
-
-    
     
     
     

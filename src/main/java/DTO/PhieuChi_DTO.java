@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DTO;
- import java.time.LocalDate;
+
 /**
  *
  * @author Admin
@@ -12,7 +12,7 @@ public class PhieuChi_DTO {
     private String maPhieuChi;
     private double soTien;
     private String maNV;
-    private LocalDate thoiGianChi;
+    private String thoiGianChi;
     private String lyDo;
     private String ghiChu;
     private boolean tonTai;
@@ -20,7 +20,7 @@ public class PhieuChi_DTO {
     public PhieuChi_DTO() {
     }
 
-    public PhieuChi_DTO(String maPhieuChi, double soTien, String maNV, LocalDate thoiGianChi, String lyDo, String ghiChu, boolean tonTai) {
+    public PhieuChi_DTO(String maPhieuChi, double soTien, String maNV, String thoiGianChi, String lyDo, String ghiChu, boolean tonTai) {
         this.maPhieuChi = maPhieuChi;
         this.soTien = soTien;
         this.maNV = maNV;
@@ -54,15 +54,13 @@ public class PhieuChi_DTO {
         this.maNV = maNV;
     }
 
-    public LocalDate getThoiGianChi() {
+    public String getThoiGianChi() {
         return thoiGianChi;
     }
 
-    public void setThoiGianChi(LocalDate thoiGianChi) {
+    public void setThoiGianChi(String thoiGianChi) {
         this.thoiGianChi = thoiGianChi;
     }
-
-   
 
     public String getLyDo() {
         return lyDo;

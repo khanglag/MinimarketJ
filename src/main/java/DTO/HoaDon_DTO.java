@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DTO;
- import java.time.LocalDate;
+
 /**
  *
  * @author Admin
@@ -11,7 +11,7 @@ package DTO;
 public class HoaDon_DTO {
     private String soHD;
     private String maNV;
-    private LocalDate thoiGianLap;
+    private String thoiGianLap;
     private String maKH;
     private double tongHD;
     private double thanhToan;
@@ -22,7 +22,7 @@ public class HoaDon_DTO {
     public HoaDon_DTO() {
     }
 
-    public HoaDon_DTO(String soHD, String maNV, LocalDate thoiGianLap, String maKH, double tongHD, double thanhToan, double tienKhachDua, double tienTraKhach, boolean tonTai) {
+    public HoaDon_DTO(String soHD, String maNV, String thoiGianLap, String maKH, double tongHD, double thanhToan, double tienKhachDua, double tienTraKhach, boolean tonTai) {
         this.soHD = soHD;
         this.maNV = maNV;
         this.thoiGianLap = thoiGianLap;
@@ -50,15 +50,13 @@ public class HoaDon_DTO {
         this.maNV = maNV;
     }
 
-    public LocalDate getThoiGianLap() {
+    public String getThoiGianLap() {
         return thoiGianLap;
     }
 
-    public void setThoiGianLap(LocalDate thoiGianLap) {
+    public void setThoiGianLap(String thoiGianLap) {
         this.thoiGianLap = thoiGianLap;
     }
-
-    
 
     public String getMaKH() {
         return maKH;

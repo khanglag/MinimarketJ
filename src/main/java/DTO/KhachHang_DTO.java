@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DTO;
- import java.time.LocalDate;
+
 /**
  *
  * @author Admin
@@ -11,7 +11,7 @@ package DTO;
 public class KhachHang_DTO {
     private String maKH;
     private String tenKH;
-    private LocalDate ngaySinh;
+    private String ngaySinh;
     private String sdt;
     private String diaChi;
     private boolean tonTai;
@@ -19,7 +19,7 @@ public class KhachHang_DTO {
     public KhachHang_DTO() {
     }
 
-    public KhachHang_DTO(String maKH, String tenKH, LocalDate ngaySinh, String sdt, String diaChi, boolean tonTai) {
+    public KhachHang_DTO(String maKH, String tenKH, String ngaySinh, String sdt, String diaChi, boolean tonTai) {
         this.maKH = maKH;
         this.tenKH = tenKH;
         this.ngaySinh = ngaySinh;
@@ -44,15 +44,13 @@ public class KhachHang_DTO {
         this.tenKH = tenKH;
     }
 
-    public LocalDate getNgaySinh() {
+    public String getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(LocalDate ngaySinh) {
+    public void setNgaySinh(String ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
-
-    
 
     public String getSdt() {
         return sdt;

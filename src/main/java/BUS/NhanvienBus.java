@@ -4,20 +4,22 @@
  */
 package BUS;
 
-import DTO.Nhanvien;
 import java.util.ArrayList;
+
+import DTO.Nhanvien;
 
 /**
  *
  * @author pc
  */
 public class NhanvienBus {
-    ArrayList<Nhanvien> nhanvienlistArrayList=new ArrayList<Nhanvien>();
-    public NhanvienBus(){
+    ArrayList<Nhanvien> nhanvienlistArrayList = new ArrayList<Nhanvien>();
+
+    public NhanvienBus() {
         try {
-            
+
         } catch (Exception e) {
         }
-}
-    
+    }
+
 }

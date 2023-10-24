@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DTO;
- import java.time.LocalDate;
+
 /**
  *
  * @author Admin
@@ -11,7 +11,7 @@ package DTO;
 public class NhanVien_DTO {
     private String maNV;
     private String tenNV;
-    private LocalDate ngaySinh;
+    private String ngaySinh;
     private String gioiTinh;
     private String cccd;
     private String sdt;
@@ -23,7 +23,7 @@ public class NhanVien_DTO {
     public NhanVien_DTO() {
     }
 
-    public NhanVien_DTO(String maNV, String tenNV, LocalDate ngaySinh, String gioiTinh, String cccd, String sdt, String email, String diaChi, String maQuyen, boolean tonTai) {
+    public NhanVien_DTO(String maNV, String tenNV, String ngaySinh, String gioiTinh, String cccd, String sdt, String email, String diaChi, String maQuyen, boolean tonTai) {
         this.maNV = maNV;
         this.tenNV = tenNV;
         this.ngaySinh = ngaySinh;
@@ -52,15 +52,13 @@ public class NhanVien_DTO {
         this.tenNV = tenNV;
     }
 
-    public LocalDate getNgaySinh() {
+    public String getNgaySinh() {
         return ngaySinh;
     }
 
-    public void setNgaySinh(LocalDate ngaySinh) {
+    public void setNgaySinh(String ngaySinh) {
         this.ngaySinh = ngaySinh;
     }
-
-    
 
     public String getGioiTinh() {
         return gioiTinh;

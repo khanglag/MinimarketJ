@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DTO;
- import java.time.LocalDate;
+
 /**
  *
  * @author Admin
@@ -14,13 +14,14 @@ public class PhieuYeuCauNhap_DTO {
     private String tenSP;
     private int soLuongTonKho;
     private String lyDo;
-    private LocalDate thoiGianYC;
+    private String thoiGianYC;
     private boolean trangThai;
 
     public PhieuYeuCauNhap_DTO() {
     }
 
-    public PhieuYeuCauNhap_DTO(String maPhieu, String maSP, String tenSP, int soLuongTonKho, String lyDo, LocalDate thoiGianYC, boolean trangThai) {
+    public PhieuYeuCauNhap_DTO(String maPhieu, String maSP, String tenSP, int soLuongTonKho, String lyDo,
+            String thoiGianYC, boolean trangThai) {
         this.maPhieu = maPhieu;
         this.maSP = maSP;
         this.tenSP = tenSP;
@@ -70,15 +71,13 @@ public class PhieuYeuCauNhap_DTO {
         this.lyDo = lyDo;
     }
 
-    public LocalDate getThoiGianYC() {
+    public String getThoiGianYC() {
         return thoiGianYC;
     }
 
-    public void setThoiGianYC(LocalDate thoiGianYC) {
+    public void setThoiGianYC(String thoiGianYC) {
         this.thoiGianYC = thoiGianYC;
     }
-
-    
 
     public boolean isTrangThai() {
         return trangThai;
@@ -90,11 +89,8 @@ public class PhieuYeuCauNhap_DTO {
 
     @Override
     public String toString() {
-        return "PhieuYeuCauNhap{" + "maPhieu=" + maPhieu + ", maSP=" + maSP + ", tenSP=" + tenSP + ", soLuongTonKho=" + soLuongTonKho + ", lyDo=" + lyDo + ", thoiGianYC=" + thoiGianYC + ", trangThai=" + trangThai + '}';
+        return "PhieuYeuCauNhap{" + "maPhieu=" + maPhieu + ", maSP=" + maSP + ", tenSP=" + tenSP + ", soLuongTonKho="
+                + soLuongTonKho + ", lyDo=" + lyDo + ", thoiGianYC=" + thoiGianYC + ", trangThai=" + trangThai + '}';
     }
-    
-    
-    
-    
-    
+
 }
