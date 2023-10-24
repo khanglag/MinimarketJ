@@ -20,7 +20,8 @@ public class ChiTietKiemHang_DTO {
     public ChiTietKiemHang_DTO() {
     }
 
-    public ChiTietKiemHang_DTO(String maPhieu, String maSP, String tenSP, int soLuong, String donVi, String tinhTrangSP, boolean tonTai) {
+    public ChiTietKiemHang_DTO(String maPhieu, String maSP, String tenSP, int soLuong, String donVi, String tinhTrangSP,
+            boolean tonTai) {
         this.maPhieu = maPhieu;
         this.maSP = maSP;
         this.tenSP = tenSP;
@@ -88,10 +89,8 @@ public class ChiTietKiemHang_DTO {
 
     @Override
     public String toString() {
-        return "ChiTietKiemHang_DTO{" + "maPhieu=" + maPhieu + ", maSP=" + maSP + ", tenSP=" + tenSP + ", soLuong=" + soLuong + ", donVi=" + donVi + ", tinhTrangSP=" + tinhTrangSP + ", tonTai=" + tonTai + '}';
+        return "ChiTietKiemHang_DTO{" + "maPhieu=" + maPhieu + ", maSP=" + maSP + ", tenSP=" + tenSP + ", soLuong="
+                + soLuong + ", donVi=" + donVi + ", tinhTrangSP=" + tinhTrangSP + ", tonTai=" + tonTai + '}';
     }
-    
-    
-    
-    
+
 }
