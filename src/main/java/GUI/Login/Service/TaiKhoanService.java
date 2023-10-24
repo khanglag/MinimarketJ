@@ -4,13 +4,13 @@
  */
 package GUI.Login.Service;
 
-import DTO.Taikhoan;
+import GUI.Login.TaiKhoan;
 
 /**
  *
  * @author khang
  */
-//chức năng login
+// chức năng login
 public interface TaiKhoanService {
-    public Taikhoan login(String tenDangNhap, String matKhau);
+    public TaiKhoan login(String tenDangNhap, String matKhau);
 }

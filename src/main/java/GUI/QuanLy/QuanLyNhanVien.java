@@ -4,7 +4,6 @@
  */
 package GUI.QuanLy;
 
-import DTO.Nhanvien;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;

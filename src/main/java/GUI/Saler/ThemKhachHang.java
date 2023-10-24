@@ -4,6 +4,11 @@
  */
 package GUI.Saler;
 
+import DAO.KhachHangDAO;
+import DTO.KhachHang_DTO;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author acer
@@ -13,10 +18,25 @@ public class ThemKhachHang extends javax.swing.JPanel {
     /**
      * Creates new form ThemKhachHang
      */
+     KhachHangDAO khd = new KhachHangDAO();
     public ThemKhachHang() {
         initComponents();
+        showCustomerInTable();
     }
-
+    public void showCustomerInTable(){
+        DefaultTableModel model = (DefaultTableModel) TableCustomer.getModel();
+        model.setRowCount(0); // Xóa tất cả dữ liệu hiện có trong bảng
+       
+        ArrayList<KhachHang_DTO> danhSachKhachHang = khd.ReadKhachHang();
+         int soLuongKH = danhSachKhachHang.size();
+        for (int i = 0; i < soLuongKH; i++) {
+            KhachHang_DTO khachHang = danhSachKhachHang.get(i);
+            String maKH = khachHang.getMaKH();
+            String tenKH = khachHang.getTenKH();
+            String sdt = khachHang.getSdt();
+            model.addRow(new Object[]{i+1, maKH, tenKH, sdt});
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,20 +49,16 @@ public class ThemKhachHang extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         jButton17 = new javax.swing.JButton();
         jButton19 = new javax.swing.JButton();
-        jButton20 = new javax.swing.JButton();
+        BtnAddCustomer = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableQlnv = new javax.swing.JTable();
+        TableCustomer = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
         jPanel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -51,10 +67,15 @@ public class ThemKhachHang extends javax.swing.JPanel {
 
         jButton19.setText("Tìm kiếm");
 
-        jButton20.setText("Thêm");
-        jButton20.addActionListener(new java.awt.event.ActionListener() {
+        BtnAddCustomer.setText("Thêm");
+        BtnAddCustomer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BtnAddCustomerMouseClicked(evt);
+            }
+        });
+        BtnAddCustomer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton20ActionPerformed(evt);
+                BtnAddCustomerActionPerformed(evt);
             }
         });
 
@@ -64,7 +85,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton20)
+                .addComponent(BtnAddCustomer)
                 .addGap(18, 18, 18)
                 .addComponent(jButton19)
                 .addGap(18, 18, 18)
@@ -78,27 +99,27 @@ public class ThemKhachHang extends javax.swing.JPanel {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton17)
                     .addComponent(jButton19)
-                    .addComponent(jButton20))
+                    .addComponent(BtnAddCustomer))
                 .addContainerGap())
         );
 
-        tableQlnv.setModel(new javax.swing.table.DefaultTableModel(
+        TableCustomer.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "STT", "Mã khách hàng", "Tên khách hàng", "Ngày sinh", "Số điện thoại", "Địa chỉ"
+                "STT", "Mã khách hàng", "Tên khách hàng", "Số điện thoại"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(tableQlnv);
+        jScrollPane1.setViewportView(TableCustomer);
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông tin khách hàng"));
 
@@ -106,11 +127,7 @@ public class ThemKhachHang extends javax.swing.JPanel {
 
         jLabel5.setText("Họ tên");
 
-        jLabel8.setText("Ngày sinh");
-
         jLabel13.setText("Số điện thoại");
-
-        jLabel9.setText("Địa chỉ");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -120,17 +137,14 @@ public class ThemKhachHang extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel13)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel13))
                 .addGap(48, 48, 48)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
-                    .addComponent(jTextField4)
-                    .addComponent(jTextField5)
-                    .addComponent(jTextField6)
-                    .addComponent(jTextField7))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                        .addComponent(jTextField4)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -145,18 +159,10 @@ public class ThemKhachHang extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel13)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28))
+                .addGap(84, 84, 84))
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
@@ -188,29 +194,30 @@ public class ThemKhachHang extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
+    private void BtnAddCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddCustomerActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton20ActionPerformed
+    }//GEN-LAST:event_BtnAddCustomerActionPerformed
+
+    private void BtnAddCustomerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BtnAddCustomerMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_BtnAddCustomerMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAddCustomer;
+    private javax.swing.JTable TableCustomer;
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton20;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTable tableQlnv;
     // End of variables declaration//GEN-END:variables
 }
