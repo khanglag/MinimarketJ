@@ -68,7 +68,7 @@ public class TaiKhoanController {
 
                     JOptionPane.showMessageDialog(null, "Vui lòng nhập dữ liệu bắt buộc");
                 } else {
-                    TaiKhoan taiKhoan = taiKhoanService.login(jtfTenDangNhap.getText(), jtfMatKhau.getText());
+                    Taikhoan taiKhoan = taiKhoanService.login(jtfTenDangNhap.getText(), jtfMatKhau.getText());
                     if (taiKhoan == null) {
                         JOptionPane.showMessageDialog(null, "Tên đăng nhập hoặc mật khẩu không chính xác!");
 
@@ -83,7 +83,6 @@ public class TaiKhoanController {
                                 setNgdn(0);
                                 dialog.dispose();
                                 frame = new GUI.QuanLy.MainJFrame();
-                                frame.setLocationRelativeTo(null);
                                 frame.setTitle("Quản lý siêu thị mini");
                                 frame.setExtendedState(JFrame.ABORT);
                                 frame.setVisible(true);
@@ -92,7 +91,6 @@ public class TaiKhoanController {
                                 setNgdn(0);
                                 dialog.dispose();
                                 frame = new GUI.Saler.MainJFrame();
-                                frame.setLocationRelativeTo(null);
                                 frame.setTitle("Quản lý siêu thị mini");
                                 frame.setExtendedState(JFrame.ABORT);
                                 frame.setVisible(true);

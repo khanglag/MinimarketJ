@@ -20,7 +20,8 @@ public class PhieuYeuCauNhap_DTO {
     public PhieuYeuCauNhap_DTO() {
     }
 
-    public PhieuYeuCauNhap_DTO(String maPhieu, String maSP, String tenSP, int soLuongTonKho, String lyDo, String thoiGianYC, boolean trangThai) {
+    public PhieuYeuCauNhap_DTO(String maPhieu, String maSP, String tenSP, int soLuongTonKho, String lyDo,
+            String thoiGianYC, boolean trangThai) {
         this.maPhieu = maPhieu;
         this.maSP = maSP;
         this.tenSP = tenSP;
@@ -88,11 +89,8 @@ public class PhieuYeuCauNhap_DTO {
 
     @Override
     public String toString() {
-        return "PhieuYeuCauNhap{" + "maPhieu=" + maPhieu + ", maSP=" + maSP + ", tenSP=" + tenSP + ", soLuongTonKho=" + soLuongTonKho + ", lyDo=" + lyDo + ", thoiGianYC=" + thoiGianYC + ", trangThai=" + trangThai + '}';
+        return "PhieuYeuCauNhap{" + "maPhieu=" + maPhieu + ", maSP=" + maSP + ", tenSP=" + tenSP + ", soLuongTonKho="
+                + soLuongTonKho + ", lyDo=" + lyDo + ", thoiGianYC=" + thoiGianYC + ", trangThai=" + trangThai + '}';
     }
-    
-    
-    
-    
-    
+
 }
