@@ -4,8 +4,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import ConnectDB.ConnectDB;
+<<<<<<< Updated upstream
 import DTO.HangHoa;
 
+=======
+>>>>>>> Stashed changes
 public class HangHoaDAO {
     public HangHoaDAO(){
 

@@ -5,7 +5,11 @@
 package DAO;
 
 import ConnectDB.ConnectDB;
+<<<<<<< Updated upstream
 import DTO.Nhanvien;
+=======
+import DTO.NhanVien_DTO;
+>>>>>>> Stashed changes
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import Handle.Convert;

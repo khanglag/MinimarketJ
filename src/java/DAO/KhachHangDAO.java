@@ -1,17 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package DAO;
 
-/**
- *
- * @author khang
- */
+import DTO.KhachHang_DTO;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import ConnectDB.ConnectDB;
+
 public class KhachHangDAO {
-<<<<<<< Updated upstream
-    
-=======
     public KhachHangDAO() {
     }
 
@@ -97,5 +92,4 @@ public class KhachHangDAO {
         }
         return khachHang;
     }
->>>>>>> Stashed changes
 }
